@@ -1,41 +1,198 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF+7">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trang web hướng dẫn sử dụng YOHU kế toán pro</title>
+  <title>Yohu Lite - Quản lý bán hàng và kế toán</title>
   <style>
     body {
-     <body>
-  <header>
-    <!-- Thêm logo vào đầu trang -->
-    <img src="yohu-logo.jpg" alt="Yohu Logo" style="width: 150px; margin-bottom: 20px;">
-    <h1>Chào mừng đến với Yohu Ketoan Pro</h1>
-    <p>Trang web này giúp bạn cài đặt và sử dụng phần mềm kế toán YOHU một cách hiệu quả.</p>
-  </header>
-  
-  <!-- Các phần khác của trang web -->
-  <div class="content">
-    <h2>Hướng dẫn sử dụng YOHU Lite cho kế toán</h2>
-    <p>Hãy theo dõi các bước hướng dẫn chi tiết để cài đặt và khai thác tối đa các tính năng của YOHU Lite, công cụ mạnh mẽ hỗ trợ công việc kế toán của bạn.</p>
-  </div>
-
-  <footer>
-    <p>Liên hệ: <a href="https://www.facebook.com/share/1AUEZTjpgW" target="_blank" style="color: white;">Fanpage YOHU Lite</a></p>
-  </footer>
-</body>
-
       font-family: Arial, sans-serif;
-      padding: 20px;
-      background-color: #f0f0f0;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
     }
-    h1 {
-      color: #4CAF50;
+
+    header {
+      background-color: #4CAF50;
+      color: white;
+      text-align: center;
+      padding: 30px 0;
+      transition: transform 0.5s ease;
+    }
+
+    header img {
+      width: 120px;
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      font-size: 2.5em;
+      margin: 0;
+      animation: slideIn 1s ease-out;
+    }
+
+    .banner-text {
+      font-size: 1.2em;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    section {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .service-card {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .contact-form {
+      background-color: #fff;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .contact-form button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .contact-form button:hover {
+      background-color: #45a049;
+    }
+
+    footer {
+      background-color: #4CAF50;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    footer a {
+      color: white;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Animations */
+    @keyframes slideIn {
+      from {
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
   </style>
 </head>
+
 <body>
-  <h1>Chào mừng đến với Yohu Ketoan Pro</h1>
-  <p>Trang web này giúp bạn cài đặt và sử dụng phần mềm kế toán YOHU một cách hiệu quả.</p>
+  <header>
+    <img src="yohu-logo.jpg" alt="Yohu Logo">
+    <h1>Chào mừng đến với Yohu Ketoan Pro</h1>
+    <p class="banner-text">Trang web này giúp bạn cài đặt và sử dụng phần mềm kế toán YOHU một cách hiệu quả.</p>
+  </header>
+
+  <!-- Giới thiệu về Yohu Lite -->
+  <section>
+    <h2>Giới thiệu về Yohu Lite</h2>
+    <p>Yohu Lite là công cụ giúp bạn tự động hóa các công việc kế toán và quản lý bán hàng một cách dễ dàng, không cần chuyên môn về công nghệ. Phần mềm này hoạt động trên Google Sheets và có thể cài đặt dễ dàng chỉ trong 3 bước.</p>
+  </section>
+
+  <!-- Các dịch vụ của Yohu Lite -->
+  <section>
+    <h2>Dịch Vụ</h2>
+    <div class="services">
+      <div class="service-card">
+        <h3>Cài đặt Yohu Lite</h3>
+        <p>Hướng dẫn cài đặt phần mềm Yohu Lite dễ dàng cho người không biết về công nghệ.</p>
+      </div>
+      <div class="service-card">
+        <h3>Hỗ trợ kỹ thuật</h3>
+        <p>Hỗ trợ kỹ thuật nhanh chóng qua Zalo hoặc Fanpage Yohu Lite.</p>
+      </div>
+      <div class="service-card">
+        <h3>Quản lý báo cáo</h3>
+        <p>Tự động tạo báo cáo kinh doanh, tồn kho, và lãi lỗ theo ngày, tháng, quý.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Form Section -->
+  <section>
+    <h2>Liên Hệ</h2>
+    <form class="contact-form">
+      <input type="text" placeholder="Tên của bạn" required>
+      <input type="email" placeholder="Email của bạn" required>
+      <textarea placeholder="Nội dung" rows="5" required></textarea>
+      <button type="submit">Gửi</button>
+    </form>
+  </section>
+
+  <!-- Tính năng nhập liệu giọng nói -->
+  <section>
+    <h2>Nhập Liệu Bằng Giọng Nói</h2>
+    <p>Chức năng này cho phép bạn nhập dữ liệu và yêu cầu báo cáo chỉ bằng giọng nói!</p>
+    <button onclick="startRecognition()">Bắt đầu nhập liệu bằng giọng nói</button>
+    <p id="voiceInput">Kết quả: </p>
+
+    <script>
+      var recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = 'vi-VN';  // Cài đặt ngôn ngữ Tiếng Việt
+      recognition.continuous = false;
+      recognition.interimResults = false;
+
+      recognition.onresult = function(event) {
+        var transcript = event.results[0][0].transcript;
+        document.getElementById('voiceInput').innerText = "Kết quả: " + transcript;
+      };
+
+      function startRecognition() {
+        recognition.start();
+      }
+    </script>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>Liên hệ: <a href="https://www.facebook.com/share/1AUEZTjpgW" target="_blank">Fanpage YOHU Lite</a></p>
+  </footer>
+
 </body>
 </html>
