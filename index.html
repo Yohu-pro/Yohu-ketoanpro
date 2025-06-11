@@ -3,51 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yohu Lite - Quản lý bán hàng và kế toán</title>
+  <title>Yohu Kế Toán Pro - Giải pháp kế toán & quản lý bán hàng</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Roboto', sans-serif;
       background-color: #f4f4f4;
       margin: 0;
       padding: 0;
     }
-
-    header {
-      background-color: #4CAF50;
-      color: white;
-      text-align: center;
-      padding: 30px 0;
-      transition: transform 0.5s ease;
+    nav {
+      background: #002B5B;
+      padding: 10px 0;
     }
-
-    header img {
-      width: 120px;
-      margin-bottom: 20px;
-    }
-
-    header h1 {
-      font-size: 2.5em;
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
       margin: 0;
-      animation: slideIn 1s ease-out;
+      padding: 0;
     }
-
-    .banner-text {
-      font-size: 1.2em;
-      margin-top: 10px;
+    nav li {
+      margin: 0 15px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
       font-weight: bold;
     }
-
+    nav a:hover {
+      text-decoration: underline;
+    }
+    #hero {
+      background: linear-gradient(to right, #002B5B, #808080);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+    }
+    #hero img {
+      max-width: 300px;
+      border-radius: 12px;
+      margin-top: 30px;
+    }
     section {
       padding: 40px 20px;
       text-align: center;
     }
-
     .services {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 20px;
     }
-
     .service-card {
       background-color: #fff;
       border-radius: 8px;
@@ -55,21 +60,17 @@
       padding: 20px;
       transition: transform 0.3s ease;
     }
-
     .service-card:hover {
       transform: translateY(-10px);
     }
-
     .contact-form {
       background-color: #fff;
       padding: 20px;
-      margin-top: 20px;
       border-radius: 8px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       max-width: 600px;
       margin: 0 auto;
     }
-
     .contact-form input,
     .contact-form textarea {
       width: 100%;
@@ -78,84 +79,82 @@
       border: 1px solid #ccc;
       border-radius: 4px;
     }
-
     .contact-form button {
-      background-color: #4CAF50;
+      background-color: #002B5B;
       color: white;
       padding: 10px 20px;
       border: none;
       border-radius: 4px;
       cursor: pointer;
     }
-
     .contact-form button:hover {
-      background-color: #45a049;
+      background-color: #004080;
     }
-
     footer {
-      background-color: #4CAF50;
+      background-color: #002B5B;
       color: white;
       text-align: center;
       padding: 20px;
     }
-
     footer a {
       color: white;
       text-decoration: none;
     }
-
     footer a:hover {
       text-decoration: underline;
     }
-
-    /* Animations */
-    @keyframes slideIn {
-      from {
-        transform: translateY(-50px);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
   </style>
 </head>
-
 <body>
-  <header>
-    <img src="yohu-logo.jpg" alt="Yohu Logo">
-    <h1>Chào mừng đến với Yohu Ketoan Pro</h1>
-    <p class="banner-text">Trang web này giúp bạn cài đặt và sử dụng phần mềm kế toán YOHU một cách hiệu quả.</p>
-  </header>
+  <!-- MENU NAVIGATION -->
+  <nav>
+    <ul>
+      <li><a href="#hero">Trang chủ</a></li>
+      <li><a href="#about">Giới thiệu</a></li>
+      <li><a href="#services">Dịch vụ</a></li>
+      <li><a href="#products">Sản phẩm</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contact">Liên hệ</a></li>
+    </ul>
+  </nav>
 
-  <!-- Giới thiệu về Yohu Lite -->
-  <section>
-    <h2>Giới thiệu về Yohu Lite</h2>
-    <p>Yohu Lite là công cụ giúp bạn tự động hóa các công việc kế toán và quản lý bán hàng một cách dễ dàng, không cần chuyên môn về công nghệ. Phần mềm này hoạt động trên Google Sheets và có thể cài đặt dễ dàng chỉ trong 3 bước.</p>
+  <!-- HERO SECTION -->
+  <section id="hero">
+    <h1>Giải pháp kế toán trọn gói – Uy tín & hiệu quả cho mọi doanh nghiệp nhỏ</h1>
+    <p>Hệ thống bán hàng và báo cáo Google Sheet tự động hoá bằng giọng nói</p>
+    <a href="tel:0973480488" style="background: white; color: #002B5B; padding: 12px 24px; border-radius: 8px; font-weight: bold; text-decoration: none;">Liên hệ tư vấn miễn phí: 0973 480 488</a>
+    <div>
+      <img src="your-image-url.jpg" alt="Cô gái đại diện">
+    </div>
   </section>
 
-  <!-- Các dịch vụ của Yohu Lite -->
-  <section>
+  <!-- GIỚI THIỆU -->
+  <section id="about">
+    <h2>Giới thiệu về Yohu Kế Toán Pro</h2>
+    <p>Yohu Kế Toán Pro là đơn vị chuyên cung cấp giải pháp kế toán cho doanh nghiệp nhỏ, với hơn 5 năm kinh nghiệm trong lĩnh vực tài chính, thuế và đào tạo thực hành kế toán áp dụng AI trong kế toán tự động hoá.</p>
+  </section>
+
+  <!-- DỊCH VỤ -->
+  <section id="services">
     <h2>Dịch Vụ</h2>
     <div class="services">
       <div class="service-card">
-        <h3>Cài đặt Yohu Lite</h3>
-        <p>Hướng dẫn cài đặt phần mềm Yohu Lite dễ dàng cho người không biết về công nghệ.</p>
+        <h3>Kế toán bán hàng & Quản lý xuất nhập tồn</h3>
+        <p>Hệ thống quản trị kinh doanh thông minh tích hợp Google Sheet.</p>
       </div>
       <div class="service-card">
-        <h3>Hỗ trợ kỹ thuật</h3>
-        <p>Hỗ trợ kỹ thuật nhanh chóng qua Zalo hoặc Fanpage Yohu Lite.</p>
+        <h3>Tự động tạo báo cáo</h3>
+        <p>Báo cáo kinh doanh, tồn kho, lãi lỗ theo thời gian thực.</p>
       </div>
       <div class="service-card">
-        <h3>Quản lý báo cáo</h3>
-        <p>Tự động tạo báo cáo kinh doanh, tồn kho, và lãi lỗ theo ngày, tháng, quý.</p>
+        <h3>Hỗ trợ kỹ thuật nhanh chóng</h3>
+        <p>Hỗ trợ cài đặt và vận hành qua Zalo, Email, hoặc trực tiếp.</p>
       </div>
     </div>
   </section>
 
-  <!-- Contact Form Section -->
-  <section>
+  <!-- LIÊN HỆ -->
+  <section id="contact">
     <h2>Liên Hệ</h2>
     <form class="contact-form">
       <input type="text" placeholder="Tên của bạn" required>
@@ -165,34 +164,11 @@
     </form>
   </section>
 
-  <!-- Tính năng nhập liệu giọng nói -->
-  <section>
-    <h2>Nhập Liệu Bằng Giọng Nói</h2>
-    <p>Chức năng này cho phép bạn nhập dữ liệu và yêu cầu báo cáo chỉ bằng giọng nói!</p>
-    <button onclick="startRecognition()">Bắt đầu nhập liệu bằng giọng nói</button>
-    <p id="voiceInput">Kết quả: </p>
-
-    <script>
-      var recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-      recognition.lang = 'vi-VN';  // Cài đặt ngôn ngữ Tiếng Việt
-      recognition.continuous = false;
-      recognition.interimResults = false;
-
-      recognition.onresult = function(event) {
-        var transcript = event.results[0][0].transcript;
-        document.getElementById('voiceInput').innerText = "Kết quả: " + transcript;
-      };
-
-      function startRecognition() {
-        recognition.start();
-      }
-    </script>
-  </section>
-
-  <!-- Footer -->
+  <!-- FOOTER -->
   <footer>
-    <p>Liên hệ: <a href="https://www.facebook.com/share/1AUEZTjpgW" target="_blank">Fanpage YOHU Lite</a></p>
+    <p>Hotline/Zalo: 0973 480 488 | Email: yohu.ketoanpro@gmail.com</p>
+    <p><a href="https://www.facebook.com/share/1AUEZTjpgW" target="_blank">Fanpage YOHU Lite</a></p>
+    <p>Địa chỉ: Nhan Duc Quarter, Hien Nam Ward, Hung Yen City, Hung Yen Province.</p>
   </footer>
-
 </body>
 </html>
