@@ -164,6 +164,29 @@
     </form>
   </section>
 
+  <!-- VOICE INPUT FUNCTIONALITY -->
+  <section id="voice-input">
+    <h2>Nhập liệu bằng giọng nói</h2>
+    <button onclick="startRecognition()">Bắt đầu nhập liệu</button>
+    <p id="voiceInput">Kết quả: </p>
+
+    <script>
+      var recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = 'vi-VN';  // Cài đặt ngôn ngữ Tiếng Việt
+      recognition.continuous = false;
+      recognition.interimResults = false;
+
+      recognition.onresult = function(event) {
+        var transcript = event.results[0][0].transcript;
+        document.getElementById('voiceInput').innerText = "Kết quả: " + transcript;
+      };
+
+      function startRecognition() {
+        recognition.start();
+      }
+    </script>
+  </section>
+
   <!-- FOOTER -->
   <footer>
     <p>Hotline/Zalo: 0973 480 488 | Email: yohu.ketoanpro@gmail.com</p>
