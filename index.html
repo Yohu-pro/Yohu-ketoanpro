@@ -34,15 +34,37 @@
       text-decoration: underline;
     }
     #hero {
-      background: linear-gradient(to right, #002B5B, #808080);
+      background: url('your-banner-image-url.jpg') center/cover no-repeat; /* Thêm URL của banner */
+      height: 600px;
       color: white;
       padding: 60px 20px;
       text-align: center;
+      position: relative;
     }
-    #hero img {
-      max-width: 300px;
-      border-radius: 12px;
-      margin-top: 30px;
+    #hero h1 {
+      font-size: 2.5em;
+      position: absolute;
+      top: 10%;
+      left: 5%;
+      width: 90%;
+    }
+    #hero p {
+      font-size: 1.5em;
+      position: absolute;
+      top: 20%;
+      left: 5%;
+      width: 90%;
+    }
+    #hero div {
+      position: absolute;
+      bottom: 5%;
+      left: 5%;
+      width: 70%;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: lightblue;
+      padding: 15px;
+      font-size: 1em;
+      text-align: left;
     }
     section {
       padding: 40px 20px;
@@ -120,28 +142,17 @@
 
   <!-- HERO SECTION -->
   <section id="hero">
-    <h1>Giải pháp kế toán trọn gói – Uy tín & hiệu quả cho mọi doanh nghiệp nhỏ</h1>
-    <p>Hệ thống bán hàng và báo cáo Google Sheet tự động hoá bằng giọng nói</p>
-    <a href="tel:0973480488" style="background: white; color: #002B5B; padding: 12px 24px; border-radius: 8px; font-weight: bold; text-decoration: none;">Liên hệ tư vấn miễn phí: 0973 480 488</a>
+    <!-- Nội dung banner -->
+    <h1>GIẢI PHÁP DOANH NGHIỆP/HỘ KINH DOANH</h1>
+    <p>Hệ thống sổ sách tự động cho người kinh doanh</p>
+
+    <!-- Thông tin công ty -->
     <div>
-     <!-- BANNER SECTION -->
-<section id="hero" style="position: relative; background: url('your-banner-image-url.jpg') center/cover no-repeat; height: 600px; color: white; text-align: center;">
-  <!-- Nội dung banner -->
-  <div style="position: absolute; top: 10%; left: 5%; width: 90%; color: white;">
-    <h1 style="font-size: 2.5em;">GIẢI PHÁP DOANH NGHIỆP/HỘ KINH DOANH</h1>
-    <p style="font-size: 1.5em;">Hệ thống sổ sách tự động cho người kinh doanh</p>
-  </div>
-
-  <!-- Thông tin công ty -->
-  <div style="position: absolute; bottom: 5%; left: 5%; width: 70%; background-color: rgba(0, 0, 0, 0.5); color: lightblue; padding: 15px; font-size: 1em; text-align: left;">
-    <p><strong>CÔNG TY TNHH YOHU VIỆT NAM</strong></p>
-    <p>Địa chỉ: Nhân Dục, Hiến Nam, Hưng Yên, Việt Nam</p>
-    <p>Hotline/Zalo: <a href="tel:0973480488" style="color: #ffffff;">0973 4804 488</a></p>
-    <p>Email: <a href="mailto:yohu.ketoanpro@gmail.com" style="color: #ffffff;">yohu.ketoanpro@gmail.com</a></p>
-    <p>Fanpage: <a href="https://facebook.com/share/1AUEZTjpgW" style="color: #ffffff;" target="_blank">facebook.com/share/1AUEZTjpgW</a></p>
-  </div>
-</section>
-
+      <p><strong>CÔNG TY TNHH YOHU VIỆT NAM</strong></p>
+      <p>Địa chỉ: Nhân Dục, Hiến Nam, Hưng Yên, Việt Nam</p>
+      <p>Hotline/Zalo: <a href="tel:0973480488" style="color: #ffffff;">0973 4804 488</a></p>
+      <p>Email: <a href="mailto:yohu.ketoanpro@gmail.com" style="color: #ffffff;">yohu.ketoanpro@gmail.com</a></p>
+      <p>Fanpage: <a href="https://facebook.com/share/1AUEZTjpgW" style="color: #ffffff;" target="_blank">facebook.com/share/1AUEZTjpgW</a></p>
     </div>
   </section>
 
@@ -179,29 +190,6 @@
       <textarea placeholder="Nội dung" rows="5" required></textarea>
       <button type="submit">Gửi</button>
     </form>
-  </section>
-
-  <!-- VOICE INPUT FUNCTIONALITY -->
-  <section id="voice-input">
-    <h2>Nhập liệu bằng giọng nói</h2>
-    <button onclick="startRecognition()">Bắt đầu nhập liệu</button>
-    <p id="voiceInput">Kết quả: </p>
-
-    <script>
-      var recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-      recognition.lang = 'vi-VN';  // Cài đặt ngôn ngữ Tiếng Việt
-      recognition.continuous = false;
-      recognition.interimResults = false;
-
-      recognition.onresult = function(event) {
-        var transcript = event.results[0][0].transcript;
-        document.getElementById('voiceInput').innerText = "Kết quả: " + transcript;
-      };
-
-      function startRecognition() {
-        recognition.start();
-      }
-    </script>
   </section>
 
   <!-- FOOTER -->
