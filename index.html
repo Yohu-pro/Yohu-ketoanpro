@@ -12,39 +12,65 @@
       padding: 0;
     }
 
+    /* Menu Navigation */
+    nav {
+      background-color: #002B5B;
+      padding: 10px 0;
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
+      margin: 0 20px;
+    }
+
+    nav ul li a {
+      color: white;
+      font-size: 1.1em;
+      padding: 10px;
+      text-decoration: none;
+    }
+
+    nav ul li a:hover {
+      text-decoration: underline;
+    }
+
     /* Hero Section - Banner */
     #hero {
-      background: url('path-to-your-banner-image.jpg') center/cover no-repeat; /* Thay đường dẫn banner ở đây */
+      background: url('path-to-your-banner-image.jpg') center/cover no-repeat;
       height: 600px;
-      color: white;
-      text-align: center;
-      position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
+      text-align: center;
+      position: relative;
+      color: white;
     }
 
     #hero h1 {
-      font-size: 6vw; /* Thay đổi kích thước theo chiều rộng của màn hình */
+      font-size: 6vw;
       font-weight: bold;
       margin: 0;
     }
 
     #hero p {
-      font-size: 4vw; /* Thay đổi kích thước theo chiều rộng của màn hình */
+      font-size: 4vw;
       margin: 10px 0;
     }
 
     #hero div {
       background-color: rgba(0, 0, 0, 0.5);
       color: lightblue;
-      padding: 15px;
-      width: 80%;
+      padding: 20px;
       max-width: 600px;
       font-size: 1em;
       text-align: left;
-      margin-top: 20px;
     }
 
     /* Footer Section */
@@ -55,10 +81,12 @@
       padding: 20px;
       font-size: 0.9em;
     }
+
     footer a {
       color: white;
       text-decoration: none;
     }
+
     footer a:hover {
       text-decoration: underline;
     }
@@ -67,19 +95,27 @@
     section#products {
       padding: 40px 20px;
       text-align: center;
+      background-color: #fff;
+    }
+
+    section#products h2 {
+      font-size: 2em;
+      color: #002B5B;
+      margin-bottom: 20px;
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
+      margin-top: 20px;
     }
 
     table, th, td {
-      border: 1px solid black;
+      border: 1px solid #ddd;
     }
 
     th, td {
-      padding: 10px;
+      padding: 15px;
       text-align: center;
     }
 
@@ -91,33 +127,35 @@
     /* Form liên hệ */
     #contact form input, #contact form textarea {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       margin: 10px 0;
       border-radius: 5px;
       border: 1px solid #ccc;
+      font-size: 1em;
     }
 
     #contact form button {
-      padding: 10px 20px;
+      padding: 12px 20px;
       background-color: #002B5B;
       color: white;
       border: none;
       cursor: pointer;
       border-radius: 5px;
+      font-size: 1em;
     }
-    
+
     #contact form button:hover {
       background-color: #004080;
     }
 
-    /* Media Queries - Điều chỉnh giao diện cho thiết bị nhỏ */
+    /* Media Queries */
     @media (max-width: 768px) {
       #hero h1 {
-        font-size: 8vw; /* Giảm kích thước cho các thiết bị nhỏ */
+        font-size: 8vw;
       }
 
       #hero p {
-        font-size: 5vw; /* Giảm kích thước cho các thiết bị nhỏ */
+        font-size: 5vw;
       }
 
       #hero div {
@@ -139,14 +177,13 @@
       }
     }
 
-    /* Media Queries - Điều chỉnh cho màn hình rất nhỏ (di động) */
     @media (max-width: 480px) {
       #hero h1 {
-        font-size: 10vw; /* Giảm kích thước cho các thiết bị di động nhỏ */
+        font-size: 10vw;
       }
 
       #hero p {
-        font-size: 6vw; /* Giảm kích thước cho các thiết bị di động nhỏ */
+        font-size: 6vw;
       }
 
       #hero div {
@@ -158,78 +195,32 @@
         width: 100%;
       }
     }
-
   </style>
 </head>
 <body>
 
   <!-- MENU NAVIGATION -->
   <nav>
-    <ul style="display: flex; justify-content: center; list-style: none; margin: 0; padding: 10px 0; background-color: #002B5B;">
-      <li><a href="#hero" style="color: white; padding: 10px; text-decoration: none;">Trang chủ</a></li>
-      <li><a href="#about" style="color: white; padding: 10px; text-decoration: none;">Giới thiệu</a></li>
-      <li><a href="#services" style="color: white; padding: 10px; text-decoration: none;">Dịch vụ</a></li>
-      <li><a href="#products" style="color: white; padding: 10px; text-decoration: none;">Sản phẩm</a></li>
-      <li><a href="#contact" style="color: white; padding: 10px; text-decoration: none;">Liên hệ</a></li>
+    <ul>
+      <li><a href="#hero">Trang chủ</a></li>
+      <li><a href="#about">Giới thiệu</a></li>
+      <li><a href="#services">Dịch vụ</a></li>
+      <li><a href="#products">Sản phẩm</a></li>
+      <li><a href="#contact">Liên hệ</a></li>
     </ul>
   </nav>
 
   <!-- HERO SECTION (Banner) -->
   <section id="hero">
-    <h1>Giải pháp kế toán cho Doanh nghiệp nhỏ/Hộ kinh doanh</h1>
-    <p>Hệ thống kế toán và quản lý XNT đơn giản, dễ sử dụng dành cho các chủ doanh nghiệp nhỏ và hộ kinh doanh.</p>
-    
-    <!-- Thông tin công ty -->
     <div>
-      <p><strong>CÔNG TY TNHH YOHU VIỆT NAM</strong></p>
-      <p>Địa chỉ: Nhân Dục, Hiến Nam, Hưng Yên, Việt Nam</p>
-      <p>Hotline/Zalo: 0973 4804 488</p>
-      <p>Email: yohu.ketoanpro@gmail.com</p>
-      <p>Fanpage: <a href="https://facebook.com/share/1AUEZTjpgW" target="_blank">facebook.com/share/1AUEZTjpgW</a></p>
+      <h1>Giải pháp kế toán cho Doanh nghiệp nhỏ/Hộ kinh doanh</h1>
+      <p>Hệ thống kế toán và quản lý XNT đơn giản, dễ sử dụng dành cho các chủ doanh nghiệp nhỏ và hộ kinh doanh.</p>
+      <!-- Thông tin công ty -->
+      <div>
+        <p><strong>CÔNG TY TNHH YOHU VIỆT NAM</strong></p>
+        <p>Địa chỉ: Nhân Dục, Hiến Nam, Hưng Yên, Việt Nam</p>
+        <p>Hotline/Zalo: 0973 4804 488</p>
+        <p>Email: yohu.ketoanpro@gmail.com</p>
+        <p>Fanpage: <a href="https://facebook.com/share/1AUEZTjpgW" target="_blank">facebook.com/share/1AUEZTjpgW</a></p>
+      </div>
     </div>
-  </section>
-
-  <!-- GIỚI THIỆU -->
-  <section id="about">
-    <h2>Giới thiệu về Yohu Kế Toán Pro</h2>
-    <p>Yohu Kế Toán Pro là công ty cung cấp giải pháp kế toán trọn gói cho các doanh nghiệp nhỏ, với công cụ dễ sử dụng, tự động hóa quy trình báo cáo tài chính và quản lý bán hàng.</p>
-  </section>
-
-  <!-- SẢN PHẨM THƯƠNG MẠI -->
-  <section id="products">
-    <h2>Sản phẩm Thương mại</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Sản phẩm</th>
-          <th>Hình ảnh</th>
-          <th>Mô tả sản phẩm</th>
-          <th>Mã Hàng</th>
-          <th>Giá Sỉ</th>
-          <th>Giá Net</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Sen cây</td>
-          <td><img src="path-to-image.jpg" alt="Sen cây"></td> <!-- Thay ảnh sản phẩm -->
-          <td>Sen cây inox chất lượng cao, phù hợp cho gia đình và các cơ sở kinh doanh nhỏ.</td>
-          <td>SCN</td>
-          <td>450.000 VND</td>
-          <td>450.000 VND</td>
-        </tr>
-        <tr>
-          <td>Bộ sen vòi chậu 2 chân</td>
-          <td><img src="path-to-image.jpg" alt="Bộ sen vòi chậu"></td> <!-- Thay ảnh sản phẩm -->
-          <td>Bộ sen vòi chậu inox cao cấp, tiết kiệm nước và dễ lắp đặt.</td>
-          <td>YH23S</td>
-          <td>360.000 VND</td>
-          <td>260.000 VND</td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
-
-  <!-- LIÊN HỆ -->
-  <section id="contact">
-    <h2>Liê
