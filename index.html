@@ -13,7 +13,7 @@
       line-height: 1.6;
     }
 
-    /* Menu Navigation */
+    /* MENU NAVIGATION */
     nav {
       background-color: #002B5B;
       padding: 15px 0;
@@ -42,7 +42,7 @@
       text-decoration: underline;
     }
 
-    /* Hero Section */
+    /* HERO SECTION */
     #hero {
       background: url('path-to-your-banner-image.jpg') center/cover no-repeat;
       height: 600px;
@@ -52,16 +52,17 @@
       text-align: center;
       position: relative;
       color: white;
+      padding: 20px;
     }
 
     #hero h1 {
-      font-size: 6vw;
+      font-size: 5vw;
       font-weight: bold;
       margin: 0;
     }
 
     #hero p {
-      font-size: 4vw;
+      font-size: 3.5vw;
       margin: 10px 0;
     }
 
@@ -72,6 +73,8 @@
       max-width: 600px;
       font-size: 1em;
       text-align: left;
+      margin-top: 20px;
+      border-radius: 8px;
     }
 
     /* About Section */
@@ -90,6 +93,7 @@
     #about p {
       font-size: 1.1em;
       color: #333;
+      line-height: 1.6;
     }
 
     /* Products Section */
@@ -242,7 +246,7 @@
     </ul>
   </nav>
 
-  <!-- HERO SECTION (Banner) -->
+  <!-- HERO SECTION -->
   <section id="hero">
     <div>
       <h1>Giải pháp kế toán cho Doanh nghiệp nhỏ/Hộ kinh doanh</h1>
@@ -268,4 +272,52 @@
   <section id="products">
     <h2>Sản phẩm Thương mại</h2>
     <table>
-      <thead
+      <thead>
+        <tr>
+          <th>Sản phẩm</th>
+          <th>Hình ảnh</th>
+          <th>Mô tả sản phẩm</th>
+          <th>Mã Hàng</th>
+          <th>Giá Sỉ</th>
+          <th>Giá Net</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Sen cây</td>
+          <td><img src="path-to-image.jpg" alt="Sen cây"></td>
+          <td>Sen cây inox chất lượng cao, phù hợp cho gia đình và các cơ sở kinh doanh nhỏ.</td>
+          <td>SCN</td>
+          <td>450.000 VND</td>
+          <td>450.000 VND</td>
+        </tr>
+        <tr>
+          <td>Bộ sen vòi chậu 2 chân</td>
+          <td><img src="path-to-image.jpg" alt="Bộ sen vòi chậu"></td>
+          <td>Bộ sen vòi chậu inox cao cấp, tiết kiệm nước và dễ lắp đặt.</td>
+          <td>YH23S</td>
+          <td>360.000 VND</td>
+          <td>260.000 VND</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- LIÊN HỆ -->
+  <section id="contact">
+    <h2>Liên hệ</h2>
+    <form>
+      <input type="text" placeholder="Tên của bạn" required>
+      <input type="email" placeholder="Email của bạn" required>
+      <textarea placeholder="Lời nhắn của bạn" required></textarea>
+      <button type="submit">Gửi thông tin</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Yohu Kế Toán Pro. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
