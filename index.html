@@ -5,160 +5,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YOHU Lite - Giải Pháp Quản Lý Kinh Doanh Dễ Dàng</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Style cho accordion */
+        .accordion {
+            background-color: #eee;
+            color: #444;
+            cursor: pointer;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+            margin: 5px 0;
+        }
+
+        .active, .accordion:hover {
+            background-color: #ccc;
+        }
+
+        .panel {
+            padding: 0 18px;
+            display: none;
+            background-color: #f1f1f1;
+            overflow: hidden;
+        }
+    </style>
 </head>
 <body>
     <!-- Giới thiệu về YOHU Lite -->
     <section id="gioi-thieu">
         <div class="container">
-            <h1>Kế toán mà không Kế toán - Giải Pháp Quản Lý Kinh Doanh Dễ Dàng Cho Người Không Rành Công Nghệ</h1>
-            <p>YOHU Lite là một công cụ quản lý bán hàng và kế toán đơn giản, dễ sử dụng, được thiết kế đặc biệt cho những chủ doanh nghiệp nhỏ, cửa hàng và hộ kinh doanh cá thể không rành về công nghệ. Dự án YOHU Lite không yêu cầu lập trình hay tài khoản doanh nghiệp Google, chỉ cần sử dụng Google Drive, Google Sheets và Fchat (miễn phí) để vận hành. Mọi thao tác đều có thể thực hiện ngay mà không cần bất kỳ phần mềm tốn phí nào.</p>
-            
-            <h2>Lợi Ích Của YOHU Lite</h2>
-            <ul>
-                <li><strong>Dễ Dàng Cài Đặt và Sử Dụng:</strong> Với chỉ ba bước cài đặt đơn giản, người dùng có thể tự cài đặt và sử dụng YOHU Lite ngay mà không gặp khó khăn. Không cần đến chuyên môn công nghệ, mọi thao tác đều được tối giản để ai cũng có thể làm được.</li>
-                <li><strong>Tự Động Hóa Quản Lý Bán Hàng và Kế Toán:</strong> YOHU Lite giúp tự động hóa các công việc như ghi đơn hàng, xuất hóa đơn, và tạo báo cáo kết quả kinh doanh (KQKD), giúp tiết kiệm thời gian và công sức.</li>
-                <li><strong>Tích Hợp Mọi Chức Năng Quan Trọng:</strong> Công cụ bao gồm các sheet quan trọng như quản lý đơn hàng, báo cáo doanh thu, tồn kho, chi phí và kết quả kinh doanh, giúp bạn dễ dàng kiểm soát và quản lý hoạt động kinh doanh mọi lúc, mọi nơi.</li>
-                <li><strong>Không Cần Phần Mềm Thứ Ba:</strong> Mọi dữ liệu được lưu trữ và quản lý trực tiếp trên Google Sheets, giảm thiểu chi phí và rủi ro bảo mật. Bạn chỉ cần có tài khoản Google là có thể sử dụng ngay.</li>
-                <li><strong>Tính Năng Tương Tác Giọng Nói (Tương Lai):</strong> Với sự phát triển của công nghệ, YOHU Lite đang tiến tới việc tích hợp khả năng hỏi báo cáo bằng giọng nói, tạo ra trải nghiệm người dùng cao cấp và thuận tiện hơn.</li>
-            </ul>
+            <h2>Giới thiệu về YOHU Lite</h2>
 
-            <h2>Kế Hoạch Xây Dựng Quản Lý Bán Hàng YOHU Lite - Giai Đoạn Triển Khai</h2>
-            <h3>I. Phương Pháp Triển Khai Thương Mại Hóa YOHU Lite</h3>
-            <p>Dành cho khách hàng không rành công nghệ: Chỉ cần cài đặt một lần và sử dụng ngay, với hệ thống đơn giản và dễ dàng thao tác.</p>
-            <p><strong>Mục Tiêu:</strong> Không cần lập trình, không cần tài khoản doanh nghiệp Google. Chỉ cần sử dụng Google Drive, Google Sheets và Fchat (miễn phí).</p>
-            
-            <h3>II. Kế Hoạch Triển Khai Theo 3 Giai Đoạn</h3>
-            <h4>Giai Đoạn 1: Chuẩn Hóa Bộ Sản Phẩm</h4>
-            <ul>
-                <li>Hoàn thiện file Google Sheet mẫu.</li>
-                <li>Cấu hình trigger và Apps Script sẵn có.</li>
-                <li>Tạo hướng dẫn cài đặt nhanh chóng.</li>
-                <li><strong>Kết Quả Đầu Ra:</strong> File zip hoặc link copy sheet + script. Hướng dẫn PDF hoặc video cài đặt trong 3 phút.</li>
-            </ul>
+            <!-- Accordion for Giới thiệu về YOHU Lite -->
+            <button class="accordion">1. Mô tả về sản phẩm YOHU Lite và các lợi ích của nó</button>
+            <div class="panel">
+                <p>YOHU Lite là một công cụ quản lý bán hàng và kế toán đơn giản, dễ sử dụng, được thiết kế đặc biệt cho những chủ doanh nghiệp nhỏ, cửa hàng và hộ kinh doanh cá thể không rành về công nghệ. Dự án YOHU Lite không yêu cầu lập trình hay tài khoản doanh nghiệp Google, chỉ cần sử dụng Google Drive, Google Sheets và Fchat (miễn phí) để vận hành. Mọi thao tác đều có thể thực hiện ngay mà không cần bất kỳ phần mềm tốn phí nào.</p>
+                <ul>
+                    <li><strong>Dễ Dàng Cài Đặt và Sử Dụng:</strong> Với chỉ ba bước cài đặt đơn giản, người dùng có thể tự cài đặt và sử dụng YOHU Lite ngay mà không gặp khó khăn. Không cần đến chuyên môn công nghệ, mọi thao tác đều được tối giản để ai cũng có thể làm được.</li>
+                    <li><strong>Tự Động Hóa Quản Lý Bán Hàng và Kế Toán:</strong> YOHU Lite giúp tự động hóa các công việc như ghi đơn hàng, xuất hóa đơn, và tạo báo cáo kết quả kinh doanh (KQKD), giúp tiết kiệm thời gian và công sức.</li>
+                    <li><strong>Tính Năng Tương Tác Giọng Nói (Tương Lai):</strong> Với sự phát triển của công nghệ, YOHU Lite đang tiến tới việc tích hợp khả năng hỏi báo cáo bằng giọng nói, tạo ra trải nghiệm người dùng cao cấp và thuận tiện hơn.</li>
+                </ul>
+            </div>
 
-            <h4>Giai Đoạn 2: Thiết Lập Hệ Thống Giao Tiếp</h4>
-            <ul>
-                <li>Cài đặt Fchat bản miễn phí.</li>
-                <li>Thiết lập auto-reply cho các báo cáo doanh thu.</li>
-                <li>Tích hợp Apps Script webhook (nâng cấp nếu cần).</li>
-                <li><strong>Kết Quả Đầu Ra:</strong> Fchat tự động trả lời khi gõ “doanh thu hôm nay”. Không cần tài khoản API.</li>
-            </ul>
-
-            <h4>Giai Đoạn 3: Nâng Cấp Tương Tác Giọng Nói</h4>
-            <ul>
-                <li>Sử dụng Web Speech API (miễn phí) để nhận diện giọng nói.</li>
-                <li>Gửi dữ liệu về Google Apps Script để lấy báo cáo.</li>
-                <li><strong>Kết Quả Đầu Ra:</strong> Trang web mini có thể hỏi bằng giọng nói và hiển thị kết quả dưới dạng văn bản hoặc âm thanh.</li>
-            </ul>
-
-            <h3>III. Công Cụ Sử Dụng Cho YOHU Lite</h3>
-            <ul>
-                <li>Google Apps Script: Tự động hóa mọi quy trình.</li>
-                <li>Google Form: Nhập đơn hàng một cách nhanh chóng và tự động.</li>
-                <li>Fchat (miễn phí): Cung cấp giao diện hỏi đáp tự động cho khách hàng.</li>
-                <li>Web Speech API: Công nghệ nhận diện giọng nói trên trình duyệt Chrome.</li>
-                <li>Canva Video / CapCut PC: Tạo video marketing đơn giản và đẹp mắt.</li>
-            </ul>
-
-            <h3>IV. Quá Trình Cài Đặt Và Hướng Dẫn Sử Dụng</h3>
-            <ol>
-                <li><strong>Bước 1:</strong> Mở Google Sheet và tạo bản sao.</li>
-                <li><strong>Bước 2:</strong> Kích hoạt macro để tự động hóa quy trình.</li>
-                <li><strong>Bước 3:</strong> Nhập thử liệu vào sheet "Nhập liệu" để kiểm tra.</li>
-                <li><strong>Bước 4:</strong> Xem báo cáo tự động hiển thị kết quả theo ngày/tháng/quý/năm.</li>
-            </ol>
-
-            <h3>V. Các Tài Liệu Hướng Dẫn Kèm Theo</h3>
-            <ul>
-                <li><strong>YOHU Lite - Hướng Dẫn Cài Đặt:</strong> Giúp khách hàng cài đặt và cấu hình nhanh chóng.</li>
-                <li><strong>Hướng Dẫn Quản Lý Đơn Hàng & Xuất Hóa Đơn:</strong> Cách thức nhập đơn và tạo hóa đơn PDF tự động.</li>
-                <li><strong>Hướng Dẫn Báo Cáo Kết Quả Kinh Doanh:</strong> Cách xuất báo cáo lãi lỗ tự động.</li>
-                <li><strong>Hướng Dẫn Báo Cáo Xuất - Nhập - Tồn:</strong> Cách tổng hợp tồn kho một cách dễ hiểu và trực quan.</li>
-            </ul>
+            <button class="accordion">2. Nhấn mạnh tính đơn giản, dễ sử dụng cho người không có chuyên môn công nghệ</button>
+            <div class="panel">
+                <p>YOHU Lite là công cụ dễ sử dụng, không yêu cầu kiến thức về công nghệ. Người dùng chỉ cần có tài khoản Google, cài đặt Google Sheets và Google Forms để quản lý đơn hàng, tồn kho, và báo cáo. Tất cả quá trình được tự động hóa giúp tiết kiệm thời gian và giảm thiểu sai sót.</p>
+            </div>
         </div>
     </section>
 
-    <!-- Liên Hệ -->
-    <section id="lien-he">
+    <!-- Các Tính Năng Chính -->
+    <section id="tinh-nang">
         <div class="container">
-            <h2>Liên Hệ Với Chúng Tôi</h2>
-            <p>Để biết thêm chi tiết về sản phẩm hoặc cần hỗ trợ kỹ thuật, vui lòng liên hệ với chúng tôi qua các phương thức dưới đây:</p>
-            <ul>
-                <li><strong>CÔNG TY TNHH YOHU VIỆT NAM</strong></li>
-                <li><strong>Địa chỉ:</strong> Nhân Dục, Hiến Nam, Hưng Yên, Việt Nam</li>
-                <li><strong>Hotline/Zalo:</strong> 0973 480 488 / Zalo OA: 0339606969</li>
-                <li><strong>Messenger:</strong> <a href="https://www.facebook.com/share/1ACHeihbme/" target="_blank">https://www.facebook.com/share/1ACHeihbme/</a></li>
-                <li><strong>Fchat:</strong> Yohu-ketoanpro</li>
-                <li><strong>Fanpage:</strong> <a href="https://facebook.com/share/1AUEZTjpgW" target="_blank">facebook.com/share/1AUEZTjpgW</a></li>
-                <li><strong>YouTube:</strong> <a href="YouTube Demo" target="_blank">Demo Video</a></li>
-            </ul>
+            <h2>Các Tính Năng Chính của YOHU Lite</h2>
+
+            <!-- Accordion for Các Tính Năng Chính -->
+            <button class="accordion">1. Mô tả cách sử dụng Google Sheets, Google Forms, Fchat và tích hợp giọng nói để báo cáo</button>
+            <div class="panel">
+                <p>YOHU Lite sử dụng Google Sheets để lưu trữ và quản lý tất cả dữ liệu đơn hàng, sản phẩm, tồn kho, chi phí và kết quả kinh doanh. Google Forms được tích hợp để nhập liệu đơn hàng một cách nhanh chóng, và Fchat giúp tự động hóa việc trả lời các câu hỏi báo cáo doanh thu hoặc tồn kho.</p>
+            </div>
+
+            <button class="accordion">2. Đưa ra ví dụ cụ thể về các báo cáo tự động, báo cáo kết quả kinh doanh, báo cáo xuất-nhập-tồn</button>
+            <div class="panel">
+                <p>Báo cáo kết quả kinh doanh (KQKD) sẽ tự động được tạo ra từ dữ liệu đơn hàng nhập vào. Hệ thống tính toán doanh thu, chi phí và lợi nhuận theo ngày, tháng, quý, hoặc năm. Báo cáo xuất-nhập-tồn (XNT) giúp bạn theo dõi tình trạng tồn kho, từ đó dễ dàng ra quyết định nhập thêm hàng khi cần.</p>
+                <p><strong>Ví Dụ sử dụng:</strong> Khi một đơn hàng được nhập vào, báo cáo KQKD sẽ tự động tính toán doanh thu và lợi nhuận của đơn hàng đó. Tương tự, báo cáo XNT sẽ cập nhật số lượng tồn kho và thông báo khi sản phẩm sắp hết hàng.</p>
+            </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer Section -->
     <footer>
         <p>&copy; 2025 YOHU Việt Nam. All Rights Reserved.</p>
     </footer>
+
+    <!-- JavaScript for Accordion Functionality -->
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        for (var i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                } else {
+                    panel.style.display = "block";
+                }
+            });
+        }
+    </script>
 </body>
-<section id="tinh-nang">
-    <div class="container">
-        <h2>Các Tính Năng Chính của YOHU Lite</h2>
-        
-        <h3>1. Quản Lý Đơn Hàng và Hóa Đơn Tự Động</h3>
-        <p>YOHU Lite tích hợp Google Sheets và Google Forms để tự động hóa quy trình quản lý đơn hàng và tạo hóa đơn.</p>
-        <p>Google Sheets là nền tảng chính để lưu trữ tất cả dữ liệu về đơn hàng, sản phẩm, chi phí, và kết quả kinh doanh.</p>
-        <p>Google Forms giúp nhập liệu nhanh chóng và tự động, với các biểu mẫu dành cho khách hàng điền thông tin đơn hàng. Các đơn hàng này sẽ được tự động chuyển vào Google Sheets và tạo mã đơn hàng, hóa đơn PDF tự động.</p>
-        <p><strong>Ví Dụ sử dụng:</strong> Khi khách hàng điền thông tin vào Google Form (như tên sản phẩm, số lượng, và giá trị), thông tin này tự động được ghi vào sheet "Đơn Hàng Chi Tiết". Sau đó, hệ thống sử dụng Google Apps Script để tạo mã đơn hàng ngẫu nhiên và xuất hóa đơn PDF cho đơn hàng đó. Hóa đơn PDF sẽ được lưu trữ trên Google Drive và gửi qua email cho khách hàng.</p>
-        
-        <h3>2. Tự Động Báo Cáo Kết Quả Kinh Doanh (KQKD)</h3>
-        <p>YOHU Lite giúp người dùng dễ dàng theo dõi kết quả kinh doanh với báo cáo tự động.</p>
-        <p>Báo cáo KQKD giúp doanh nghiệp theo dõi các chỉ số quan trọng như doanh thu, giá vốn, chi phí và lợi nhuận.</p>
-        <p>Hệ thống tự động tính toán các chỉ số theo ngày, tháng, quý và năm mà không cần nhập liệu thủ công.</p>
-        <p><strong>Ví Dụ sử dụng:</strong> Báo cáo KQKD có thể được tạo tự động bằng Google Apps Script, chỉ cần bấm nút trong sheet hoặc sử dụng menu tùy chọn. Sau khi nhập các đơn hàng vào hệ thống, báo cáo kết quả kinh doanh sẽ được tính toán tự động và xuất ra dưới dạng bảng tính rõ ràng. Ví dụ, bạn có thể xem doanh thu mỗi ngày, chi phí vận hành, và lợi nhuận ròng từ tất cả các đơn hàng đã xử lý trong tháng.</p>
-
-        <h3>3. Quản Lý Tồn Kho và Báo Cáo Xuất-Nhập-Tồn (XNT)</h3>
-        <p>YOHU Lite cũng cung cấp tính năng quản lý tồn kho tự động và báo cáo xuất-nhập-tồn.</p>
-        <p>Báo cáo XNT giúp theo dõi số lượng hàng tồn kho, nhập hàng mới và xuất hàng.</p>
-        <p>Hệ thống tự động cập nhật dữ liệu trong sheet "Xuất-Nhập-Tồn" mỗi khi có đơn hàng mới hoặc nhập hàng mới vào kho.</p>
-        <p><strong>Ví Dụ sử dụng:</strong> Khi một sản phẩm được bán ra, thông tin này sẽ tự động được ghi vào sheet "Xuất-Nhập-Tồn", làm giảm số lượng tồn kho. Nếu có thêm hàng nhập vào, dữ liệu sẽ được cập nhật trong báo cáo XNT để giúp bạn theo dõi chính xác tình trạng kho hàng. Bạn có thể dễ dàng thấy được số lượng sản phẩm còn lại và dự đoán được lượng hàng cần nhập thêm cho các tháng tiếp theo.</p>
-
-        <h3>4. Tích Hợp Fchat cho Tự Động Hỏi-Đáp và Báo Cáo</h3>
-        <p>Fchat là công cụ giao tiếp tự động giúp doanh nghiệp dễ dàng nhận báo cáo mà không cần thao tác thủ công.</p>
-        <p>Fchat có thể được tích hợp vào YOHU Lite để gửi báo cáo tự động cho người dùng thông qua tin nhắn.</p>
-        <p>Hệ thống trả lời tự động khi người dùng gõ các câu lệnh như "Doanh thu hôm nay", "Tồn kho còn lại" hoặc "Lãi lỗ tháng trước".</p>
-        <p><strong>Ví Dụ sử dụng:</strong> Một khách hàng hoặc nhân viên có thể nhắn tin "Doanh thu hôm nay" vào Fchat và hệ thống sẽ trả lời ngay lập tức với báo cáo doanh thu của ngày hôm đó. Điều này giúp bạn dễ dàng kiểm tra các chỉ số quan trọng mà không cần phải mở Google Sheets hoặc thực hiện bất kỳ thao tác phức tạp nào.</p>
-
-        <h3>5. Tính Năng Tích Hợp Giọng Nói - Hỏi Báo Cáo Qua Giọng Nói</h3>
-        <p>YOHU Lite đang tiến tới việc tích hợp khả năng hỏi báo cáo qua giọng nói bằng Web Speech API.</p>
-        <p>Người dùng có thể truy vấn báo cáo kết quả kinh doanh hoặc tồn kho thông qua giọng nói, mà không cần phải thao tác trên giao diện.</p>
-        <p>Web Speech API cho phép người dùng hỏi báo cáo bằng giọng nói qua website, giúp trải nghiệm sử dụng trở nên thuận tiện hơn.</p>
-        <p><strong>Ví Dụ sử dụng:</strong> Bạn có thể mở một trang web mini hoặc ứng dụng di động, và nói vào điện thoại: "Doanh thu hôm nay là bao nhiêu?" Hệ thống sẽ trả lời bằng giọng nói và hiển thị kết quả dưới dạng văn bản, giúp bạn theo dõi tình hình kinh doanh mà không cần thao tác phức tạp.</p>
-
-        <h2>Mô Tả Chi Tiết Các Tính Năng</h2>
-        
-        <h3>1. Quản Lý Đơn Hàng Tự Động</h3>
-        <p>Sử dụng Google Forms để thu thập thông tin đơn hàng từ khách hàng. Các đơn hàng này sẽ được tự động ghi vào Google Sheets và xử lý ngay lập tức.</p>
-        <p>Google Apps Script tự động tạo mã đơn hàng và xuất hóa đơn PDF khi nhận được thông tin đơn hàng từ Google Forms.</p>
-        <p>Bạn có thể theo dõi tất cả các đơn hàng trong một bảng tính và dễ dàng tìm kiếm, quản lý.</p>
-
-        <h3>2. Tự Động Báo Cáo Kết Quả Kinh Doanh (KQKD)</h3>
-        <p>Báo cáo KQKD sẽ được tính toán tự động sau khi nhập các đơn hàng. Hệ thống tự động tổng hợp doanh thu, chi phí, giá vốn và lợi nhuận trong mỗi kỳ (ngày, tháng, quý, năm).</p>
-        <p>Mọi báo cáo có thể được xuất ra dưới dạng bảng tính và dễ dàng truy cập chỉ với một vài thao tác.</p>
-
-        <h3>3. Quản Lý Tồn Kho và Báo Cáo XNT</h3>
-        <p>Hệ thống tự động cập nhật tình trạng kho khi có đơn hàng hoặc khi nhập hàng mới vào kho.</p>
-        <p>Báo cáo XNT có thể được tạo tự động, giúp bạn theo dõi lượng hàng tồn kho một cách chính xác và dễ dàng, cũng như phân tích dữ liệu tồn kho qua các biểu đồ và màu sắc trực quan.</p>
-
-        <h3>4. Fchat - Giao Tiếp và Báo Cáo Tự Động</h3>
-        <p>Fchat có thể tự động trả lời các câu hỏi về báo cáo doanh thu hoặc tồn kho, giúp bạn nhanh chóng nhận thông tin mà không phải mở file Google Sheets.</p>
-        <p>Fchat hỗ trợ tích hợp vào nhiều kênh truyền thông khác nhau như Facebook Messenger hoặc Zalo để dễ dàng liên lạc.</p>
-
-        <h3>5. Tích Hợp Giọng Nói - Hỏi Báo Cáo</h3>
-        <p>Tính năng giọng nói giúp bạn có thể yêu cầu báo cáo một cách tự nhiên chỉ bằng câu hỏi bằng miệng, tạo ra trải nghiệm người dùng vô cùng tiện lợi và hiện đại.</p>
-
-        <h2>Kết Luận</h2>
-        <p>Các tính năng chính của YOHU Lite được thiết kế để giúp người dùng tự động hóa các quy trình quản lý bán hàng và kế toán mà không cần phải lo lắng về công nghệ. Từ việc tự động tạo hóa đơn đến việc báo cáo kết quả kinh doanh và quản lý tồn kho, YOHU Lite giúp tiết kiệm thời gian và công sức, đồng thời tăng cường khả năng kiểm soát công việc cho doanh nghiệp. Tính năng tích hợp giọng nói sẽ giúp mang đến trải nghiệm người dùng cao cấp, tiện lợi và hiện đại.</p>
-    </div>
-</section>
-
 </html>
