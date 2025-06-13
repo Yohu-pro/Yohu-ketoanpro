@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yohu Kế Toán Pro - Giải pháp kế toán & quản lý bán hàng</title>
+  <title>Yohu Kế Toán Pro</title>
   <style>
     body {
       font-family: 'Roboto', sans-serif;
@@ -11,40 +11,18 @@
       margin: 0;
       padding: 0;
     }
-    nav {
-      background: #002B5B;
-      padding: 10px 0;
-    }
-    nav ul {
-      display: flex;
-      justify-content: center;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-    nav li {
-      margin: 0 15px;
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
 
-    /* HERO SECTION (Banner) */
+    /* Hero Section - Banner */
     #hero {
-      background: url('your-banner-image-url.jpg') center/cover no-repeat; /* Thêm URL của banner */
-      height: 600px; /* Chiều cao banner */
+      background: url('path-to-your-banner-image.jpg') center/cover no-repeat; /* Thay đường dẫn banner ở đây */
+      height: 600px;
       color: white;
       text-align: center;
       position: relative;
     }
 
     #hero h1 {
-      font-size: 3em; /* Kích thước chữ cho tiêu đề */
+      font-size: 3em;
       position: absolute;
       top: 20%;
       left: 5%;
@@ -53,7 +31,7 @@
     }
 
     #hero p {
-      font-size: 1.5em; /* Kích thước chữ cho đoạn văn */
+      font-size: 1.5em;
       position: absolute;
       top: 35%;
       left: 5%;
@@ -72,52 +50,7 @@
       text-align: left;
     }
 
-    section {
-      padding: 40px 20px;
-      text-align: center;
-    }
-    .services {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-    .service-card {
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      transition: transform 0.3s ease;
-    }
-    .service-card:hover {
-      transform: translateY(-10px);
-    }
-    .contact-form {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    .contact-form input,
-    .contact-form textarea {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-    .contact-form button {
-      background-color: #002B5B;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    .contact-form button:hover {
-      background-color: #004080;
-    }
+    /* Footer Section */
     footer {
       background-color: #002B5B;
       color: white;
@@ -131,65 +64,114 @@
     footer a:hover {
       text-decoration: underline;
     }
+
+    /* Sản phẩm Thương mại */
+    section#products {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table, th, td {
+      border: 1px solid black;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: center;
+    }
+
   </style>
 </head>
 <body>
+
   <!-- MENU NAVIGATION -->
   <nav>
-    <ul>
-      <li><a href="#hero">Trang chủ</a></li>
-      <li><a href="#about">Giới thiệu</a></li>
-      <li><a href="#services">Dịch vụ</a></li>
-      <li><a href="#products">Sản phẩm</a></li>
-      <li><a href="#faq">FAQ</a></li>
-      <li><a href="#contact">Liên hệ</a></li>
+    <ul style="display: flex; justify-content: center; list-style: none; margin: 0; padding: 10px 0; background-color: #002B5B;">
+      <li><a href="#hero" style="color: white; padding: 10px; text-decoration: none;">Trang chủ</a></li>
+      <li><a href="#about" style="color: white; padding: 10px; text-decoration: none;">Giới thiệu</a></li>
+      <li><a href="#services" style="color: white; padding: 10px; text-decoration: none;">Dịch vụ</a></li>
+      <li><a href="#products" style="color: white; padding: 10px; text-decoration: none;">Sản phẩm</a></li>
+      <li><a href="#contact" style="color: white; padding: 10px; text-decoration: none;">Liên hệ</a></li>
     </ul>
   </nav>
 
-  <!-- HERO SECTION -->
+  <!-- HERO SECTION (Banner) -->
   <section id="hero">
-    <!-- Nội dung banner -->
-    <h1>GIẢI PHÁP DOANH NGHIỆP/HỘ KINH DOANH</h1>
-    <p>Hệ thống sổ sách tự động cho người kinh doanh</p>
-
+    <h1>Giải pháp kế toán cho Doanh nghiệp nhỏ/Hộ kinh doanh</h1>
+    <p>Hệ thống kế toán và quản lý XNT đơn giản, dễ sử dụng dành cho các chủ doanh nghiệp nhỏ và hộ kinh doanh.</p>
+    
     <!-- Thông tin công ty -->
     <div>
       <p><strong>CÔNG TY TNHH YOHU VIỆT NAM</strong></p>
       <p>Địa chỉ: Nhân Dục, Hiến Nam, Hưng Yên, Việt Nam</p>
-      <p>Hotline/Zalo: <a href="tel:0973480488" style="color: #ffffff;">0973 4804 488</a></p>
-      <p>Email: <a href="mailto:yohu.ketoanpro@gmail.com" style="color: #ffffff;">yohu.ketoanpro@gmail.com</a></p>
-      <p>Fanpage: <a href="https://facebook.com/share/1AUEZTjpgW" style="color: #ffffff;" target="_blank">facebook.com/share/1AUEZTjpgW</a></p>
+      <p>Hotline/Zalo: 0973 4804 488</p>
+      <p>Email: yohu.ketoanpro@gmail.com</p>
+      <p>Fanpage: <a href="https://facebook.com/share/1AUEZTjpgW" target="_blank">facebook.com/share/1AUEZTjpgW</a></p>
     </div>
   </section>
 
   <!-- GIỚI THIỆU -->
   <section id="about">
     <h2>Giới thiệu về Yohu Kế Toán Pro</h2>
-    <p>Yohu Kế Toán Pro là đơn vị chuyên cung cấp giải pháp kế toán cho doanh nghiệp nhỏ, với hơn 5 năm kinh nghiệm trong lĩnh vực tài chính, thuế và đào tạo thực hành kế toán áp dụng AI trong kế toán tự động hoá.</p>
+    <p>Yohu Kế Toán Pro là công ty cung cấp giải pháp kế toán trọn gói cho các doanh nghiệp nhỏ, với công cụ dễ sử dụng, tự động hóa quy trình báo cáo tài chính và quản lý bán hàng.</p>
   </section>
 
-  <!-- DỊCH VỤ -->
-  <section id="services">
-    <h2>Dịch Vụ</h2>
-    <div class="services">
-      <div class="service-card">
-        <h3>Kế toán bán hàng & Quản lý xuất nhập tồn</h3>
-        <p>Hệ thống quản trị kinh doanh thông minh tích hợp Google Sheet.</p>
-      </div>
-      <div class="service-card">
-        <h3>Tự động tạo báo cáo</h3>
-        <p>Báo cáo kinh doanh, tồn kho, lãi lỗ theo thời gian thực.</p>
-      </div>
-      <div class="service-card">
-        <h3>Hỗ trợ kỹ thuật nhanh chóng</h3>
-        <p>Hỗ trợ cài đặt và vận hành qua Zalo, Email, hoặc trực tiếp.</p>
-      </div>
-    </div>
+  <!-- SẢN PHẨM THƯƠNG MẠI -->
+  <section id="products">
+    <h2>Sản phẩm Thương mại</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Sản phẩm</th>
+          <th>Hình ảnh</th>
+          <th>Mã Hàng</th>
+          <th>Giá Sỉ</th>
+          <th>Giá Net</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Sen cây</td>
+          <td><img src="path-to-image.jpg" alt="Sen cây"></td> <!-- Thay ảnh sản phẩm -->
+          <td>SCN</td>
+          <td>450.000 VND</td>
+          <td>450.000 VND</td>
+        </tr>
+        <tr>
+          <td>Bộ sen vòi chậu 2 chân</td>
+          <td><img src="path-to-image.jpg" alt="Bộ sen vòi chậu"></td> <!-- Thay ảnh sản phẩm -->
+          <td>YH23S</td>
+          <td>360.000 VND</td>
+          <td>260.000 VND</td>
+        </tr>
+        <!-- Các sản phẩm khác -->
+      </tbody>
+    </table>
   </section>
 
   <!-- LIÊN HỆ -->
   <section id="contact">
     <h2>Liên Hệ</h2>
-    <form class="contact-form">
-      <input type="text" placeholder="Tên của bạn" required>
-      <input type="email" placeholder="Email của bạn
+    <form>
+      <input type="text" placeholder="Tên của bạn" required><br>
+      <input type="email" placeholder="Email của bạn" required><br>
+      <textarea placeholder="Nội dung" rows="5" required></textarea><br>
+      <button type="submit">Gửi</button>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Hotline/Zalo: 0973 4804 488 | Email: yohu.ketoanpro@gmail.com</p>
+    <p><a href="https://www.facebook.com/share/1AUEZTjpgW" target="_blank">Fanpage YOHU Lite</a></p>
+    <p><a href="https://www.facebook.com/share/1ACHeihbme/" target="_blank">Messenger hỗ trợ riêng</a></p>
+    <p>Địa chỉ: Nhân Dục, Hiến Nam, Hưng Yên, Việt Nam.</p>
+  </footer>
+
+</body>
+</html>
