@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Yohu Kế Toán Pro</title>
   <style>
+    /* Cấu trúc chung */
     body {
       font-family: 'Roboto', sans-serif;
       background-color: #f4f4f4;
@@ -40,6 +41,16 @@
 
     nav ul li a:hover {
       text-decoration: underline;
+    }
+
+    /* Cấu trúc container chính */
+    .container {
+      display: flex;
+      flex-direction: column; /* Để các phần tử sắp xếp theo chiều dọc */
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      box-sizing: border-box;
     }
 
     /* HERO SECTION */
@@ -131,7 +142,7 @@
       height: auto;
     }
 
-    /* Contact Form Section */
+    /* Contact Section */
     #contact {
       background-color: #fff;
       padding: 50px 20px;
@@ -187,8 +198,12 @@
       text-decoration: underline;
     }
 
-    /* Media Queries for Mobile Responsiveness */
+    /* Media Queries cho màn hình nhỏ */
     @media (max-width: 768px) {
+      .container {
+        padding: 0 15px;
+      }
+
       #hero h1 {
         font-size: 8vw;
       }
@@ -197,130 +212,29 @@
         font-size: 5vw;
       }
 
-      #hero div {
-        width: 90%;
-        left: 5%;
-      }
-
       footer {
         font-size: 0.8em;
       }
 
-      table {
-        font-size: 0.9em;
+      #products table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
       }
 
-      td img {
-        width: 100%;
-        height: auto;
+      #products th, #products td {
+        white-space: nowrap;
       }
     }
 
     @media (max-width: 480px) {
+      .container {
+        padding: 0 10px;
+      }
+
       #hero h1 {
         font-size: 10vw;
       }
 
       #hero p {
-        font-size: 6vw;
-      }
-
-      #hero div {
-        width: 95%;
-        left: 2%;
-      }
-
-      #contact form button {
-        width: 100%;
-      }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- MENU NAVIGATION -->
-  <nav>
-    <ul>
-      <li><a href="#hero">Trang chủ</a></li>
-      <li><a href="#about">Giới thiệu</a></li>
-      <li><a href="#services">Dịch vụ</a></li>
-      <li><a href="#products">Sản phẩm</a></li>
-      <li><a href="#contact">Liên hệ</a></li>
-    </ul>
-  </nav>
-
-  <!-- HERO SECTION -->
-  <section id="hero">
-    <div>
-      <h1>Giải pháp kế toán cho Doanh nghiệp nhỏ/Hộ kinh doanh</h1>
-      <p>Hệ thống kế toán và quản lý XNT đơn giản, dễ sử dụng dành cho các chủ doanh nghiệp nhỏ và hộ kinh doanh.</p>
-      <!-- Thông tin công ty -->
-      <div>
-        <p><strong>CÔNG TY TNHH YOHU VIỆT NAM</strong></p>
-        <p>Địa chỉ: Nhân Dục, Hiến Nam, Hưng Yên, Việt Nam</p>
-        <p>Hotline/Zalo: 0973 4804 488</p>
-        <p>Email: yohu.ketoanpro@gmail.com</p>
-        <p>Fanpage: <a href="https://facebook.com/share/1AUEZTjpgW" target="_blank">facebook.com/share/1AUEZTjpgW</a></p>
-      </div>
-    </div>
-  </section>
-
-  <!-- GIỚI THIỆU -->
-  <section id="about">
-    <h2>Giới thiệu về Yohu Kế Toán Pro</h2>
-    <p>Yohu Kế Toán Pro là công ty cung cấp giải pháp kế toán trọn gói cho các doanh nghiệp nhỏ, với công cụ dễ sử dụng, tự động hóa quy trình báo cáo tài chính và quản lý bán hàng.</p>
-  </section>
-
-  <!-- SẢN PHẨM THƯƠNG MẠI -->
-  <section id="products">
-    <h2>Sản phẩm Thương mại</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Sản phẩm</th>
-          <th>Hình ảnh</th>
-          <th>Mô tả sản phẩm</th>
-          <th>Mã Hàng</th>
-          <th>Giá Sỉ</th>
-          <th>Giá Net</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Sen cây</td>
-          <td><img src="path-to-image.jpg" alt="Sen cây"></td>
-          <td>Sen cây inox chất lượng cao, phù hợp cho gia đình và các cơ sở kinh doanh nhỏ.</td>
-          <td>SCN</td>
-          <td>450.000 VND</td>
-          <td>450.000 VND</td>
-        </tr>
-        <tr>
-          <td>Bộ sen vòi chậu 2 chân</td>
-          <td><img src="path-to-image.jpg" alt="Bộ sen vòi chậu"></td>
-          <td>Bộ sen vòi chậu inox cao cấp, tiết kiệm nước và dễ lắp đặt.</td>
-          <td>YH23S</td>
-          <td>360.000 VND</td>
-          <td>260.000 VND</td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
-
-  <!-- LIÊN HỆ -->
-  <section id="contact">
-    <h2>Liên hệ</h2>
-    <form>
-      <input type="text" placeholder="Tên của bạn" required>
-      <input type="email" placeholder="Email của bạn" required>
-      <textarea placeholder="Lời nhắn của bạn" required></textarea>
-      <button type="submit">Gửi thông tin</button>
-    </form>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 Yohu Kế Toán Pro. All rights reserved.</p>
-  </footer>
-
-</body>
-</html>
+        f
