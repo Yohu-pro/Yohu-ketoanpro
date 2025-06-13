@@ -85,6 +85,27 @@
       text-align: center;
     }
 
+    /* Form liên hệ */
+    #contact form input, #contact form textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    #contact form button {
+      padding: 10px 20px;
+      background-color: #002B5B;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    
+    #contact form button:hover {
+      background-color: #004080;
+    }
   </style>
 </head>
 <body>
@@ -129,6 +150,7 @@
         <tr>
           <th>Sản phẩm</th>
           <th>Hình ảnh</th>
+          <th>Mô tả sản phẩm</th>
           <th>Mã Hàng</th>
           <th>Giá Sỉ</th>
           <th>Giá Net</th>
@@ -138,6 +160,7 @@
         <tr>
           <td>Sen cây</td>
           <td><img src="path-to-image.jpg" alt="Sen cây"></td> <!-- Thay ảnh sản phẩm -->
+          <td>Sen cây inox chất lượng cao, phù hợp cho gia đình và các cơ sở kinh doanh nhỏ.</td> <!-- Mô tả sản phẩm -->
           <td>SCN</td>
           <td>450.000 VND</td>
           <td>450.000 VND</td>
@@ -145,6 +168,7 @@
         <tr>
           <td>Bộ sen vòi chậu 2 chân</td>
           <td><img src="path-to-image.jpg" alt="Bộ sen vòi chậu"></td> <!-- Thay ảnh sản phẩm -->
+          <td>Bộ sen vòi chậu inox cao cấp, tiết kiệm nước và dễ lắp đặt.</td> <!-- Mô tả sản phẩm -->
           <td>YH23S</td>
           <td>360.000 VND</td>
           <td>260.000 VND</td>
@@ -160,15 +184,46 @@
     <form>
       <input type="text" placeholder="Tên của bạn" required><br>
       <input type="email" placeholder="Email của bạn" required><br>
+      <input type="tel" placeholder="Số điện thoại của bạn" required><br> <!-- Trường Số điện thoại -->
       <textarea placeholder="Nội dung" rows="5" required></textarea><br>
       <button type="submit">Gửi</button>
     </form>
   </section>
 
+  <!-- TÍNH NĂNG GIỌNG NÓI -->
+  <section id="voice-input">
+    <h2>Nhập liệu và Báo cáo bằng Giọng Nói</h2>
+    <button onclick="startRecognition()">Bắt đầu nhập liệu</button>
+    <p id="voiceInput">Kết quả: </p>
+
+    <script>
+      var recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = 'vi-VN';  // Cài đặt ngôn ngữ Tiếng Việt
+      recognition.continuous = false;
+      recognition.interimResults = false;
+
+      recognition.onresult = function(event) {
+        var transcript = event.results[0][0].transcript;
+        document.getElementById('voiceInput').innerText = "Kết quả: " + transcript;
+
+        // Tìm kiếm và xử lý các từ khóa giọng nói
+        if (transcript.includes('doanh thu tháng này')) {
+          alert('Đang lấy báo cáo doanh thu tháng này...');
+        } else if (transcript.includes('tình trạng tồn kho')) {
+          alert('Đang lấy báo cáo tồn kho...');
+        }
+      };
+
+      function startRecognition() {
+        recognition.start();
+      }
+    </script>
+  </section>
+
   <!-- FOOTER -->
   <footer>
     <p>Hotline/Zalo: 0973 4804 488 | Email: yohu.ketoanpro@gmail.com</p>
-    <p><a href="https://www.facebook.com/share/1AUEZTjpgW" target="_blank">Fanpage YOHU Lite</a></p>
+    <p><a href="https://facebook.com/share/1AUEZTjpgW" target="_blank">Fanpage YOHU Lite</a></p>
     <p><a href="https://www.facebook.com/share/1ACHeihbme/" target="_blank">Messenger hỗ trợ riêng</a></p>
     <p>Địa chỉ: Nhân Dục, Hiến Nam, Hưng Yên, Việt Nam.</p>
   </footer>
