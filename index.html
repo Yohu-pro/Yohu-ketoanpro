@@ -19,35 +19,32 @@
       color: white;
       text-align: center;
       position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
     }
 
     #hero h1 {
-      font-size: 3em;
-      position: absolute;
-      top: 20%;
-      left: 5%;
-      width: 90%;
+      font-size: 6vw; /* Thay đổi kích thước theo chiều rộng của màn hình */
       font-weight: bold;
+      margin: 0;
     }
 
     #hero p {
-      font-size: 1.5em;
-      position: absolute;
-      top: 35%;
-      left: 5%;
-      width: 90%;
+      font-size: 4vw; /* Thay đổi kích thước theo chiều rộng của màn hình */
+      margin: 10px 0;
     }
 
     #hero div {
-      position: absolute;
-      bottom: 5%;
-      left: 5%;
-      width: 70%;
       background-color: rgba(0, 0, 0, 0.5);
       color: lightblue;
       padding: 15px;
+      width: 80%;
+      max-width: 600px;
       font-size: 1em;
       text-align: left;
+      margin-top: 20px;
     }
 
     /* Footer Section */
@@ -56,6 +53,7 @@
       color: white;
       text-align: center;
       padding: 20px;
+      font-size: 0.9em;
     }
     footer a {
       color: white;
@@ -85,6 +83,11 @@
       text-align: center;
     }
 
+    td img {
+      max-width: 100%;
+      height: auto;
+    }
+
     /* Form liên hệ */
     #contact form input, #contact form textarea {
       width: 100%;
@@ -106,6 +109,56 @@
     #contact form button:hover {
       background-color: #004080;
     }
+
+    /* Media Queries - Điều chỉnh giao diện cho thiết bị nhỏ */
+    @media (max-width: 768px) {
+      #hero h1 {
+        font-size: 8vw; /* Giảm kích thước cho các thiết bị nhỏ */
+      }
+
+      #hero p {
+        font-size: 5vw; /* Giảm kích thước cho các thiết bị nhỏ */
+      }
+
+      #hero div {
+        width: 90%;
+        left: 5%;
+      }
+
+      footer {
+        font-size: 0.8em;
+      }
+
+      table {
+        font-size: 0.9em;
+      }
+
+      td img {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    /* Media Queries - Điều chỉnh cho màn hình rất nhỏ (di động) */
+    @media (max-width: 480px) {
+      #hero h1 {
+        font-size: 10vw; /* Giảm kích thước cho các thiết bị di động nhỏ */
+      }
+
+      #hero p {
+        font-size: 6vw; /* Giảm kích thước cho các thiết bị di động nhỏ */
+      }
+
+      #hero div {
+        width: 95%;
+        left: 2%;
+      }
+
+      #contact form button {
+        width: 100%;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -160,7 +213,7 @@
         <tr>
           <td>Sen cây</td>
           <td><img src="path-to-image.jpg" alt="Sen cây"></td> <!-- Thay ảnh sản phẩm -->
-          <td>Sen cây inox chất lượng cao, phù hợp cho gia đình và các cơ sở kinh doanh nhỏ.</td> <!-- Mô tả sản phẩm -->
+          <td>Sen cây inox chất lượng cao, phù hợp cho gia đình và các cơ sở kinh doanh nhỏ.</td>
           <td>SCN</td>
           <td>450.000 VND</td>
           <td>450.000 VND</td>
@@ -168,65 +221,15 @@
         <tr>
           <td>Bộ sen vòi chậu 2 chân</td>
           <td><img src="path-to-image.jpg" alt="Bộ sen vòi chậu"></td> <!-- Thay ảnh sản phẩm -->
-          <td>Bộ sen vòi chậu inox cao cấp, tiết kiệm nước và dễ lắp đặt.</td> <!-- Mô tả sản phẩm -->
+          <td>Bộ sen vòi chậu inox cao cấp, tiết kiệm nước và dễ lắp đặt.</td>
           <td>YH23S</td>
           <td>360.000 VND</td>
           <td>260.000 VND</td>
         </tr>
-        <!-- Các sản phẩm khác -->
       </tbody>
     </table>
   </section>
 
   <!-- LIÊN HỆ -->
   <section id="contact">
-    <h2>Liên Hệ</h2>
-    <form>
-      <input type="text" placeholder="Tên của bạn" required><br>
-      <input type="email" placeholder="Email của bạn" required><br>
-      <input type="tel" placeholder="Số điện thoại của bạn" required><br> <!-- Trường Số điện thoại -->
-      <textarea placeholder="Nội dung" rows="5" required></textarea><br>
-      <button type="submit">Gửi</button>
-    </form>
-  </section>
-
-  <!-- TÍNH NĂNG GIỌNG NÓI -->
-  <section id="voice-input">
-    <h2>Nhập liệu và Báo cáo bằng Giọng Nói</h2>
-    <button onclick="startRecognition()">Bắt đầu nhập liệu</button>
-    <p id="voiceInput">Kết quả: </p>
-
-    <script>
-      var recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-      recognition.lang = 'vi-VN';  // Cài đặt ngôn ngữ Tiếng Việt
-      recognition.continuous = false;
-      recognition.interimResults = false;
-
-      recognition.onresult = function(event) {
-        var transcript = event.results[0][0].transcript;
-        document.getElementById('voiceInput').innerText = "Kết quả: " + transcript;
-
-        // Tìm kiếm và xử lý các từ khóa giọng nói
-        if (transcript.includes('doanh thu tháng này')) {
-          alert('Đang lấy báo cáo doanh thu tháng này...');
-        } else if (transcript.includes('tình trạng tồn kho')) {
-          alert('Đang lấy báo cáo tồn kho...');
-        }
-      };
-
-      function startRecognition() {
-        recognition.start();
-      }
-    </script>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <p>Hotline/Zalo: 0973 4804 488 | Email: yohu.ketoanpro@gmail.com</p>
-    <p><a href="https://facebook.com/share/1AUEZTjpgW" target="_blank">Fanpage YOHU Lite</a></p>
-    <p><a href="https://www.facebook.com/share/1ACHeihbme/" target="_blank">Messenger hỗ trợ riêng</a></p>
-    <p>Địa chỉ: Nhân Dục, Hiến Nam, Hưng Yên, Việt Nam.</p>
-  </footer>
-
-</body>
-</html>
+    <h2>Liê
