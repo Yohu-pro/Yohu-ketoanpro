@@ -24,30 +24,42 @@
 
        /* Nội dung trong banner */
        .banner-content {
-           padding-left: 10px; /* Đẩy nội dung sang phải thêm chút */
-           padding-right: 10px;
            display: flex;
            flex-direction: column;
            justify-content: center;
            width: 100%;
        }
 
-       /* Chữ YOHU KẾ TOÁN PRO màu xanh giống màu banner */
+       /* Chữ YOHU KẾ TOÁN PRO màu cam */
        .banner-content h1 {
            font-size: 1.5em; /* Giảm kích thước tiêu đề */
            margin: 0;
            text-transform: uppercase; /* Đảm bảo chữ in hoa */
            text-align: left; /* Căn trái tiêu đề */
-           color: #009688; /* Màu xanh giống màu của banner */
+           color: #ff6600; /* Màu cam */
+           display: flex;
+           align-items: center;
        }
 
-       .banner-content p {
-           font-size: 1em; /* Giữ nguyên kích thước của dòng dưới */
-           margin: 20px 0;
-           text-align: center; /* Căn giữa mô tả */
-           width: 100%; /* Đảm bảo dòng văn bản lệch trái hoàn toàn */
-           background-color: #333; /* Nền xám đen */
-           padding: 10px;
+       .banner-content h1 img {
+           margin-right: 10px; /* Khoảng cách giữa logo và chữ */
+       }
+
+       /* Chữ GIẢI PHÁP QUẢN LÝ KINH DOANH DỄ DÀNG */
+       .banner-content p.title {
+           font-size: 1.2em;
+           font-weight: bold;
+           margin: 0;
+           text-align: left; /* Căn trái */
+           margin-left: 2cm; /* Cách lề trái 2cm */
+       }
+
+       /* Chữ Quản lý bán hàng, kế toán đơn giản, dễ sử dụng, không cần lập trình */
+       .banner-content p.subtitle {
+           font-size: 1em;
+           margin: 0;
+           text-align: left; /* Căn trái */
+           margin-left: 2cm; /* Cách lề trái 2cm */
        }
 
        .cta-button {
@@ -79,11 +91,13 @@
            }
 
            .banner-content h1 {
-               font-size: 2em; /* Giảm kích thước tiêu đề */
+               font-size: 1.2em; /* Giảm kích thước tiêu đề trên điện thoại */
            }
 
-           .banner-content p {
-               font-size: 1em; /* Giảm kích thước mô tả */
+           .banner-content p.title,
+           .banner-content p.subtitle {
+               font-size: 1em; /* Điều chỉnh font size cho các dòng văn bản */
+               margin-left: 1cm; /* Điều chỉnh cách lề cho điện thoại */
            }
 
            .cta-button {
@@ -116,9 +130,11 @@
     <!-- Banner với thanh trạng thái -->
     <section id="banner">
         <div class="banner-content">
-            <h1>YOHU KẾ TOÁN PRO</h1> <!-- Chữ YOHU KẾ TOÁN PRO màu xanh -->
-            <p>GIẢI PHÁP QUẢN LÝ KINH DOANH DỄ DÀNG</p> <!-- Chữ in hoa cho tiêu đề -->
-            <p>Quản lý bán hàng, kế toán đơn giản, dễ sử dụng, không cần lập trình</p> <!-- Chữ căn giữa nền xám đen -->
+            <!-- Logo và chữ "YOHU KẾ TOÁN PRO" màu cam -->
+            <h1><img src="https://raw.githubusercontent.com/Yohu-pro/Yohu-ketoanpro/main/logo.png" alt="Logo"> YOHU KẾ TOÁN PRO</h1>
+            <!-- Tiêu đề và mô tả -->
+            <p class="title">GIẢI PHÁP QUẢN LÝ KINH DOANH DỄ DÀNG</p>
+            <p class="subtitle">Quản lý bán hàng, kế toán đơn giản, dễ sử dụng, không cần lập trình</p>
             <button class="cta-button">Khám Phá Ngay</button>
         </div>
     </section>
