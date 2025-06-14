@@ -8,55 +8,93 @@
     <style>
         /* Style cho banner */
         #banner {
-            background-image: url('9518898.jpg'); /* Đường dẫn ảnh banner */
-            background-size: cover;
-            background-position: center;
-            height: 350px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            text-align: center;
-        }
+ /* Banner */
+#banner {
+    background-image: url('9518898.jpg'); /* Đường dẫn ảnh */
+    background-size: cover; 
+    background-position: center; 
+    height: 400px; /* Chiều cao mặc định của banner */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    position: relative;
+}
 
-        #banner h1 {
-            font-size: 2.5em;
-            font-weight: bold;
-            margin: 0;
-        }
+/* Nội dung trong banner */
+.banner-content {
+    max-width: 80%;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5); /* Màu nền mờ để chữ nổi bật */
+    border-radius: 8px;
+}
 
-        #banner .status {
-            background-color: rgba(0, 0, 0, 0.6);
-            padding: 20px;
-            border-radius: 5px;
-            width: 80%;
-            font-size: 1.5em;
-        }
+.banner-content h1 {
+    font-size: 3em;
+    margin: 0;
+}
 
-        /* Style cho accordion */
-        .accordion {
-            background-color: #eee;
-            color: #444;
-            cursor: pointer;
-            padding: 10px;
-            width: 100%;
-            border: none;
-            text-align: left;
-            outline: none;
-            font-size: 18px;
-            margin: 5px 0;
-        }
+.banner-content p {
+    font-size: 1.2em;
+    margin: 20px 0;
+}
 
-        .active, .accordion:hover {
-            background-color: #ccc;
-        }
+.cta-button {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    color: white;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
 
-        .panel {
-            padding: 0 18px;
-            display: none;
-            background-color: #f1f1f1;
-            overflow: hidden;
-        }
+.cta-button:hover {
+    background-color: #45a049;
+}
+
+/* Media Queries cho màn hình nhỏ (điện thoại) */
+@media (max-width: 768px) {
+    #banner {
+        height: 250px; /* Điều chỉnh chiều cao cho điện thoại */
+    }
+
+    .banner-content {
+        max-width: 90%; /* Giảm chiều rộng của nội dung */
+        padding: 15px;
+    }
+
+    .banner-content h1 {
+        font-size: 2em; /* Giảm kích thước tiêu đề */
+    }
+
+    .banner-content p {
+        font-size: 1em; /* Giảm kích thước mô tả */
+    }
+
+    .cta-button {
+        font-size: 1em; /* Giảm kích thước nút */
+        padding: 10px 20px; /* Giảm padding nút */
+    }
+}
+
+/* Media Queries cho màn hình nhỏ hơn (mobile rất nhỏ) */
+@media (max-width: 480px) {
+    #banner {
+        height: 200px; /* Điều chỉnh chiều cao cho mobile rất nhỏ */
+    }
+
+    .banner-content h1 {
+        font-size: 1.5em; /* Giảm tiêu đề nữa */
+    }
+
+    .cta-button {
+        font-size: 0.9em;
+        padding: 8px 16px;
+    }
+}
     </style>
 </head>
 <body>
