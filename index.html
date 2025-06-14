@@ -6,104 +6,102 @@
     <title>YOHU Lite - Giải Pháp Quản Lý Kinh Doanh Dễ Dàng</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-/* Style cho banner */
+        /* Banner */
         #banner {
- /* Banner */
-#banner {
-    background-image: url('9518898.jpg'); /* Đường dẫn ảnh */
-    background-size: cover; 
-    background-position: center; 
-    height: 400px; /* Chiều cao mặc định của banner */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    text-align: center;
-    position: relative;
-}
+            background-image: url('/mnt/data/BANER.jpg'); /* Đường dẫn ảnh từ file đã tải lên */
+            background-size: cover; 
+            background-position: center; 
+            height: 400px; /* Chiều cao mặc định của banner */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
 
-/* Nội dung trong banner */
-.banner-content {
-    max-width: 80%;
-    padding: 20px;
-    background-color: rgba(0, 0, 0, 0.5); /* Màu nền mờ để chữ nổi bật */
-    border-radius: 8px;
-}
+        .banner-content {
+            max-width: 80%;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5); /* Nền mờ để chữ dễ đọc */
+            border-radius: 8px;
+        }
 
-.banner-content h1 {
-    font-size: 3em;
-    margin: 0;
-}
+        .banner-content h1 {
+            font-size: 3em;
+            margin: 0;
+        }
 
-.banner-content p {
-    font-size: 1.2em;
-    margin: 20px 0;
-}
+        .banner-content p {
+            font-size: 1.2em;
+            margin: 20px 0;
+        }
 
-.cta-button {
-    padding: 15px 30px;
-    font-size: 1.2em;
-    color: white;
-    background-color: #4CAF50;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
-}
+        .cta-button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
 
-.cta-button:hover {
-    background-color: #45a049;
-}
+        .cta-button:hover {
+            background-color: #45a049;
+        }
 
-/* Media Queries cho màn hình nhỏ (điện thoại) */
-@media (max-width: 768px) {
-    #banner {
-        height: 250px; /* Điều chỉnh chiều cao cho điện thoại */
-    }
+        /* Media Queries cho màn hình nhỏ (điện thoại) */
+        @media (max-width: 768px) {
+            #banner {
+                height: 250px; /* Điều chỉnh chiều cao cho điện thoại */
+            }
 
-    .banner-content {
-        max-width: 90%; /* Giảm chiều rộng của nội dung */
-        padding: 15px;
-    }
+            .banner-content {
+                max-width: 90%; /* Giảm chiều rộng của nội dung */
+                padding: 15px;
+            }
 
-    .banner-content h1 {
-        font-size: 2em; /* Giảm kích thước tiêu đề */
-    }
+            .banner-content h1 {
+                font-size: 2em; /* Giảm kích thước tiêu đề */
+            }
 
-    .banner-content p {
-        font-size: 1em; /* Giảm kích thước mô tả */
-    }
+            .banner-content p {
+                font-size: 1em; /* Giảm kích thước mô tả */
+            }
 
-    .cta-button {
-        font-size: 1em; /* Giảm kích thước nút */
-        padding: 10px 20px; /* Giảm padding nút */
-    }
-}
+            .cta-button {
+                font-size: 1em; /* Giảm kích thước nút */
+                padding: 10px 20px; /* Giảm padding nút */
+            }
+        }
 
-/* Media Queries cho màn hình nhỏ hơn (mobile rất nhỏ) */
-@media (max-width: 480px) {
-    #banner {
-        height: 200px; /* Điều chỉnh chiều cao cho mobile rất nhỏ */
-    }
+        /* Media Queries cho màn hình nhỏ hơn (mobile rất nhỏ) */
+        @media (max-width: 480px) {
+            #banner {
+                height: 200px; /* Điều chỉnh chiều cao cho mobile rất nhỏ */
+            }
 
-    .banner-content h1 {
-        font-size: 1.5em; /* Giảm tiêu đề nữa */
-    }
+            .banner-content h1 {
+                font-size: 1.5em; /* Giảm tiêu đề nữa */
+            }
 
-    .cta-button {
-        font-size: 0.9em;
-        padding: 8px 16px;
-    }
-}
+            .cta-button {
+                font-size: 0.9em;
+                padding: 8px 16px;
+            }
+        }
     </style>
 </head>
 <body>
 
     <!-- Banner với thanh trạng thái -->
     <section id="banner">
-        <div class="status">
+        <div class="banner-content">
             <h1>YOHU Lite - Giải Pháp Quản Lý Kinh Doanh Dễ Dàng</h1>
             <p>Quản lý bán hàng, kế toán đơn giản, dễ sử dụng, không cần lập trình</p>
+            <button class="cta-button">Khám Phá Ngay</button>
         </div>
     </section>
 
