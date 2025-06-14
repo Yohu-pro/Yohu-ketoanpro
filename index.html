@@ -7,94 +7,90 @@
     <link rel="stylesheet" href="styles.css">
     <style>
        /* Banner */
-<style>
-    /* Banner */
-    #banner {
-        background-image: url('https://raw.githubusercontent.com/Yohu-pro/Yohu-ketoanpro/main/BANER.jpg'); /* Đường dẫn ảnh từ GitHub */
-        background-size: cover; 
-        background-position: center; 
-        height: 400px; /* Chiều cao mặc định của banner */
-        display: flex;
-        justify-content: flex-start; /* Điều chỉnh căn trái */
-        align-items: center;
-        color: white;
-        text-align: left; /* Căn trái nội dung */
-        position: relative;
-        padding-left: 20px; /* Thêm padding để tạo khoảng cách bên trái */
-    }
+       #banner {
+           background-image: url('https://raw.githubusercontent.com/Yohu-pro/Yohu-ketoanpro/main/BANER.jpg'); /* Đường dẫn ảnh từ GitHub */
+           background-size: cover; 
+           background-position: center; 
+           height: 400px; /* Chiều cao mặc định của banner */
+           display: flex;
+           justify-content: flex-start; /* Điều chỉnh căn trái */
+           align-items: center;
+           color: white;
+           text-align: left; /* Căn trái nội dung */
+           position: relative;
+           padding-left: 20px; /* Thêm padding để tạo khoảng cách bên trái */
+       }
 
-    /* Nội dung trong banner */
-    .banner-content h1 {
-        font-size: 1.5em; /* Giảm kích thước tiêu đề xuống còn 1/2 */
-        margin: 0;
-        text-transform: uppercase; /* Đảm bảo chữ in hoa */
-        text-align: left; /* Căn trái tiêu đề */
-    }
+       /* Nội dung trong banner */
+       .banner-content h1 {
+           font-size: 1.5em; /* Giảm kích thước tiêu đề xuống còn 1/2 */
+           margin: 0;
+           text-transform: uppercase; /* Đảm bảo chữ in hoa */
+           text-align: left; /* Căn trái tiêu đề */
+       }
 
-    .banner-content p {
-        font-size: 1em; /* Giữ nguyên kích thước của dòng dưới */
-        margin: 20px 0;
-        text-align: left; /* Căn trái mô tả */
-        width: 100%; /* Đảm bảo dòng văn bản lệch trái hoàn toàn */
-    }
+       .banner-content p {
+           font-size: 1em; /* Giữ nguyên kích thước của dòng dưới */
+           margin: 20px 0;
+           text-align: left; /* Căn trái mô tả */
+           width: 100%; /* Đảm bảo dòng văn bản lệch trái hoàn toàn */
+       }
 
-    .cta-button {
-        padding: 15px 30px;
-        font-size: 1.2em;
-        color: white;
-        background-color: #4CAF50;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        text-decoration: none;
-    }
+       .cta-button {
+           padding: 15px 30px;
+           font-size: 1.2em;
+           color: white;
+           background-color: #4CAF50;
+           border: none;
+           border-radius: 5px;
+           cursor: pointer;
+           text-decoration: none;
+       }
 
-    .cta-button:hover {
-        background-color: #45a049;
-    }
-</style>
+       .cta-button:hover {
+           background-color: #45a049;
+       }
 
+       /* Media Queries cho màn hình nhỏ (điện thoại) */
+       @media (max-width: 768px) {
+           #banner {
+               height: 250px; /* Điều chỉnh chiều cao cho điện thoại */
+           }
 
-/* Media Queries cho màn hình nhỏ (điện thoại) */
-@media (max-width: 768px) {
-    #banner {
-        height: 250px; /* Điều chỉnh chiều cao cho điện thoại */
-    }
+           .banner-content {
+               max-width: 90%; /* Giảm chiều rộng của nội dung */
+               padding: 15px;
+           }
 
-    .banner-content {
-        max-width: 90%; /* Giảm chiều rộng của nội dung */
-        padding: 15px;
-    }
+           .banner-content h1 {
+               font-size: 2em; /* Giảm kích thước tiêu đề */
+           }
 
-    .banner-content h1 {
-        font-size: 2em; /* Giảm kích thước tiêu đề */
-    }
+           .banner-content p {
+               font-size: 1em; /* Giảm kích thước mô tả */
+           }
 
-    .banner-content p {
-        font-size: 1em; /* Giảm kích thước mô tả */
-    }
+           .cta-button {
+               font-size: 1em; /* Giảm kích thước nút */
+               padding: 10px 20px; /* Giảm padding nút */
+           }
+       }
 
-    .cta-button {
-        font-size: 1em; /* Giảm kích thước nút */
-        padding: 10px 20px; /* Giảm padding nút */
-    }
-}
+       /* Media Queries cho màn hình nhỏ hơn (mobile rất nhỏ) */
+       @media (max-width: 480px) {
+           #banner {
+               height: 200px; /* Điều chỉnh chiều cao cho mobile rất nhỏ */
+           }
 
-/* Media Queries cho màn hình nhỏ hơn (mobile rất nhỏ) */
-@media (max-width: 480px) {
-    #banner {
-        height: 200px; /* Điều chỉnh chiều cao cho mobile rất nhỏ */
-    }
+           .banner-content h1 {
+               font-size: 1.5em; /* Giảm tiêu đề nữa */
+           }
 
-    .banner-content h1 {
-        font-size: 1.5em; /* Giảm tiêu đề nữa */
-    }
-
-    .cta-button {
-        font-size: 0.9em;
-        padding: 8px 16px;
-    }
-}
+           .cta-button {
+               font-size: 0.9em;
+               padding: 8px 16px;
+           }
+       }
     </style>
 </head>
 <body>
