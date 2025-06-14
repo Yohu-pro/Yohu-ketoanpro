@@ -174,6 +174,33 @@
 <!-- Thanh trạng thái nằm ngang dưới banner -->
 <div class="status-bar">
     <button class="status-button">Giới Thiệu</button>
+    <!-- Giới thiệu công ty Yohu Việt Nam -->
+<section id="gioi-thieu">
+    <div class="container">
+        <!-- Phần giới thiệu chi tiết ẩn đi -->
+        <div class="full-intro" style="display: none;">
+            <h2>Giới thiệu Công ty Yohu Việt Nam</h2>
+            <p>Yohu Việt Nam là đơn vị tiên phong trong việc phát triển các giải pháp công nghệ tối ưu cho doanh nghiệp, đặc biệt trong lĩnh vực quản trị kinh doanh, dịch vụ và kế toán. Với sản phẩm chủ lực YOHU PRO – Hệ thống quản trị kinh doanh thông minh, chúng tôi mang đến cho doanh nghiệp một công cụ quản lý hiệu quả, tiết kiệm chi phí và dễ dàng mở rộng.</p>
+
+            <h3>Dịch vụ và sản phẩm của Yohu Việt Nam bao gồm:</h3>
+            <ul>
+                <li><strong>YOHU PRO:</strong> Một hệ thống ERP mini thông minh tích hợp các công nghệ như Google Sheets, Apps Script, chatbot và giọng nói, giúp tự động hóa các quy trình báo cáo, quản lý tồn kho và kiểm soát tài chính mà không cần phát triển phần mềm phức tạp.</li>
+                <li><strong>Dịch vụ kế toán:</strong> Cung cấp giải pháp kế toán đơn giản, dễ sử dụng thông qua công cụ Google Sheets và Apps Script, giúp tự động hóa báo cáo tài chính, thống kê doanh thu, chi phí và lợi nhuận.</li>
+                <li><strong>Thiết bị vệ sinh đặc biệt:</strong> Chúng tôi sản xuất và cung cấp các thiết bị vệ sinh cao cấp, bao gồm sen vòi và các sản phẩm liên quan, đảm bảo chất lượng vượt trội và tính năng tiện ích tối ưu.</li>
+            </ul>
+
+            <h3>Lý do chọn Yohu Việt Nam:</h3>
+            <ul>
+                <li><strong>Tiết kiệm chi phí:</strong> Các giải pháp của Yohu sử dụng công cụ miễn phí hoặc chi phí thấp, dễ triển khai và mở rộng mà không cần lập trình phức tạp.</li>
+                <li><strong>Tính linh hoạt cao:</strong> Hệ thống của chúng tôi có thể tùy chỉnh theo nhu cầu cụ thể của từng doanh nghiệp, giúp tối ưu hóa quy trình công việc.</li>
+                <li><strong>Đáp ứng nhu cầu thực tế:</strong> Với sự kết hợp giữa công nghệ và sản phẩm thực tế, Yohu không chỉ cung cấp giải pháp phần mềm mà còn tạo ra giá trị thực sự cho khách hàng trong các ngành sản xuất và kinh doanh.</li>
+            </ul>
+
+            <p>Chúng tôi cam kết mang lại những giải pháp sáng tạo, dễ sử dụng và hiệu quả, giúp các doanh nghiệp tại Việt Nam tối ưu hóa hoạt động và phát triển bền vững trong môi trường kinh doanh đầy cạnh tranh hiện nay.</p>
+        </div>
+    </div>
+</section>
+    
     <button class="status-button">Sản Phẩm SX&TM</button>
     <button class="status-button">Sản phẩm dịch vụ</button>
     <button class="status-button">Hướng dẫn cài đặt</button>
@@ -267,4 +294,24 @@
 </script>
 
 </body>
+    3. Thêm JavaScript để ẩn/hiện phần giới thiệu khi nhấn nút
+
+Để phần giới thiệu có thể hiện ra khi nhấn nút "Giới Thiệu", bạn cần thêm đoạn mã JavaScript sau:
+
+html
+Sao chép
+Chỉnh sửa
+<script>
+    function toggleIntro() {
+        // Tìm phần giới thiệu chi tiết
+        var fullIntro = document.querySelector('.full-intro');
+        
+        // Kiểm tra và chuyển đổi trạng thái ẩn/hiện
+        if (fullIntro.style.display === "none" || fullIntro.style.display === "") {
+            fullIntro.style.display = "block";  // Hiển thị phần giới thiệu chi tiết
+        } else {
+            fullIntro.style.display = "none";  // Ẩn phần giới thiệu chi tiết
+        }
+    }
+</script>
 </html>
