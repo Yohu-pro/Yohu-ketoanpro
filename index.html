@@ -26,13 +26,19 @@
        .banner-content {
            padding-left: 10px; /* Đẩy nội dung sang phải thêm chút */
            padding-right: 10px;
+           display: flex;
+           flex-direction: column;
+           justify-content: center;
+           width: 100%;
        }
 
+       /* Chữ YOHU KẾ TOÁN PRO màu xanh giống màu banner */
        .banner-content h1 {
-           font-size: 1.5em; /* Giảm kích thước tiêu đề xuống còn 1/2 */
+           font-size: 1.5em; /* Giảm kích thước tiêu đề */
            margin: 0;
            text-transform: uppercase; /* Đảm bảo chữ in hoa */
            text-align: left; /* Căn trái tiêu đề */
+           color: #009688; /* Màu xanh giống màu của banner */
        }
 
        .banner-content p {
@@ -68,7 +74,7 @@
            }
 
            .banner-content {
-               max-width: 90%; /* Giảm chiều rộng của nội dung */
+               max-width: 100%; /* Đảm bảo nội dung không bị co lại quá nhỏ */
                padding: 10px; /* Giảm padding cho nội dung */
            }
 
@@ -110,7 +116,7 @@
     <!-- Banner với thanh trạng thái -->
     <section id="banner">
         <div class="banner-content">
-            <h1>YOHU KẾ TOÁN PRO</h1> <!-- Chữ căn thẳng hàng với logo -->
+            <h1>YOHU KẾ TOÁN PRO</h1> <!-- Chữ YOHU KẾ TOÁN PRO màu xanh -->
             <p>GIẢI PHÁP QUẢN LÝ KINH DOANH DỄ DÀNG</p> <!-- Chữ in hoa cho tiêu đề -->
             <p>Quản lý bán hàng, kế toán đơn giản, dễ sử dụng, không cần lập trình</p> <!-- Chữ căn giữa nền xám đen -->
             <button class="cta-button">Khám Phá Ngay</button>
