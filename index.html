@@ -35,88 +35,83 @@
             background-color: #45a049; /* Màu nền khi hover */
         }
 
-        /* Banner */
-        #banner {
-            background-image: url('https://raw.githubusercontent.com/Yohu-pro/Yohu-ketoanpro/main/BANER%20(1).jpg'); /* Đảm bảo ảnh banner đúng */
-            background-size: cover; 
-            background-position: center; 
-            height: 400px; /* Chiều cao mặc định của banner */
-            display: flex;
-            justify-content: flex-start; /* Điều chỉnh căn trái */
-            align-items: center;
-            color: white;
-            text-align: left; /* Căn trái nội dung */
-            position: relative;
-            padding-left: 20px; /* Thêm padding để tạo khoảng cách bên trái */
-            padding-right: 20px; /* Thêm padding bên phải */
-        }
+       /* Banner */
+#banner {
+    background-image: url('https://raw.githubusercontent.com/Yohu-pro/Yohu-ketoanpro/main/BANER%20(1).jpg'); /* Đảm bảo ảnh banner đúng */
+    background-size: cover; 
+    background-position: center; 
+    height: 400px; /* Chiều cao mặc định của banner */
+    display: flex;
+    justify-content: flex-start; /* Điều chỉnh căn trái */
+    align-items: center;
+    color: white;
+    text-align: left; /* Căn trái nội dung */
+    position: relative;
+    padding-left: 20px; /* Thêm padding để tạo khoảng cách bên trái */
+    padding-right: 20px; /* Thêm padding bên phải */
+    width: 100%; /* Đảm bảo ảnh nền chiếm hết chiều rộng */
+}
 
-        /* Nội dung trong banner */
-        .banner-content {
-            display: flex;
-            flex-direction: column;
-            justify-content: left;
-            width: 100%;
-        }
+/* Thanh trạng thái nằm ngang dưới banner */
+.status-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #333;
+    padding: 10px;
+    margin-top: 20px; /* Đẩy thanh trạng thái xuống dưới banner */
+    flex-wrap: wrap; /* Đảm bảo nút không bị che mất chữ */
+}
 
-        .banner-content h1,
-        .banner-content p.title,
-        .banner-content p.subtitle {
-            display: none; /* Xoá toàn bộ chữ trong banner */
-        }
+/* Các nút trong thanh trạng thái */
+.status-button {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1em;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
 
-        /* Nút CTA */
-        .cta-button {
-            padding: 15px 30px;
-            font-size: 1.2em;
-            color: orange;
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
-            text-decoration: none;
-            position: absolute;  /* Cố định ở góc */
-            left: 10px;           /* Sát mép trái */
-            right: 20px;         /* Gần cuối banner */
-        }
+/* Hiệu ứng hover cho các nút */
+.status-button:hover {
+    background-color: #45a049; /* Màu nền khi hover */
+}
 
-        .cta-button:hover {
-            background-color: transparent;
-            color: #4CAF50; /* Giữ màu khi hover */
-        }
+/* Media Queries cho màn hình nhỏ (điện thoại) */
+@media (max-width: 750px) {
+    #banner {
+        height: 250px; 
+        padding-left: 10px;
+        padding-right: 10px;
+    }
 
-        /* Media Queries cho màn hình nhỏ (điện thoại) */
-        @media (max-width: 750px) {
-            #banner {
-                height: 250px; 
-                padding-left: 10px;
-                padding-right: 10px;
-            }
+    .status-bar {
+        flex-direction: column; /* Đảm bảo thanh trạng thái hiển thị theo chiều dọc trên màn hình nhỏ */
+    }
 
-            .banner-content {
-                max-width: 100%;
-                padding: 10px;
-            }
+    .status-button {
+        font-size: 0.9em;
+        padding: 8px 15px;
+    }
+}
 
-            .cta-button {
-                font-size: 1em;
-                padding: 10px 20px;
-                left: 0;
-            }
-        }
+@media (max-width: 460px) {
+    #banner {
+        height: 200px;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
 
-        @media (max-width: 460px) {
-            #banner {
-                height: 200px;
-                padding-left: 5px;
-                padding-right: 5px;
-            }
+    .status-button {
+        font-size: 0.8em;
+        padding: 6px 12px;
+    }
+}
 
-            .cta-button {
-                font-size: 0.9em;
-                padding: 8px 16px;
-                left: 0;
-            }
-        }
 
         /* Thêm nền màu xanh cho các đề mục con (accordion) */
         .accordion {
