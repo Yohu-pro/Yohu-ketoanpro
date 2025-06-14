@@ -35,23 +35,9 @@
             background-color: #45a049; /* Màu nền khi hover */
         }
 
-        /* Responsive cho điện thoại */
-        @media (max-width: 768px) {
-            .status-button {
-                font-size: 0.9em;
-                padding: 8px 15px;
-            }
-
-            /* Đảm bảo thanh trạng thái không bị che khi màn hình nhỏ */
-            .status-bar {
-                justify-content: flex-start; /* Đẩy các nút về bên trái */
-                padding: 5px;
-            }
-        }
-
         /* Banner */
         #banner {
-            background-image: url('https://raw.githubusercontent.com/Yohu-pro/Yohu-ketoanpro/main/BANER%20(1).jpg'); /* Đường dẫn ảnh từ GitHub */
+            background-image: url('https://raw.githubusercontent.com/Yohu-pro/Yohu-ketoanpro/main/BANER%20(1).jpg'); /* Đảm bảo ảnh banner đúng */
             background-size: cover; 
             background-position: center; 
             height: 400px; /* Chiều cao mặc định của banner */
@@ -134,25 +120,26 @@
 
         /* Thêm nền màu xanh cho các đề mục con (accordion) */
         .accordion {
-            background-color: #333 !important;  /* Màu nền giống thanh trạng thái banner */
-            color: white !important;  /* Chữ màu trắng */
+            background-color: #4CAF50;  /* Nền màu xanh */
+            color: white;  /* Chữ trắng */
             padding: 10px;
             border: none;
             text-align: left;
             width: 100%;
             cursor: pointer;
             font-size: 18px;
-            transition: background-color 0.3s ease; /* Hiệu ứng chuyển màu nền */
+            transition: background-color 0.3s ease, color 0.3s ease; /* Hiệu ứng chuyển màu nền và chữ */
         }
 
         .accordion:hover {
-            background-color: #4CAF50 !important;  /* Màu nền khi hover */
+            background-color: transparent;  /* Không có nền khi hover */
+            color: black;  /* Chữ chuyển sang màu đen khi hover */
         }
 
         /* Thêm nền màu xanh cho phần nội dung khi mở (panel) */
         .panel {
-            background-color: #4CAF50 !important; /* Nền khi mở nội dung */
-            color: white !important;  /* Màu chữ trong panel */
+            background-color: #4CAF50; /* Nền khi mở nội dung */
+            color: white;  /* Màu chữ trong panel */
             padding: 12px; /* Thêm padding cho nội dung */
             display: none; /* Ẩn nội dung mặc định */
             overflow: hidden;
