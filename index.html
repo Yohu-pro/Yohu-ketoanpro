@@ -30,7 +30,7 @@
            width: 100%;
        }
 
-       /* Chữ YOHU KẾ TOÁN PRO màu cam */
+       /* Chữ YOHU KẾ TOÁN PRO màu cam, đẩy lên cao và sang phải */
        .banner-content h1 {
            font-size: 1.5em; /* Giảm kích thước tiêu đề */
            margin: 0;
@@ -39,6 +39,9 @@
            color: #ff6600; /* Màu cam */
            display: flex;
            align-items: center;
+           position: relative;
+           top: -10px; /* Đẩy chữ lên cao */
+           left: 30px; /* Dịch chữ sang phải 3cm */
        }
 
        .banner-content h1 img {
@@ -71,6 +74,8 @@
            border-radius: 5px;
            cursor: pointer;
            text-decoration: none;
+           position: relative;
+           left: 2cm; /* Dịch nút "Khám Phá Ngay" sang trái 2cm */
        }
 
        .cta-button:hover {
@@ -92,6 +97,7 @@
 
            .banner-content h1 {
                font-size: 1.2em; /* Giảm kích thước tiêu đề trên điện thoại */
+               left: 20px; /* Giảm khoảng cách từ logo sang phải */
            }
 
            .banner-content p.title,
@@ -116,6 +122,7 @@
 
            .banner-content h1 {
                font-size: 1.5em; /* Giảm tiêu đề nữa */
+               left: 10px; /* Điều chỉnh lại vị trí của tiêu đề trên màn hình nhỏ */
            }
 
            .cta-button {
@@ -217,12 +224,3 @@
                 this.classList.toggle("active");
                 var panel = this.nextElementSibling;
                 if (panel.style.display === "block") {
-                    panel.style.display = "none";
-                } else {
-                    panel.style.display = "block";
-                }
-            });
-        }
-    </script>
-</body>
-</html>
