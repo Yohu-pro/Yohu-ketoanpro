@@ -19,9 +19,14 @@
            text-align: left; /* Căn trái nội dung */
            position: relative;
            padding-left: 20px; /* Thêm padding để tạo khoảng cách bên trái */
+           padding-right: 20px; /* Thêm padding bên phải */
        }
 
        /* Nội dung trong banner */
+       .banner-content {
+           padding-left: 10px; /* Đẩy nội dung sang phải thêm chút */
+       }
+
        .banner-content h1 {
            font-size: 1.5em; /* Giảm kích thước tiêu đề xuống còn 1/2 */
            margin: 0;
@@ -55,11 +60,13 @@
        @media (max-width: 768px) {
            #banner {
                height: 250px; /* Điều chỉnh chiều cao cho điện thoại */
+               padding-left: 10px; /* Giảm padding bên trái cho điện thoại */
+               padding-right: 10px; /* Giảm padding bên phải cho điện thoại */
            }
 
            .banner-content {
                max-width: 90%; /* Giảm chiều rộng của nội dung */
-               padding: 15px;
+               padding: 10px; /* Giảm padding cho nội dung */
            }
 
            .banner-content h1 {
@@ -80,6 +87,8 @@
        @media (max-width: 480px) {
            #banner {
                height: 200px; /* Điều chỉnh chiều cao cho mobile rất nhỏ */
+               padding-left: 5px; /* Giảm padding bên trái cho điện thoại rất nhỏ */
+               padding-right: 5px; /* Giảm padding bên phải cho điện thoại rất nhỏ */
            }
 
            .banner-content h1 {
