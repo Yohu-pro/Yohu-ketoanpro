@@ -8,61 +8,60 @@
     <style>
        /* Banner */
        #banner {
-           background-image: url('https://github.com/Yohu-pro/Yohu-ketoanpro/blob/main/BANER%20(1).jpg'); /* Đường dẫn ảnh từ GitHub */
+           background-image: url('https://raw.githubusercontent.com/Yohu-pro/Yohu-ketoanpro/main/BANER%20(1).jpg'); /* Đường dẫn ảnh đã sửa */
            background-size: cover; 
            background-position: center; 
-           height: 400px; /* Chiều cao mặc định của banner */
+           height: 400px; 
            display: flex;
-           justify-content: flex-start; /* Điều chỉnh căn trái */
+           justify-content: flex-start;
            align-items: center;
            color: white;
-           text-align: left; /* Căn trái nội dung */
+           text-align: left;
            position: relative;
-           padding-left: 20px; /* Thêm padding để tạo khoảng cách bên trái */
-           padding-right: 20px; /* Thêm padding bên phải */
+           padding-left: 20px;
+           padding-right: 20px;
        }
        /* Media Queries cho màn hình nhỏ (điện thoại) */
        @media (max-width: 768px) {
            #banner {
-               height: 250px; /* Điều chỉnh chiều cao cho điện thoại */
-               padding-left: 10px; /* Giảm padding bên trái cho điện thoại */
-               padding-right: 10px; /* Giảm padding bên phải cho điện thoại */
+               height: 250px;
+               padding-left: 10px;
+               padding-right: 10px;
            }
 
            .banner-content {
-               max-width: 100%; /* Đảm bảo nội dung không bị co lại quá nhỏ */
-               padding: 10px; /* Giảm padding cho nội dung */
+               max-width: 100%;
+               padding: 10px;
            }
 
            .banner-content h1 {
-               font-size: 1.2em; /* Giảm kích thước tiêu đề trên điện thoại */
+               font-size: 1.2em;
                left: 0;
-               margin-left: 0; /* Điều chỉnh cho phù hợp */
+               margin-left: 0;
            }
 
            .banner-content p.title,
            .banner-content p.subtitle {
-               font-size: 1em; /* Điều chỉnh font size cho các dòng văn bản */
-               margin-left: 1cm; /* Điều chỉnh cách lề cho điện thoại */
+               font-size: 1em;
+               margin-left: 1cm;
            }
 
            .cta-button {
-               font-size: 1em; /* Giảm kích thước nút */
-               padding: 10px 20px; /* Giảm padding nút */
-               left: 0; /* Đẩy nút về phía trái */
+               font-size: 1em;
+               padding: 10px 20px;
+               left: 0;
            }
        }
 
-       /* Media Queries cho màn hình nhỏ hơn (mobile rất nhỏ) */
        @media (max-width: 480px) {
            #banner {
-               height: 200px; /* Điều chỉnh chiều cao cho mobile rất nhỏ */
-               padding-left: 5px; /* Giảm padding bên trái cho điện thoại rất nhỏ */
-               padding-right: 5px; /* Giảm padding bên phải cho điện thoại rất nhỏ */
+               height: 200px;
+               padding-left: 5px;
+               padding-right: 5px;
            }
 
            .banner-content h1 {
-               font-size: 1.5em; /* Giảm tiêu đề nữa */
+               font-size: 1.5em;
                left: 0;
                margin-left: 0;
            }
@@ -80,9 +79,7 @@
     <!-- Banner với thanh trạng thái -->
     <section id="banner">
         <div class="banner-content">
-            <!-- Logo và chữ "YOHU KẾ TOÁN PRO" màu cam -->
             <h1><img src="https://raw.githubusercontent.com/Yohu-pro/Yohu-ketoanpro/main/logo.png" alt="Logo"> YOHU KẾ TOÁN PRO</h1>
-            <!-- Tiêu đề và mô tả -->
             <p class="title">GIẢI PHÁP QUẢN LÝ KINH DOANH DỄ DÀNG</p>
             <p class="subtitle">Quản lý bán hàng, kế toán đơn giản, dễ sử dụng, không cần lập trình</p>
             <button class="cta-button">Khám Phá Ngay</button>
