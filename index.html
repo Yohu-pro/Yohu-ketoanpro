@@ -131,6 +131,33 @@
                 left: 0;
             }
         }
+
+        /* Thêm nền màu xanh cho các đề mục con (accordion) */
+        .accordion {
+            background-color: #333 !important;  /* Màu nền giống thanh trạng thái banner */
+            color: white !important;  /* Chữ màu trắng */
+            padding: 10px;
+            border: none;
+            text-align: left;
+            width: 100%;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease; /* Hiệu ứng chuyển màu nền */
+        }
+
+        .accordion:hover {
+            background-color: #4CAF50 !important;  /* Màu nền khi hover */
+        }
+
+        /* Thêm nền màu xanh cho phần nội dung khi mở (panel) */
+        .panel {
+            background-color: #4CAF50 !important; /* Nền khi mở nội dung */
+            color: white !important;  /* Màu chữ trong panel */
+            padding: 0 18px;
+            display: none; /* Ẩn nội dung mặc định */
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+        }
     </style>
 </head>
 <body>
@@ -141,6 +168,7 @@
 
     </div>
 </section>
+
 <!-- Thanh trạng thái nằm ngang dưới banner -->
 <div class="status-bar">
     <button class="status-button">Giới Thiệu</button>
