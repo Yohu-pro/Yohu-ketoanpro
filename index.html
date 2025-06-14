@@ -7,47 +7,53 @@
     <link rel="stylesheet" href="styles.css">
     <style>
        /* Banner */
-#banner {
-    background-image: url('https://raw.githubusercontent.com/Yohu-pro/Yohu-ketoanpro/main/BANER.jpg'); /* Đường dẫn ảnh từ GitHub */
-    background-size: cover; 
-    background-position: center; 
-    height: 400px; /* Chiều cao mặc định của banner */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    text-align: center;
-    position: relative;
-}
+<style>
+    /* Banner */
+    #banner {
+        background-image: url('https://raw.githubusercontent.com/Yohu-pro/Yohu-ketoanpro/main/BANER.jpg'); /* Đường dẫn ảnh từ GitHub */
+        background-size: cover; 
+        background-position: center; 
+        height: 400px; /* Chiều cao mặc định của banner */
+        display: flex;
+        justify-content: flex-start; /* Điều chỉnh căn trái */
+        align-items: center;
+        color: white;
+        text-align: left; /* Căn trái nội dung */
+        position: relative;
+        padding-left: 20px; /* Thêm padding để tạo khoảng cách bên trái */
+    }
 
-/* Nội dung trong banner */
-        
-.banner-content h1 {
-    font-size: 1.5em; /* Giảm kích thước tiêu đề xuống còn 1/2 */
-    margin: 0;
-    text-transform: uppercase; /* Đảm bảo chữ in hoa */
-}
+    /* Nội dung trong banner */
+    .banner-content h1 {
+        font-size: 1.5em; /* Giảm kích thước tiêu đề xuống còn 1/2 */
+        margin: 0;
+        text-transform: uppercase; /* Đảm bảo chữ in hoa */
+        text-align: left; /* Căn trái tiêu đề */
+    }
 
-.banner-content p {
-    font-size: 1em; /* Giữ nguyên kích thước của dòng dưới */
-    margin: 20px 0;
-    text-align: left; /* Lệch sang trái */
-    width: 100%; /* Lệnh này giúp đảm bảo dòng văn bản lệch trái hoàn toàn */
-}
-.cta-button {
-    padding: 15px 30px;
-    font-size: 1.2em;
-    color: white;
-    background-color: #4CAF50;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
-}
+    .banner-content p {
+        font-size: 1em; /* Giữ nguyên kích thước của dòng dưới */
+        margin: 20px 0;
+        text-align: left; /* Căn trái mô tả */
+        width: 100%; /* Đảm bảo dòng văn bản lệch trái hoàn toàn */
+    }
 
-.cta-button:hover {
-    background-color: #45a049;
-}
+    .cta-button {
+        padding: 15px 30px;
+        font-size: 1.2em;
+        color: white;
+        background-color: #4CAF50;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    .cta-button:hover {
+        background-color: #45a049;
+    }
+</style>
+
 
 /* Media Queries cho màn hình nhỏ (điện thoại) */
 @media (max-width: 768px) {
