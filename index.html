@@ -21,50 +21,64 @@
            padding-left: 20px; /* Thêm padding để tạo khoảng cách bên trái */
            padding-right: 20px; /* Thêm padding bên phải */
        }
+
+       /* Nội dung trong banner */
+       .banner-content {
+           display: flex;
+           flex-direction: column;
+           justify-content: left;
+           width: 100%;
+       }
+
+       .banner-content h1,
+       .banner-content p.title,
+       .banner-content p.subtitle {
+           display: none; /* Xoá toàn bộ chữ trong banner */
+       }
+
+       /* Nút CTA */
+       .cta-button {
+           padding: 15px 30px;
+           font-size: 1.2em;
+           color: white;
+           background-color: transparent; /* Xóa nền */
+           border: none;
+           cursor: pointer;
+           text-decoration: none;
+           position: relative;
+           left: 2cm; /* Dịch nút "Khám Phá Ngay" sang trái 2cm */
+       }
+
+       .cta-button:hover {
+           background-color: transparent;
+           color: #4CAF50; /* Giữ màu khi hover */
+       }
+
        /* Media Queries cho màn hình nhỏ (điện thoại) */
        @media (max-width: 768px) {
            #banner {
-               height: 250px; /* Điều chỉnh chiều cao cho điện thoại */
-               padding-left: 10px; /* Giảm padding bên trái cho điện thoại */
-               padding-right: 10px; /* Giảm padding bên phải cho điện thoại */
+               height: 250px; 
+               padding-left: 10px;
+               padding-right: 10px;
            }
 
            .banner-content {
-               max-width: 100%; /* Đảm bảo nội dung không bị co lại quá nhỏ */
-               padding: 10px; /* Giảm padding cho nội dung */
-           }
-
-           .banner-content h1 {
-               font-size: 1.2em; /* Giảm kích thước tiêu đề trên điện thoại */
-               left: 0;
-               margin-left: 0; /* Điều chỉnh cho phù hợp */
-           }
-
-           .banner-content p.title,
-           .banner-content p.subtitle {
-               font-size: 1em; /* Điều chỉnh font size cho các dòng văn bản */
-               margin-left: 1cm; /* Điều chỉnh cách lề cho điện thoại */
+               max-width: 100%;
+               padding: 10px;
            }
 
            .cta-button {
-               font-size: 1em; /* Giảm kích thước nút */
-               padding: 10px 20px; /* Giảm padding nút */
-               left: 0; /* Đẩy nút về phía trái */
+               font-size: 1em;
+               padding: 10px 20px;
+               left: 0;
            }
        }
 
-       /* Media Queries cho màn hình nhỏ hơn (mobile rất nhỏ) */
        @media (max-width: 480px) {
            #banner {
-               height: 200px; /* Điều chỉnh chiều cao cho mobile rất nhỏ */
-               padding-left: 5px; /* Giảm padding bên trái cho điện thoại rất nhỏ */
-               padding-right: 5px; /* Giảm padding bên phải cho điện thoại rất nhỏ */
-           }
-
-           .banner-content h1 {
-               font-size: 1.5em; /* Giảm tiêu đề nữa */
-               left: 0;
-               margin-left: 0;
+               height: 200px;
+               padding-left: 5px;
+               padding-right: 5px;
            }
 
            .cta-button {
@@ -77,11 +91,17 @@
 </head>
 <body>
 
+    <!-- Banner với ảnh nền, đã xoá toàn bộ nội dung chữ -->
+    <section id="banner">
+        <div class="banner-content">
+            <button class="cta-button">Khám Phá Ngay</button>
+        </div>
+    </section>
+
     <!-- Thanh trạng thái "Xem Thêm" -->
     <div class="status-banner">
         <button class="toggle-button">Xem Thêm</button>
         <div class="status-content">
-            <!-- Chèn nội dung thông tin bạn muốn hiển thị tại đây -->
             <h1>Giới Thiệu Về YOHU Lite</h1>
             <p>YOHU Lite là công cụ quản lý bán hàng và kế toán tự động, dễ sử dụng, không yêu cầu lập trình hay phần mềm phức tạp. Sản phẩm này hoàn toàn dựa trên các công cụ miễn phí như Google Sheets và Google Forms, giúp bạn tự động hóa quy trình mà không cần đến phần mềm tốn phí hay tài khoản doanh nghiệp Google.</p>
             <p><strong>Các tính năng nổi bật:</strong></p>
@@ -99,7 +119,7 @@
         <div class="container">
             <h2>Giới thiệu về YOHU Lite</h2>
 
-            <!-- Accordion for Giới thiệu về YOHU Lite -->
+            <!-- Accordion -->
             <button class="accordion">1. Mô tả về sản phẩm YOHU Lite và các lợi ích của nó</button>
             <div class="panel">
                 <p>YOHU Lite là công cụ quản lý bán hàng và kế toán cực kỳ đơn giản, giúp tiết kiệm thời gian và chi phí cho các doanh nghiệp nhỏ. Bạn có thể dễ dàng nhập liệu, theo dõi báo cáo tài chính và quản lý đơn hàng chỉ qua Google Sheets và Google Forms mà không cần phải đầu tư vào phần mềm phức tạp.</p>
@@ -147,7 +167,7 @@
         <p>&copy; 2025 YOHU Việt Nam. All Rights Reserved.</p>
     </footer>
 
-    <!-- JavaScript for Accordion Functionality -->
+    <!-- Accordion Script -->
     <script>
         var acc = document.getElementsByClassName("accordion");
         for (var i = 0; i < acc.length; i++) {
@@ -162,5 +182,6 @@
             });
         }
     </script>
+
 </body>
 </html>
