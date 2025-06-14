@@ -35,6 +35,36 @@
             background-color: #45a049; /* Màu nền khi hover */
         }
 
+        /* Các tiêu đề trong thanh trạng thái ngang và dưới */
+        .status-button {
+            color: white; /* Màu chữ giữ nguyên */
+        }
+
+        /* Tiêu đề con với nền màu xanh và chữ trắng */
+        .accordion {
+            background-color: #45a049;
+            color: white;
+            padding: 10px;
+            font-size: 1.1em;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+            transition: background-color 0.3s ease;
+        }
+
+        .accordion:hover {
+            background-color: #3d8b3d;
+        }
+
+        /* Nội dung mở ra khi nhấn vào accordion */
+        .panel {
+            display: none;
+            padding: 10px;
+            background-color: #f1f1f1;
+            color: black;
+        }
+
         /* Responsive cho điện thoại */
         @media (max-width: 768px) {
             .status-button {
