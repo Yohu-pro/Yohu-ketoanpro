@@ -4,174 +4,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YOHU Lite - Giải Pháp Quản Lý Kinh Doanh Dễ Dàng</title>
-    <link rel="stylesheet" href="styles.css">
     <style>
-   <style>
-    /* Banner */
-    #banner {
-        background-image: url('https://raw.githubusercontent.com/Yohu-pro/Yohu-ketoanpro/main/BANER%20(1).jpg');
-        background-size: cover; 
-        background-position: center; 
-        height: 400px;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        color: white;
-        text-align: left;
-        position: relative;
-        padding-left: 20px;
-        padding-right: 20px;
-    }
+       /* Banner */
+       #banner {
+           background-image: url('https://raw.githubusercontent.com/Yohu-pro/Yohu-ketoanpro/main/BANER%20(1).jpg');
+           background-size: cover; 
+           background-position: center; 
+           height: 400px;
+           display: flex;
+           justify-content: flex-start;
+           align-items: center;
+           color: white;
+           text-align: left;
+           position: relative;
+           padding-left: 20px;
+           padding-right: 20px;
+       }
 
-    /* Media Queries cho màn hình nhỏ (điện thoại) */
-    @media (max-width: 768px) {
-        #banner {
-            height: 250px;
-            padding-left: 10px;
-            padding-right: 10px;
-        }
+       .banner-content {
+           background: rgba(0, 0, 0, 0.5); /* giúp chữ nổi bật hơn trên ảnh */
+           padding: 20px;
+           border-radius: 10px;
+       }
 
-        .banner-content {
-            max-width: 100%;
-            padding: 10px;
-        }
+       .banner-content h1, .banner-content p {
+           margin: 0;
+       }
 
-        .banner-content h1 {
-            font-size: 1.2em;
-            left: 0;
-            margin-left: 0;
-        }
+       /* Responsive */
+       @media (max-width: 768px) {
+           #banner {
+               height: 250px;
+               padding-left: 10px;
+               padding-right: 10px;
+           }
 
-        .banner-content p.title,
-        .banner-content p.subtitle {
-            font-size: 1em;
-            margin-left: 1cm;
-        }
+           .banner-content h1 {
+               font-size: 1.4em;
+           }
 
-        .cta-button {
-            font-size: 1em;
-            padding: 10px 20px;
-            left: 0;
-        }
-    }
+           .banner-content p {
+               font-size: 1em;
+           }
 
-    @media (max-width: 480px) {
-        #banner {
-            height: 200px;
-            padding-left: 5px;
-            padding-right: 5px;
-        }
+           .cta-button {
+               font-size: 1em;
+               padding: 10px 20px;
+           }
+       }
 
-        .banner-content h1 {
-            font-size: 1.5em;
-            left: 0;
-            margin-left: 0;
-        }
+       @media (max-width: 480px) {
+           #banner {
+               height: 200px;
+               padding-left: 5px;
+               padding-right: 5px;
+           }
 
-        .cta-button {
-            font-size: 0.9em;
-            padding: 8px 16px;
-            left: 0;
-        }
-    }
-</style>
+           .banner-content h1 {
+               font-size: 1.2em;
+           }
+
+           .cta-button {
+               font-size: 0.9em;
+               padding: 8px 16px;
+           }
+       }
+
+       .cta-button {
+           margin-top: 10px;
+           background-color: orange;
+           color: white;
+           border: none;
+           padding: 12px 24px;
+           cursor: pointer;
+           border-radius: 5px;
+       }
+    </style>
 </head>
 <body>
 
-    <!-- Banner với thanh trạng thái -->
+    <!-- Banner -->
     <section id="banner">
         <div class="banner-content">
-            <h1><img src="https://raw.githubusercontent.com/Yohu-pro/Yohu-ketoanpro/main/logo.png" alt="Logo"> YOHU KẾ TOÁN PRO</h1>
+            <h1>YOHU KẾ TOÁN PRO</h1>
             <p class="title">GIẢI PHÁP QUẢN LÝ KINH DOANH DỄ DÀNG</p>
             <p class="subtitle">Quản lý bán hàng, kế toán đơn giản, dễ sử dụng, không cần lập trình</p>
             <button class="cta-button">Khám Phá Ngay</button>
         </div>
     </section>
 
-    <!-- Thanh trạng thái "Xem Thêm" -->
-    <div class="status-banner">
-        <button class="toggle-button">Xem Thêm</button>
-        <div class="status-content">
-            <!-- Chèn nội dung thông tin bạn muốn hiển thị tại đây -->
-            <h1>Giới Thiệu Về YOHU Lite</h1>
-            <p>YOHU Lite là công cụ quản lý bán hàng và kế toán tự động, dễ sử dụng, không yêu cầu lập trình hay phần mềm phức tạp. Sản phẩm này hoàn toàn dựa trên các công cụ miễn phí như Google Sheets và Google Forms, giúp bạn tự động hóa quy trình mà không cần đến phần mềm tốn phí hay tài khoản doanh nghiệp Google.</p>
-            <p><strong>Các tính năng nổi bật:</strong></p>
-            <ul>
-                <li><strong>Quản lý đơn hàng, hóa đơn và báo cáo tự động:</strong> Chỉ cần nhập dữ liệu vào Google Forms, mọi thứ sẽ được tự động cập nhật vào Google Sheets và xuất báo cáo ngay lập tức.</li>
-                <li><strong>Không cần lập trình:</strong> Với YOHU Lite, bạn không cần phải có bất kỳ kiến thức lập trình nào để sử dụng sản phẩm này.</li>
-                <li><strong>Quản lý kết quả kinh doanh:</strong> Dễ dàng theo dõi doanh thu, chi phí và lợi nhuận với báo cáo tự động theo ngày, tháng hoặc quý.</li>
-                <li><strong>Tích hợp Fchat và giọng nói:</strong> Bạn có thể yêu cầu báo cáo nhanh chóng thông qua Fchat hoặc tính năng giọng nói, tiết kiệm thời gian và tăng hiệu quả làm việc.</li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- Giới thiệu về YOHU Lite -->
-    <section id="gioi-thieu">
-        <div class="container">
-            <h2>Giới thiệu về YOHU Lite</h2>
-
-            <!-- Accordion for Giới thiệu về YOHU Lite -->
-            <button class="accordion">1. Mô tả về sản phẩm YOHU Lite và các lợi ích của nó</button>
-            <div class="panel">
-                <p>YOHU Lite là công cụ quản lý bán hàng và kế toán cực kỳ đơn giản, giúp tiết kiệm thời gian và chi phí cho các doanh nghiệp nhỏ. Bạn có thể dễ dàng nhập liệu, theo dõi báo cáo tài chính và quản lý đơn hàng chỉ qua Google Sheets và Google Forms mà không cần phải đầu tư vào phần mềm phức tạp.</p>
-            </div>
-
-            <button class="accordion">2. Nhấn mạnh tính đơn giản, dễ sử dụng cho người không có chuyên môn công nghệ</button>
-            <div class="panel">
-                <p>YOHU Lite giúp bạn dễ dàng sử dụng mà không cần phải học lập trình. Chỉ cần một số thao tác cơ bản là bạn đã có thể tự động hóa các quy trình bán hàng và kế toán mà không gặp khó khăn.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Các Tính Năng Chính -->
-    <section id="tinh-nang">
-        <div class="container">
-            <h2>Các Tính Năng Chính của YOHU Lite</h2>
-
-            <button class="accordion">1. Mô tả cách sử dụng Google Sheets, Google Forms, Fchat và tích hợp giọng nói để báo cáo</button>
-            <div class="panel">
-                <p>YOHU Lite sử dụng các công cụ như Google Sheets, Google Forms và Fchat để tự động hóa quy trình quản lý bán hàng và kế toán. Các công cụ này không chỉ giúp bạn nhập liệu nhanh chóng mà còn tạo báo cáo tự động dựa trên dữ liệu đã nhập vào, tiết kiệm thời gian và công sức.</p>
-            </div>
-
-            <button class="accordion">2. Đưa ra ví dụ cụ thể về các báo cáo tự động, báo cáo kết quả kinh doanh, báo cáo xuất-nhập-tồn</button>
-            <div class="panel">
-                <p>Báo cáo kết quả kinh doanh (KQKD) sẽ tự động được tạo ra từ dữ liệu đơn hàng nhập vào. Hệ thống tính toán doanh thu, chi phí và lợi nhuận theo ngày, tháng, quý hoặc năm. Báo cáo xuất-nhập-tồn (XNT) giúp bạn theo dõi tình trạng tồn kho, từ đó dễ dàng ra quyết định nhập thêm hàng khi cần.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Liên Hệ -->
-    <section id="lien-he">
-        <div class="container">
-            <h2>Liên Hệ Với Chúng Tôi</h2>
-            <ul>
-                <li><strong>CÔNG TY TNHH YOHU VIỆT NAM</strong></li>
-                <li><strong>Địa chỉ:</strong> Nhân Dục, Hiến Nam, Hưng Yên, Việt Nam</li>
-                <li><strong>Hotline/Zalo:</strong> 0973 480 488 / Zalo OA: 0339606969</li>
-                <li><strong>Messenger:</strong> <a href="https://www.facebook.com/share/1ACHeihbme/" target="_blank">https://www.facebook.com/share/1ACHeihbme/</a></li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="footer">
-        <p>&copy; 2025 YOHU Việt Nam. All Rights Reserved.</p>
-    </footer>
-
-    <!-- JavaScript for Accordion Functionality -->
-    <script>
-        var acc = document.getElementsByClassName("accordion");
-        for (var i = 0; i < acc.length; i++) {
-            acc[i].addEventListener("click", function() {
-                this.classList.toggle("active");
-                var panel = this.nextElementSibling;
-                if (panel.style.display === "block") {
-                    panel.style.display = "none";
-                } else {
-                    panel.style.display = "block";
-                }
-            });
-        }
-    </script>
 </body>
 </html>
