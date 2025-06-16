@@ -1181,9 +1181,11 @@
 
         // Khi có kết quả ghi âm
         recognition.onresult = (event) => {
-            const transcript = event.results[0][0].transcript;
-            micOutput.innerText = '📝 Bạn nói: "' + transcript + '"';
-            sendDataToGoogleSheet(transcript);  // Gửi dữ liệu vào Google Sheets
+            const transcript = event.results[0][0].transcript; // Lấy nội dung bạn đã nói
+            micOutput.innerText = '📝 Bạn nói: "' + transcript + '"'; // Hiển thị kết quả trên màn hình
+
+            // Gửi dữ liệu giọng nói vào Google Sheets
+            sendDataToGoogleSheet(transcript);
         };
 
         // Nếu có lỗi trong khi sử dụng mic
@@ -1213,6 +1215,11 @@
         .catch(error => console.error('Lỗi khi gửi dữ liệu:', error));
     }
 </script>
+<div class="fixed bottom-10 right-24 z-50">
+    <a href="tel:+84973480488" id="call-button" class="bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-green-700 transition">
+        <i class="ri-phone-fill text-2xl"></i> <!-- Biểu tượng Điện thoại -->
+    </a>
+</div>
 
 </body>
 </html>
