@@ -1090,14 +1090,25 @@
         });
     </script>
 <script>
-  const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-  recognition.lang = 'vi-VN';
-  recognition.continuous = false;
-
+  let recognition;
   const micBtn = document.getElementById('mic-button');
   const micOutput = document.getElementById('mic-output');
 
-  if (micBtn && recognition) {
+  if ('webkitSpeechRecognition' in window) {
+    recognition = new webkitSpeechRecognition();
+  } else if ('SpeechRecognition' in window) {
+    recognition = new SpeechRecognition();
+  } else {
+    if (micOutput) {
+      micOutput.innerText = '⚠️ Trình duyệt của bạn không hỗ trợ ghi âm giọng nói.';
+    }
+    console.warn('SpeechRecognition không được hỗ trợ.');
+  }
+
+  if (recognition && micBtn) {
+    recognition.lang = 'vi-VN';
+    recognition.continuous = false;
+
     micBtn.addEventListener('click', () => {
       recognition.start();
       micOutput.innerText = '🎙️ Đang nghe...';
@@ -1105,17 +1116,12 @@
 
     recognition.onresult = (event) => {
       const transcript = event.results[0][0].transcript;
-      micOutput.innerText = '📝 Bạn nói: "' + transcript + '"';
-
-      // TODO: Ở đây bạn có thể gọi hàm gửi dữ liệu vào Google Sheet
-      // Gợi ý: fetch('link_webapp', {method:'POST', ...})
+      micOutput.innerText = '📝 Bạn đã nói: "' + transcript + '"';
     };
 
-    recognition.onerror = () => {
-      micOutput.innerText = '⚠️ Có lỗi khi ghi âm. Kiểm tra micro hoặc cấp quyền.';
+    recognition.onerror = (e) => {
+      micOutput.innerText = '❌ Lỗi ghi âm: ' + e.error;
     };
-  } else {
-    console.warn('Trình duyệt không hỗ trợ Speech Recognition hoặc không tìm thấy nút mic.');
   }
 </script>
 
