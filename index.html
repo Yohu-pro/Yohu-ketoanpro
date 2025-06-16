@@ -1129,64 +1129,7 @@
 
 <!-- Mã JavaScript để xử lý Mic -->
 <script>
-    let recognition;
-    const micBtn = document.getElementById('mic-button');
-    const micOutput = document.getElementById('mic-output');
-
-    // Kiểm tra trình duyệt hỗ trợ Speech Recognition
-    if ('webkitSpeechRecognition' in window) {
-        recognition = new webkitSpeechRecognition(); // Dùng cho Chrome
-    } else if ('SpeechRecognition' in window) {
-        recognition = new SpeechRecognition(); // Dùng cho Firefox
-    } else {
-        if (micOutput) {
-            micOutput.innerText = '⚠️ Trình duyệt của bạn không hỗ trợ ghi âm giọng nói.';
-        }
-    }
-
-    // Nếu trình duyệt hỗ trợ và nút mic được nhấn
-    if (recognition && micBtn) {
-        recognition.lang = 'vi-VN'; // Đặt ngôn ngữ là tiếng Việt
-        recognition.continuous = false; // Dừng sau khi nhận được kết quả
-
-        // Khi nhấn nút mic
-        micBtn.addEventListener('click', () => {
-            recognition.start();
-            micOutput.innerText = '🎙️ Đang nghe...'; // Thông báo khi mic đang mở
-        });
-
-        // Khi có kết quả ghi âm
-        recognition.onresult = (event) => {
-            const transcript = event.results[0][0].transcript; // Lấy nội dung bạn đã nói
-            micOutput.innerText = '📝 Bạn nói: "' + transcript + '"'; // Hiển thị kết quả trên màn hình
-            // Gửi nội dung giọng nói tới Web App để ghi vào Google Sheet
-fetch("https://script.google.com/macros/s/AKfycbwAtP6EkVz_DHeUINkYi6iScUFMaM_zB6PUcSc_HvWNCOZc124eQTLClJq61oF3WaLt/exec", {
-    method: "POST",
-    mode: "no-cors",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ command: transcript })
-}).then(() => {
-    micOutput.innerText += '\n✅ Đã gửi dữ liệu tới hệ thống.';
-}).catch((error) => {
-    micOutput.innerText += '\n❌ Gửi thất bại: ' + error.message;
-});
-
-        };
-
-        // Nếu có lỗi trong khi sử dụng mic
-        recognition.onerror = (e) => {
-            micOutput.innerText = '❌ Lỗi: ' + e.error;
-        };
-    }
-</script>
-  
-  <!-- Vùng hiển thị kết quả khi nói -->
-  <p id="mic-output" class="mt-3 text-gray-700 text-sm"></p>
-</div>
-
-<script>
+   
     let recognition;
     const micBtn = document.getElementById('mic-button');
     const micOutput = document.getElementById('mic-output');
