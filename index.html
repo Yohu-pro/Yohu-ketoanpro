@@ -34,23 +34,6 @@
         }
     </script>
     <style>
-        .report-output {
-    position: fixed;
-    top: 20%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #e0f7fa; /* Màu nền xanh nhẹ */
-    padding: 20px;
-    border-radius: 8px;
-    max-width: 80%;
-    text-align: center;
-    font-size: 1.2rem;
-    color: #004d40;
-    display: none; /* Ẩn đi ban đầu */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-}
-
         :where([class^="ri-"])::before { content: "\f3c2"; }
         .floating-cta {
             position: fixed;
@@ -1129,92 +1112,114 @@
 
 <!-- Mã JavaScript để xử lý Mic -->
 <script>
-    // Khởi tạo các phần tử và kiểm tra trình duyệt hỗ trợ Speech Recognition
-<script>
-    <script>
-let recognition; 
-const micBtn = document.getElementById('mic-button');
-const micOutput = document.getElementById('mic-output');
-const reportOutput = document.getElementById('report-output');
+    let recognition;
+    const micBtn = document.getElementById('mic-button');
+    const micOutput = document.getElementById('mic-output');
 
-// Kiểm tra trình duyệt hỗ trợ SpeechRecognition
-if ('webkitSpeechRecognition' in window) {
-    recognition = new webkitSpeechRecognition();
-} else if ('SpeechRecognition' in window) {
-    recognition = new SpeechRecognition();
-} else {
-    if (micOutput) {
-        micOutput.innerText = '⚠️ Trình duyệt của bạn không hỗ trợ ghi âm giọng nói.';
-    }
-}
-
-if (recognition && micBtn) {
-    recognition.lang = 'vi-VN';
-    recognition.continuous = false;
-
-    let isListening = false;
-
-    micBtn.addEventListener('click', () => {
-        if (!isListening) {
-            try {
-                recognition.start();
-                isListening = true;
-                micOutput.innerText = '🎙️ Đang nghe...'; // ✅ Sửa 1: Hiển thị trạng thái ngay
-            } catch (e) {
-                micOutput.innerText = '❌ Không thể bắt đầu mic: ' + e.message;
-            }
-        } else {
-            micOutput.innerText = '⏳ Mic đang hoạt động. Vui lòng đợi.';
+    // Kiểm tra trình duyệt hỗ trợ Speech Recognition
+    if ('webkitSpeechRecognition' in window) {
+        recognition = new webkitSpeechRecognition(); // Dùng cho Chrome
+    } else if ('SpeechRecognition' in window) {
+        recognition = new SpeechRecognition(); // Dùng cho Firefox
+    } else {
+        if (micOutput) {
+            micOutput.innerText = '⚠️ Trình duyệt của bạn không hỗ trợ ghi âm giọng nói.';
         }
-    });
+    }
 
-    recognition.onstart = () => {
-        isListening = true;
-        console.log('🎧 Bắt đầu ghi âm');
-    };
+    // Nếu trình duyệt hỗ trợ và nút mic được nhấn
+    if (recognition && micBtn) {
+        recognition.lang = 'vi-VN'; // Đặt ngôn ngữ là tiếng Việt
+        recognition.continuous = false; // Dừng sau khi nhận được kết quả
 
-    recognition.onend = () => {
-        isListening = false;
-        console.log('🛑 Kết thúc ghi âm');
-    };
-
-    recognition.onresult = (event) => {
-        const transcript = event.results[0][0].transcript;
-        micOutput.innerText = '📝 Bạn nói: "' + transcript + '"';
-
-        // Gửi dữ liệu giọng nói đến Apps Script
-        fetch("https://script.google.com/macros/s/AKfycbyhcBnZ69hue6fHUoUWxlb_Q9V96HjKRHi6PvjHdG0Q7fGPVo2eTgPDxqiTh-Ub5u3W/exec", {
-            method: "POST",
-            mode: "no-cors", // ❗ Không nhận được phản hồi từ server
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                command: transcript
-            })
+        // Khi nhấn nút mic
+        micBtn.addEventListener('click', () => {
+            recognition.start();
+            micOutput.innerText = '🎙️ Đang nghe...'; // Thông báo khi mic đang mở
         });
 
-        // ✅ Sửa 2: Luôn phát âm phản hồi sau khi nói
-        const reportText = '📊 Đã gửi lệnh: "' + transcript + '"';
-        reportOutput.innerText = reportText;
-        reportOutput.style.display = 'block';
+        // Khi có kết quả ghi âm
+        recognition.onresult = (event) => {
+            const transcript = event.results[0][0].transcript; // Lấy nội dung bạn đã nói
+            micOutput.innerText = '📝 Bạn nói: "' + transcript + '"'; // Hiển thị kết quả trên màn hình
 
-        const utterance = new SpeechSynthesisUtterance(reportText);
-        utterance.lang = 'vi-VN';
-        speechSynthesis.speak(utterance);
+            // TODO: Bạn có thể gọi API hoặc gửi dữ liệu vào Google Sheet tại đây
+            // Gợi ý: sử dụng `fetch('link_webapp', {method: 'POST', body: transcript})`
+        };
 
-        setTimeout(() => {
-            reportOutput.style.display = 'none';
-        }, 30000);
-    };
+        // Nếu có lỗi trong khi sử dụng mic
+        recognition.onerror = (e) => {
+            micOutput.innerText = '❌ Lỗi: ' + e.error;
+        };
+    }
+<script>
+    let recognition;
+    const micBtn = document.getElementById('mic-button');
+    const micOutput = document.getElementById('mic-output');
 
-    recognition.onerror = (e) => {
-        isListening = false;
-        micOutput.innerText = '❌ Lỗi: ' + e.error;
-        console.error('Lỗi ghi âm:', e);
-    };
-}
+    // Kiểm tra trình duyệt hỗ trợ Speech Recognition
+    if ('webkitSpeechRecognition' in window) {
+        recognition = new webkitSpeechRecognition(); // Dùng cho Chrome
+    } else if ('SpeechRecognition' in window) {
+        recognition = new SpeechRecognition(); // Dùng cho Firefox
+    } else {
+        if (micOutput) {
+            micOutput.innerText = '⚠️ Trình duyệt của bạn không hỗ trợ ghi âm giọng nói.';
+        }
+    }
+
+    // Nếu trình duyệt hỗ trợ và nút mic được nhấn
+    if (recognition && micBtn) {
+        recognition.lang = 'vi-VN'; // Đặt ngôn ngữ là tiếng Việt
+        recognition.continuous = false; // Dừng sau khi nhận được kết quả
+
+        // Khi nhấn nút mic
+        micBtn.addEventListener('click', () => {
+            recognition.start();
+            micOutput.innerText = '🎙️ Đang nghe...'; // Thông báo khi mic đang mở
+        });
+
+        // Khi có kết quả ghi âm
+        recognition.onresult = (event) => {
+            const transcript = event.results[0][0].transcript; // Lấy nội dung bạn đã nói
+            micOutput.innerText = '📝 Bạn nói: "' + transcript + '"'; // Hiển thị kết quả trên màn hình
+
+            // Gửi dữ liệu giọng nói vào Google Sheets
+            sendDataToGoogleSheet(transcript);
+        };
+
+        // Nếu có lỗi trong khi sử dụng mic
+        recognition.onerror = (e) => {
+            micOutput.innerText = '❌ Lỗi: ' + e.error;
+        };
+    }
+
+    // Hàm gửi dữ liệu giọng nói vào Google Sheets qua Google Apps Script
+    function sendDataToGoogleSheet(transcript) {
+        const url = 'https://script.google.com/macros/s/AKfycbwAtP6EkVz_DHeUINkYi6iScUFMaM_zB6PUcSc_HvWNCOZc124eQTLClJq61oF3WaLt/exec'; // URL Web App của bạn
+
+        const data = {
+            'name': transcript // Dữ liệu giọng nói được chuyển thành văn bản
+        };
+
+        // Gửi yêu cầu POST đến Google Apps Script
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        .then(response => response.text())
+        .then(data => console.log('Dữ liệu đã gửi thành công:', data))  // Xử lý phản hồi
+        .catch(error => console.error('Lỗi khi gửi dữ liệu:', error));
+    }
+</script>
+<div class="fixed bottom-10 right-24 z-50">
+    <a href="tel:+84973480488" id="call-button" class="bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-green-700 transition">
+        <i class="ri-phone-fill text-2xl"></i> <!-- Biểu tượng Điện thoại -->
+    </a>
+</div>
 
 </body>
 </html>
-
