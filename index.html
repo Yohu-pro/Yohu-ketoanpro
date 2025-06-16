@@ -1157,6 +1157,7 @@ if (recognition && micBtn) {
     micBtn.addEventListener('click', () => {
         recognition.start();
         micOutput.innerText = '🎙️ Đang nghe...'; // Thông báo khi đang nghe
+        micBtn.disabled = true;  // Tạm thời vô hiệu hóa nút mic để tránh nhấn nhiều lần
     });
 
     // Khi kết quả ghi âm có sẵn
@@ -1194,13 +1195,36 @@ if (recognition && micBtn) {
         .catch((error) => {
             micOutput.innerText += '\n❌ Gửi thất bại: ' + error.message;
         });
+
+        micBtn.disabled = false; // Kích hoạt lại nút mic sau khi nhận kết quả
     };
 
     // Nếu có lỗi trong khi sử dụng mic
     recognition.onerror = (e) => {
         micOutput.innerText = '❌ Lỗi: ' + e.error;
+        micBtn.disabled = false; // Kích hoạt lại nút mic khi có lỗi
     };
 }
+
+// Cải thiện cho điện thoại: Đảm bảo mic luôn hiển thị
+const adjustMicForMobile = () => {
+    if (window.innerWidth <= 768) {
+        // Nếu trên thiết bị di động, đảm bảo mic luôn hiển thị
+        micBtn.style.display = 'block';
+        micBtn.style.position = 'fixed';
+        micBtn.style.bottom = '10px';
+        micBtn.style.right = '10px';
+    } else {
+        // Trở lại vị trí mặc định trên desktop
+        micBtn.style.display = 'inline-block';
+    }
+};
+
+// Điều chỉnh khi thay đổi kích thước màn hình
+window.addEventListener('resize', adjustMicForMobile);
+
+// Gọi hàm để điều chỉnh khi trang được tải
+adjustMicForMobile();
 
 </body>
 </html>
