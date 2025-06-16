@@ -1306,59 +1306,6 @@ fetch("https://script.google.com/macros/s/AKfycbwAtP6EkVz_DHeUINkYi6iScUFMaM_zB6
 
 <!-- Vùng hiển thị kết quả từ giọng nói -->
 <div id="mic-output"></div>
-let recognition;
-const micBtn = document.getElementById('mic-button');
-const micOutput = document.getElementById('mic-output');
-const reportOutput = document.getElementById('report-output');
-
-// Kiểm tra nếu trình duyệt hỗ trợ SpeechRecognition
-if ('webkitSpeechRecognition' in window) {
-    recognition = new webkitSpeechRecognition(); // Dùng cho Chrome
-} else if ('SpeechRecognition' in window) {
-    recognition = new SpeechRecognition(); // Dùng cho Firefox
-} else {
-    if (micOutput) {
-        micOutput.innerText = '⚠️ Trình duyệt của bạn không hỗ trợ ghi âm giọng nói.';
-    }
-}
-
-// Nếu trình duyệt hỗ trợ và mic button được nhấn
-if (recognition && micBtn) {
-    recognition.lang = 'vi-VN'; // Đặt ngôn ngữ là tiếng Việt
-    recognition.continuous = false; // Dừng sau khi nhận được kết quả
-
-    // Khi nhấn nút mic
-    micBtn.addEventListener('click', () => {
-        recognition.start();
-        micOutput.innerText = '🎙️ Đang nghe...'; // Thông báo khi đang nghe
-    });
-
-    // Khi kết quả ghi âm có sẵn
-    recognition.onresult = (event) => {
-        const transcript = event.results[0][0].transcript; // Lấy nội dung bạn đã nói
-        micOutput.innerText = '📝 Bạn nói: "' + transcript + '"'; // Hiển thị kết quả trên màn hình
-
-        // Gửi nội dung giọng nói tới Web App để ghi vào Google Sheet
-        fetch("https://script.google.com/macros/s/AKfycbyhcBnZ69hue6fHUoUWxlb_Q9V96HjKRHi6PvjHdG0Q7fGPVo2eTgPDxqiTh-Ub5u3W/exec", {
-            method: "POST",
-            mode: "no-cors",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                command: transcript  // Gửi câu lệnh từ giọng nói
-            })
-        }).then(response => response.json())
-        .then(data => {
-            // Hiển thị báo cáo trong phần #report-output
-            const reportText = '📊 Kết quả báo cáo: ' + data.report;  // Thay thế với kết quả báo cáo thực tế
-            reportOutput.innerText = reportText;
-            reportOutput.style.display = 'block'; // Hiển thị báo cáo
-
-            // Tự ẩn báo cáo sau 30 giây
-            setTimeout(() => {
-                reportOutput.style.display = 'none'; // Ẩn báo cáo sau 30 giây
-            }, 30000);
 
             // Phát kết quả báo cáo bằng giọng nói
             const utterance = new SpeechSynthesisUtterance(reportText);
