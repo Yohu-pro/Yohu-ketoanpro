@@ -1089,5 +1089,35 @@
             });
         });
     </script>
+<script>
+  const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+  recognition.lang = 'vi-VN';
+  recognition.continuous = false;
+
+  const micBtn = document.getElementById('mic-button');
+  const micOutput = document.getElementById('mic-output');
+
+  if (micBtn && recognition) {
+    micBtn.addEventListener('click', () => {
+      recognition.start();
+      micOutput.innerText = '🎙️ Đang nghe...';
+    });
+
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      micOutput.innerText = '📝 Bạn nói: "' + transcript + '"';
+
+      // TODO: Ở đây bạn có thể gọi hàm gửi dữ liệu vào Google Sheet
+      // Gợi ý: fetch('link_webapp', {method:'POST', ...})
+    };
+
+    recognition.onerror = () => {
+      micOutput.innerText = '⚠️ Có lỗi khi ghi âm. Kiểm tra micro hoặc cấp quyền.';
+    };
+  } else {
+    console.warn('Trình duyệt không hỗ trợ Speech Recognition hoặc không tìm thấy nút mic.');
+  }
+</script>
+
 </body>
 </html>
