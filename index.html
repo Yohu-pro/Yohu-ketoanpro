@@ -1137,7 +1137,7 @@ const micBtn = document.getElementById('mic-button');
 const micOutput = document.getElementById('mic-output');
 const reportOutput = document.getElementById('report-output');
 
-// Kiểm tra nếu trình duyệt hỗ trợ SpeechRecognition
+// Kiểm tra trình duyệt hỗ trợ SpeechRecognition (trên cả desktop và di động)
 if ('webkitSpeechRecognition' in window) {
     recognition = new webkitSpeechRecognition(); // Dùng cho Chrome
 } else if ('SpeechRecognition' in window) {
@@ -1148,21 +1148,22 @@ if ('webkitSpeechRecognition' in window) {
     }
 }
 
-// Nếu trình duyệt hỗ trợ và mic button được nhấn
+// Kiểm tra nếu nút mic và nhận diện giọng nói khả dụng
 if (recognition && micBtn) {
     recognition.lang = 'vi-VN'; // Đặt ngôn ngữ là tiếng Việt
     recognition.continuous = false; // Dừng sau khi nhận được kết quả
 
-    // Khi nhấn nút mic
+    // Xử lý sự kiện nhấn nút mic trên cả điện thoại và máy tính
     micBtn.addEventListener('click', () => {
-        micOutput.innerText = '🎙️ Đang nghe...'; // Thông báo khi đang nghe
+        // Bắt đầu nhận diện giọng nói
         recognition.start();
+        micOutput.innerText = '🎙️ Đang nghe...'; // Thông báo đang nghe
     });
 
-    // Khi kết quả ghi âm có sẵn
+    // Khi có kết quả ghi âm
     recognition.onresult = (event) => {
-        const transcript = event.results[0][0].transcript; // Lấy nội dung bạn đã nói
-        micOutput.innerText = '📝 Bạn nói: "' + transcript + '"'; // Hiển thị kết quả trên màn hình
+        const transcript = event.results[0][0].transcript; // Nội dung bạn đã nói
+        micOutput.innerText = '📝 Bạn nói: "' + transcript + '"'; // Hiển thị kết quả
 
         // Gửi nội dung giọng nói tới Web App để ghi vào Google Sheet
         fetch("https://script.google.com/macros/s/AKfycbyhcBnZ69hue6fHUoUWxlb_Q9V96HjKRHi6PvjHdG0Q7fGPVo2eTgPDxqiTh-Ub5u3W/exec", {
@@ -1176,19 +1177,18 @@ if (recognition && micBtn) {
             })
         }).then(response => response.json())
         .then(data => {
-            // Hiển thị báo cáo trong phần #report-output
-            const reportText = '📊 Kết quả báo cáo: ' + data.report;  // Thay thế với kết quả báo cáo thực tế
+            const reportText = '📊 Kết quả báo cáo: ' + data.report; // Kết quả báo cáo
             reportOutput.innerText = reportText;
             reportOutput.style.display = 'block'; // Hiển thị báo cáo
 
-            // Tự ẩn báo cáo sau 30 giây
+            // Ẩn báo cáo sau 30 giây
             setTimeout(() => {
-                reportOutput.style.display = 'none'; // Ẩn báo cáo sau 30 giây
+                reportOutput.style.display = 'none';
             }, 30000);
 
-            // Phát kết quả báo cáo bằng giọng nói
+            // Phát âm thanh kết quả báo cáo
             const utterance = new SpeechSynthesisUtterance(reportText);
-            utterance.lang = 'vi-VN'; // Đặt ngôn ngữ tiếng Việt cho giọng nói
+            utterance.lang = 'vi-VN'; // Ngôn ngữ tiếng Việt
             speechSynthesis.speak(utterance); // Phát âm thanh kết quả báo cáo
         })
         .catch((error) => {
@@ -1196,24 +1196,10 @@ if (recognition && micBtn) {
         });
     };
 
-    // Nếu có lỗi trong khi sử dụng mic
+    // Nếu gặp lỗi trong khi sử dụng mic
     recognition.onerror = (e) => {
         micOutput.innerText = '❌ Lỗi: ' + e.error;
     };
-}
-
-// Đảm bảo Mic luôn hiển thị và có phản hồi
-const adjustMicForMobile = () => {
-    if (window.innerWidth <= 768) {
-        // Nếu trên thiết bị di động, đảm bảo mic luôn hiển thị
-        micBtn.style.display = 'block';
-        micBtn.style.position = 'fixed';
-        micBtn.style.bottom = '10px';
-        micBtn.style.right = '10px';
-    } else {
-        // Trở lại vị trí mặc định trên desktop
-        micBtn.style.display = 'inline-block';
-    }
 }
 
 </body>
