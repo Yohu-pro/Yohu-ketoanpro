@@ -1131,67 +1131,71 @@
 <script>
     // Khởi tạo các phần tử và kiểm tra trình duyệt hỗ trợ Speech Recognition
 <script>
+    <script>
     let recognition;
     const micBtn = document.getElementById('mic-button');
     const micOutput = document.getElementById('mic-output');
 
-    // Kiểm tra trình duyệt có hỗ trợ Speech Recognition không
-    if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
-        // Nếu trình duyệt hỗ trợ
-        recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    // Kiểm tra trình duyệt hỗ trợ Speech Recognition
+    if ('webkitSpeechRecognition' in window) {
+        recognition = new webkitSpeechRecognition(); // Dùng cho Chrome
+    } else if ('SpeechRecognition' in window) {
+        recognition = new SpeechRecognition(); // Dùng cho Firefox
     } else {
         if (micOutput) {
             micOutput.innerText = '⚠️ Trình duyệt của bạn không hỗ trợ ghi âm giọng nói.';
         }
     }
 
-    // Nếu nút mic được nhấn
+    // Nếu trình duyệt hỗ trợ và nút mic được nhấn
     if (recognition && micBtn) {
         recognition.lang = 'vi-VN'; // Đặt ngôn ngữ là tiếng Việt
-        recognition.continuous = false; // Dừng nhận diện sau khi có kết quả
+        recognition.continuous = false; // Dừng sau khi nhận được kết quả
 
         // Khi nhấn nút mic
         micBtn.addEventListener('click', () => {
-            recognition.start(); // Bắt đầu ghi âm
-            micOutput.innerText = '🎙️ Đang nghe...'; // Thông báo đang nghe
+            recognition.start();
+            micOutput.innerText = '🎙️ Đang nghe...'; // Thông báo khi mic đang mở
         });
 
-        // Khi có kết quả từ mic
+        // Khi có kết quả ghi âm
         recognition.onresult = (event) => {
-            const transcript = event.results[0][0].transcript; // Lấy văn bản
-            micOutput.innerText = '📝 Bạn nói: "' + transcript + '"'; // Hiển thị kết quả
+            const transcript = event.results[0][0].transcript; // Lấy nội dung bạn đã nói
+            micOutput.innerText = '📝 Bạn nói: "' + transcript + '"'; // Hiển thị kết quả trên màn hình
 
-            // Gửi kết quả ghi âm đến hệ thống (Google Sheets hoặc nơi khác)
-            sendDataToGoogleSheet(transcript);
+            // Gửi nội dung giọng nói tới Web App để ghi vào Google Sheet
+            fetch("https://script.google.com/macros/s/AKfycbwAtP6EkVz_DHeUINkYi6iScUFMaM_zB6PUcSc_HvWNCOZc124eQTLClJq61oF3WaLt/exec", {
+                method: "POST",
+                mode: "no-cors",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ command: transcript })
+            }).then(() => {
+                micOutput.innerText += '\n✅ Đã gửi dữ liệu tới hệ thống.';
+            }).catch((error) => {
+                micOutput.innerText += '\n❌ Gửi thất bại: ' + error.message;
+            });
         };
 
-        // Xử lý lỗi khi có sự cố
+        // Nếu có lỗi trong khi sử dụng mic
         recognition.onerror = (e) => {
             micOutput.innerText = '❌ Lỗi: ' + e.error;
         };
     }
-
-    // Hàm gửi dữ liệu vào Google Sheets
-    function sendDataToGoogleSheet(transcript) {
-        const url = 'https://script.google.com/macros/s/AKfycbwAtP6EkVz_DHeUINkYi6iScUFMaM_zB6PUcSc_HvWNCOZc124eQTLClJq61oF3WaLt/exec'; // URL Web App của bạn
-
-        const data = {
-            'name': transcript // Dữ liệu giọng nói chuyển thành văn bản
-        };
-
-        // Gửi dữ liệu POST đến Google Sheets qua Google Apps Script
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        })
-        .then(response => response.text())
-        .then(data => console.log('Dữ liệu đã gửi thành công:', data))
-        .catch(error => console.error('Lỗi khi gửi dữ liệu:', error));
-    }
 </script>
+
+<!-- Nút mic -->
+<div class="fixed bottom-10 right-10 z-50">
+    <button id="mic-button" class="bg-primary text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 transition">
+        <i class="ri-mic-line text-2xl"></i> <!-- Biểu tượng Mic -->
+    </button>
+</div>
+
+<!-- Vùng hiển thị kết quả khi người dùng nói -->
+<div class="text-center mt-3">
+    <p id="mic-output" class="text-gray-700 text-sm"></p>
+</div>
 
 </body>
 </html>
