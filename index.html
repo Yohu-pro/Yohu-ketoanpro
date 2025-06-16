@@ -1137,9 +1137,9 @@ const reportOutput = document.getElementById('report-output');
 
 // Kiểm tra trình duyệt hỗ trợ SpeechRecognition
 if ('webkitSpeechRecognition' in window) {
-    recognition = new webkitSpeechRecognition();
+    recognition = new webkitSpeechRecognition(); // Dùng cho Chrome
 } else if ('SpeechRecognition' in window) {
-    recognition = new SpeechRecognition();
+    recognition = new SpeechRecognition(); // Dùng cho Firefox
 } else {
     if (micOutput) {
         micOutput.innerText = '⚠️ Trình duyệt của bạn không hỗ trợ ghi âm giọng nói.';
@@ -1147,19 +1147,22 @@ if ('webkitSpeechRecognition' in window) {
 }
 
 if (recognition && micBtn) {
-    recognition.lang = 'vi-VN';
-    recognition.continuous = false;
-    recognition.interimResults = false;
+    recognition.lang = 'vi-VN'; // Đặt ngôn ngữ là tiếng Việt
+    recognition.continuous = false; // Dừng sau khi nhận được kết quả
+    recognition.interimResults = false; // Không trả về kết quả tạm thời
 
+    // Khi nhấn nút mic
     micBtn.addEventListener('click', () => {
         recognition.start();
-        micOutput.innerText = '🎙️ Đang nghe...';
+        micOutput.innerText = '🎙️ Đang nghe...'; // Thông báo khi mic đang mở
     });
 
+    // Khi có kết quả ghi âm
     recognition.onresult = (event) => {
-        const transcript = event.results[0][0].transcript;
-        micOutput.innerText = '📝 Bạn nói: "' + transcript + '"';
+        const transcript = event.results[0][0].transcript; // Lấy nội dung bạn đã nói
+        micOutput.innerText = '📝 Bạn nói: "' + transcript + '"'; // Hiển thị kết quả trên màn hình
 
+        // Gửi nội dung giọng nói tới Web App để ghi vào Google Sheet
         fetch("https://script.google.com/macros/s/AKfycbwAtP6EkVz_DHeUINkYi6iScUFMaM_zB6PUcSc_HvWNCOZc124eQTLClJq61oF3WaLt/exec", {
             method: "POST",
             mode: "no-cors",
@@ -1171,6 +1174,7 @@ if (recognition && micBtn) {
             micOutput.innerText += '\n❌ Gửi thất bại: ' + error.message;
         });
 
+        // Phát âm thanh báo cáo
         const reportText = '📊 Kết quả báo cáo: ' + transcript;
         if ('speechSynthesis' in window) {
             const utterance = new SpeechSynthesisUtterance(reportText);
@@ -1184,11 +1188,11 @@ if (recognition && micBtn) {
         }
     };
 
+    // Nếu có lỗi trong khi sử dụng mic
     recognition.onerror = (e) => {
         micOutput.innerText = '❌ Lỗi: ' + e.error;
     };
 }
-
 
 </body>
 </html>
