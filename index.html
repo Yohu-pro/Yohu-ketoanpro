@@ -1,293 +1,1052 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>YOHU Lite - Giải Pháp Quản Lý Kinh Doanh Dễ Dàng</title>
-  <link rel="stylesheet" href="styles.css" />
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      overflow-x: hidden;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 100%;
-      box-sizing: border-box;
-      padding: 15px;
-    }
-
-    .status-bar {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #333;
-      padding: 10px;
-      margin-top: -20px;
-      flex-wrap: wrap;
-    }
-
-    .status-button {
-      background-color: #4caf50;
-      color: white;
-      font-size: 1em;
-      border: none;
-      padding: 10px 20px;
-      margin: 5px;
-      cursor: pointer;
-      border-radius: 5px;
-      transition: background-color 0.3s ease;
-    }
-
-    .status-button:hover {
-      background-color: #45a049;
-    }
-
-    .accordion {
-      background-color: #45a049;
-      color: white;
-      padding: 10px;
-      font-size: 1.1em;
-      border: none;
-      cursor: pointer;
-      width: 100%;
-      text-align: left;
-      transition: background-color 0.3s ease;
-    }
-
-    .accordion:hover {
-      background-color: #3d8b3d;
-    }
-
-    .panel {
-      display: none;
-      padding: 10px;
-      background-color: #f1f1f1;
-      color: black;
-      overflow: auto;
-      max-width: 100%;
-      word-wrap: break-word;
-    }
-
-    #banner {
-      background-image: url('https://raw.githubusercontent.com/Yohu-pro/Yohu-ketoanpro/main/BANER%20(1).jpg');
-      background-size: cover;
-      background-position: center;
-      height: 400px;
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      color: white;
-      text-align: left;
-      position: relative;
-      padding-left: 20px;
-      padding-right: 20px;
-    }
-
-    .banner-content {
-      display: flex;
-      flex-direction: column;
-      justify-content: left;
-      width: 100%;
-    }
-
-    .banner-content h1,
-    .banner-content p.title,
-    .banner-content p.subtitle {
-      display: none;
-    }
-
-    .cta-button {
-      padding: 15px 30px;
-      font-size: 1.2em;
-      color: orange;
-      background-color: transparent;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-      position: absolute;
-      left: 10px;
-      right: 20px;
-    }
-
-    .cta-button:hover {
-      background-color: transparent;
-      color: #4caf50;
-    }
-
-    .full-intro {
-      display: none;
-      padding: 20px;
-      background-color: #f9f9f9;
-      color: black;
-    }
-
-    @media (max-width: 768px) {
-      .status-button {
-        font-size: 0.9em;
-        padding: 8px 15px;
-      }
-
-      .status-bar {
-        justify-content: flex-start;
-        padding: 5px;
-      }
-    }
-
-    @media (max-width: 750px) {
-      #banner {
-        height: 250px;
-        padding-left: 10px;
-        padding-right: 10px;
-      }
-
-      .banner-content {
-        max-width: 100%;
-        padding: 10px;
-      }
-
-      .cta-button {
-        font-size: 1em;
-        padding: 10px 20px;
-        left: 0;
-      }
-    }
-
-    @media (max-width: 460px) {
-      #banner {
-        height: 200px;
-        padding-left: 5px;
-        padding-right: 5px;
-      }
-
-      .cta-button {
-        font-size: 0.9em;
-        padding: 8px 16px;
-        left: 0;
-      }
-    }
-  </style>
-</head>
-<body>
-  <section id="banner">
-    <div class="banner-content"></div>
-  </section>
-
-  <div class="status-bar">
-    <button class="status-button" onclick="toggleIntro()">Giới Thiệu</button>
-    <button class="status-button">Sản Phẩm SX&TM</button>
-    <button class="status-button">Sản phẩm dịch vụ</button>
-    <button class="status-button">Hướng dẫn cài đặt</button>
-    <button class="status-button">Tài liệu hướng dẫn</button>
-    <button class="status-button">Liên Hệ&Hỗ Trợ</button>
-  </div>
-
-  <section id="gioi-thieu">
-    <div class="container">
-      <div class="full-intro">
-        <h2>Giới thiệu Công ty Yohu Việt Nam</h2>
-        <p>Yohu Việt Nam là đơn vị tiên phong trong việc phát triển các giải pháp công nghệ tối ưu cho doanh nghiệp...</p>
-        <h3>Dịch vụ và sản phẩm:</h3>
-        <ul>
-          <li><strong>YOHU PRO:</strong> Hệ thống ERP mini thông minh tích hợp Google Sheets, Apps Script, chatbot và giọng nói.</li>
-          <li><strong>Dịch vụ kế toán:</strong> Giải pháp đơn giản qua Google Sheets và Apps Script.</li>
-          <li><strong>Thiết bị vệ sinh:</strong> Sen vòi cao cấp, tiện ích tối ưu.</li>
-        </ul>
-        <h3>Lý do chọn Yohu:</h3>
-        <ul>
-          <li><strong>Tiết kiệm chi phí</strong></li>
-          <li><strong>Tính linh hoạt cao</strong></li>
-          <li><strong>Đáp ứng nhu cầu thực tế</strong></li>
-        </ul>
-        <p>Chúng tôi cam kết mang lại những giải pháp sáng tạo, dễ sử dụng và hiệu quả...</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="container">
-    <h1>TỔNG QUAN VỀ YOHU PRO</h1>
-    <p>YOHU PRO bản cao cấp của YOHU Lite là công cụ quản lý bán hàng và kế toán tự động...</p>
-    <p><strong>Các tính năng nổi bật:</strong></p>
-    <ul>
-      <li><strong>Quản lý đơn hàng, hóa đơn:</strong> Tự động cập nhật và báo cáo.</li>
-      <li><strong>Không cần lập trình:</strong> Dành cho người không chuyên.</li>
-      <li><strong>Quản lý kết quả kinh doanh:</strong> Theo dõi doanh thu, chi phí, lợi nhuận.</li>
-      <li><strong>Tích hợp chatbot và giọng nói:</strong> Truy xuất báo cáo nhanh qua thiết bị di động.</li>
-    </ul>
-  </section>
-
-  <section id="gioi-thieu">
-    <div class="container">
-      <h2>Giới thiệu về YOHU Lite</h2>
-
-      <button class="accordion">1. Mô tả về sản phẩm YOHU Lite và các lợi ích của nó</button>
-      <div class="panel">
-        <p>YOHU Lite là công cụ quản lý bán hàng và kế toán cực kỳ đơn giản...</p>
-      </div>
-
-      <button class="accordion">2. Nhấn mạnh tính đơn giản, dễ sử dụng cho người không có chuyên môn công nghệ</button>
-      <div class="panel">
-        <p>YOHU Lite giúp bạn dễ dàng sử dụng mà không cần học lập trình...</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="tinh-nang">
-    <div class="container">
-      <h2>Các Tính Năng Chính của YOHU Lite</h2>
-
-      <button class="accordion">1. Mô tả cách sử dụng Google Sheets, Google Forms, Fchat và tích hợp giọng nói để báo cáo</button>
-      <div class="panel">
-        <p>YOHU Lite sử dụng Google Sheets, Forms và Fchat để tự động hóa...</p>
-      </div>
-
-      <button class="accordion">2. Đưa ra ví dụ cụ thể về các báo cáo tự động</button>
-      <div class="panel">
-        <p>Báo cáo KQKD và XNT tự động tính toán doanh thu, tồn kho...</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="lien-he">
-    <div class="container">
-      <h2>Liên Hệ Với Chúng Tôi</h2>
-      <ul>
-        <li><strong>CÔNG TY TNHH YOHU VIỆT NAM</strong></li>
-        <li><strong>Địa chỉ:</strong> Nhân Dục, Hiến Nam, Hưng Yên</li>
-        <li><strong>Hotline/Zalo:</strong> 0973 480 488 / Zalo OA: 0339606969</li>
-        <li><strong>Messenger:</strong> <a href="https://www.facebook.com/share/1ACHeihbme/" target="_blank">https://www.facebook.com/share/1ACHeihbme/</a></li>
-      </ul>
-    </div>
-  </section>
-
-  <footer id="footer">
-    <p>&copy; 2025 YOHU Việt Nam. All Rights Reserved.</p>
-  </footer>
-
-  <script>
-    function toggleIntro() {
-      var fullIntro = document.querySelector('.full-intro');
-      if (fullIntro.style.display === 'none' || fullIntro.style.display === '') {
-        fullIntro.style.display = 'block';
-      } else {
-        fullIntro.style.display = 'none';
-      }
-    }
-
-    var acc = document.getElementsByClassName('accordion');
-    for (var i = 0; i < acc.length; i++) {
-      acc[i].addEventListener('click', function () {
-        this.classList.toggle('active');
-        var panel = this.nextElementSibling;
-        if (panel.style.display === 'block') {
-          panel.style.display = 'none';
-        } else {
-          panel.style.display = 'block';
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YOHU PRO 2.0 - Giải pháp quản lý bán hàng tự động</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+        tailwind.config={
+            theme:{
+                extend:{
+                    colors:{
+                        primary:'#2563eb',
+                        secondary:'#f97316'
+                    },
+                    borderRadius:{
+                        'none':'0px',
+                        'sm':'4px',
+                        DEFAULT:'8px',
+                        'md':'12px',
+                        'lg':'16px',
+                        'xl':'20px',
+                        '2xl':'24px',
+                        '3xl':'32px',
+                        'full':'9999px',
+                        'button':'8px'
+                    }
+                }
+            }
         }
-      });
-    }
-  </script>
+    </script>
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        .floating-cta {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 50;
+        }
+        .chat-bubble {
+            position: fixed;
+            bottom: 6rem;
+            right: 2rem;
+            z-index: 50;
+        }
+        .back-to-top {
+            position: fixed;
+            bottom: 10rem;
+            right: 2rem;
+            z-index: 50;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .back-to-top.visible {
+            opacity: 1;
+        }
+        @media (max-width: 768px) {
+            .mobile-menu {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: white;
+                z-index: 100;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease-in-out;
+            }
+            .mobile-menu.open {
+                transform: translateX(0);
+            }
+        }
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <a href="#" class="flex items-center">
+                <span class="text-2xl font-['Pacifico'] text-primary">YOHU</span>
+                <span class="ml-1 text-lg font-semibold">PRO 2.0</span>
+            </a>
+            
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex space-x-6">
+                <a href="#gioi-thieu" class="text-gray-700 hover:text-primary transition">Giới thiệu</a>
+                <a href="#san-pham" class="text-gray-700 hover:text-primary transition">Sản phẩm TM & DV</a>
+                <a href="#tinh-nang" class="text-gray-700 hover:text-primary transition">Tính năng</a>
+                <a href="#bang-gia" class="text-gray-700 hover:text-primary transition">Bảng giá</a>
+                <a href="#tai-lieu" class="text-gray-700 hover:text-primary transition">Tài liệu hướng dẫn</a>
+                <a href="#lien-he" class="text-gray-700 hover:text-primary transition">Hỗ trợ & Liên hệ</a>
+            </nav>
+            
+            <div class="flex items-center space-x-4">
+                <a href="#dung-thu" class="hidden md:block bg-primary text-white px-4 py-2 !rounded-button font-medium hover:bg-blue-700 transition whitespace-nowrap">DÙNG THỬ NGAY</a>
+                <button id="mobile-menu-button" class="md:hidden w-10 h-10 flex items-center justify-center text-gray-700">
+                    <i class="ri-menu-line text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu md:hidden">
+        <div class="p-4 flex justify-between items-center border-b">
+            <span class="text-xl font-['Pacifico'] text-primary">YOHU PRO 2.0</span>
+            <button id="close-menu" class="w-10 h-10 flex items-center justify-center">
+                <i class="ri-close-line text-2xl"></i>
+            </button>
+        </div>
+        <nav class="flex flex-col p-4">
+            <a href="#gioi-thieu" class="py-3 border-b border-gray-100 text-gray-700">Giới thiệu</a>
+            <a href="#san-pham" class="py-3 border-b border-gray-100 text-gray-700">Sản phẩm TM & DV</a>
+            <a href="#tinh-nang" class="py-3 border-b border-gray-100 text-gray-700">Tính năng</a>
+            <a href="#bang-gia" class="py-3 border-b border-gray-100 text-gray-700">Bảng giá</a>
+            <a href="#tai-lieu" class="py-3 border-b border-gray-100 text-gray-700">Tài liệu hướng dẫn</a>
+            <a href="#lien-he" class="py-3 border-b border-gray-100 text-gray-700">Hỗ trợ & Liên hệ</a>
+            <a href="#dung-thu" class="mt-4 bg-primary text-white px-4 py-3 !rounded-button font-medium text-center whitespace-nowrap">DÙNG THỬ NGAY</a>
+        </nav>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative w-full bg-white overflow-hidden" id="gioi-thieu">
+        <div class="absolute inset-0 z-0" style="background-image: url('https://readdy.ai/api/search-image?query=A%20professional%20office%20environment%20with%20a%20clean%2C%20modern%20workspace.%20The%20image%20shows%20a%20bright%2C%20airy%20office%20with%20minimal%20design%2C%20soft%20natural%20lighting%2C%20and%20subtle%20blue%20accents.%20The%20left%20side%20has%20a%20gradient%20from%20white%20to%20very%20light%20blue%2C%20creating%20a%20perfect%20background%20for%20text%20overlay.%20The%20right%20side%20shows%20organized%20office%20elements%20like%20a%20laptop%2C%20documents%2C%20and%20a%20small%20plant%2C%20representing%20business%20management%20and%20productivity&width=1600&height=800&seq=hero1&orientation=landscape'); background-size: cover; background-position: center; opacity: 0.9;"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/20 z-10"></div>
+        
+        <div class="container mx-auto px-4 py-16 md:py-24 relative z-20">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="w-full md:w-1/2 mb-8 md:mb-0">
+                    <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">Giải pháp quản lý bán hàng tự động cho doanh nghiệp</h1>
+                    <p class="text-xl text-gray-700 mb-6">Bạn là hộ kinh doanh? Không biết công nghệ vẫn dùng được!</p>
+                    <div class="mb-8">
+                        <p class="text-gray-600 mb-4">Không cần cài đặt, chỉ sử dụng Google Trang tính, nhập hệ thống menu, xuất đơn PDF, kiểm soát công nợ, kho và báo cáo.</p>
+                        <ul class="space-y-2">
+                            <li class="flex items-start">
+                                <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <span class="ml-2">Miễn phí phiên bản Lite</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <span class="ml-2">Cài đặt trong 15 phút</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <span class="ml-2">Không cần tài khoản Google doanh nghiệp</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#dung-thu" class="inline-block bg-primary text-white px-6 py-3 !rounded-button font-medium hover:bg-blue-700 transition text-lg whitespace-nowrap">DÙNG THỬ NGAY</a>
+                </div>
+                <div class="w-full md:w-1/2 md:pl-8">
+                    <!-- This div is intentionally left empty as the background image covers this area -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tính Năng Chính -->
+    <section class="py-16 bg-white" id="tinh-nang">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Tính Năng Chính</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">YOHU PRO 2.0 cung cấp các công cụ đơn giản nhưng mạnh mẽ, giúp bạn quản lý kinh doanh hiệu quả mà không cần kiến thức công nghệ phức tạp.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Tính năng 1 -->
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition">
+                    <div class="w-16 h-16 flex items-center justify-center bg-blue-100 text-primary rounded-full mb-4 mx-auto">
+                        <i class="ri-file-excel-2-line text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-3">Quản lý bằng Google Sheet</h3>
+                    <p class="text-gray-600 text-center">Sử dụng Google Trang tính quen thuộc, không cần cài đặt phần mềm phức tạp. Hệ thống tự động hóa với Apps Script.</p>
+                    <ul class="mt-4 space-y-2">
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="ml-2 text-sm text-gray-600">Quản lý đơn hàng chi tiết</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="ml-2 text-sm text-gray-600">Tự động xuất PDF hóa đơn</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="ml-2 text-sm text-gray-600">Báo cáo kinh doanh tự động</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Tính năng 2 -->
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition">
+                    <div class="w-16 h-16 flex items-center justify-center bg-blue-100 text-primary rounded-full mb-4 mx-auto">
+                        <i class="ri-chat-3-line text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-3">Tích hợp chatbot Fchat</h3>
+                    <p class="text-gray-600 text-center">Kết nối với Fchat để nhận báo cáo và trả lời tự động các câu hỏi về kinh doanh qua tin nhắn.</p>
+                    <ul class="mt-4 space-y-2">
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="ml-2 text-sm text-gray-600">Truy vấn "doanh thu hôm nay?"</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="ml-2 text-sm text-gray-600">Nhận báo cáo tự động qua Zalo</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="ml-2 text-sm text-gray-600">Cảnh báo tồn kho, công nợ</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Tính năng 3 -->
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition">
+                    <div class="w-16 h-16 flex items-center justify-center bg-blue-100 text-primary rounded-full mb-4 mx-auto">
+                        <i class="ri-mic-line text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-3">Nhập liệu bằng giọng nói</h3>
+                    <p class="text-gray-600 text-center">Web App hỗ trợ nhập đơn hàng bằng giọng nói, giúp người lớn tuổi hoặc không rành công nghệ dễ dàng sử dụng.</p>
+                    <ul class="mt-4 space-y-2">
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="ml-2 text-sm text-gray-600">Nhập đơn nhanh chóng</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="ml-2 text-sm text-gray-600">Tự động ghi nhận thông tin</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="ml-2 text-sm text-gray-600">Thao tác đơn giản trên điện thoại</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sản phẩm TM & DV -->
+    <section class="py-16 bg-gray-50" id="san-pham">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Sản phẩm TM & DV</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">YOHU PRO 2.0 được thiết kế đặc biệt cho các doanh nghiệp nhỏ, đại lý và người lớn tuổi không rành công nghệ.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <div class="mb-6">
+                        <img src="https://readdy.ai/api/search-image?query=A%20clean%2C%20professional%20image%20showing%20a%20Google%20Sheets%20document%20with%20business%20data%2C%20sales%20reports%2C%20and%20inventory%20management.%20The%20spreadsheet%20displays%20neatly%20organized%20columns%20for%20product%20information%2C%20sales%20figures%2C%20and%20financial%20data.%20The%20interface%20looks%20user-friendly%20with%20clear%20headers%20and%20a%20simple%20layout%2C%20perfect%20for%20small%20business%20owners%20who%20arent%20tech-savvy&width=600&height=400&seq=product1&orientation=landscape" alt="Google Sheet Template" class="w-full h-64 object-cover object-top rounded-lg">
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Hệ thống quản lý trên Google Sheet</h3>
+                    <p class="text-gray-600 mb-4">Giải pháp hoàn chỉnh với các sheet được chuẩn hóa và tích hợp script tự động.</p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="ml-2">Don_Hang_Chi_Tiet (quản lý đơn hàng)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="ml-2">San_Pham (danh mục sản phẩm)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="ml-2">Nhap_Hang (quản lý nhập kho)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="ml-2">Chi_Phi, Hoa_Don_PDF, KQKD_Bao_Cao, Bao_Cao_XNT</span>
+                        </li>
+                    </ul>
+                    <a href="#dung-thu" class="inline-block bg-primary text-white px-4 py-2 !rounded-button font-medium hover:bg-blue-700 transition whitespace-nowrap">Xem mẫu file</a>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <div class="mb-6">
+                        <img src="https://readdy.ai/api/search-image?query=A%20modern%20smartphone%20displaying%20a%20chat%20interface%20with%20a%20business%20chatbot.%20The%20screen%20shows%20conversation%20bubbles%20with%20questions%20about%20sales%20data%20and%20inventory%20status%2C%20with%20the%20chatbot%20providing%20clear%2C%20concise%20answers.%20The%20interface%20includes%20voice%20input%20functionality%2C%20represented%20by%20a%20microphone%20icon.%20The%20image%20should%20convey%20simplicity%20and%20accessibility%20for%20older%20users&width=600&height=400&seq=product2&orientation=landscape" alt="Fchat Integration" class="w-full h-64 object-cover object-top rounded-lg">
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Tích hợp Fchat và Web App</h3>
+                    <p class="text-gray-600 mb-4">Kết nối hệ thống với Fchat và Web App giúp nhập liệu bằng giọng nói và nhận báo cáo tự động.</p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="ml-2">Chatbot trả lời tự động các câu hỏi về kinh doanh</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="ml-2">Web App nhập đơn hàng bằng giọng nói</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="ml-2">Tự động gửi báo cáo qua email hoặc Zalo</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="ml-2">Cảnh báo tồn kho, công nợ và chi phí bất thường</span>
+                        </li>
+                    </ul>
+                    <a href="#dung-thu" class="inline-block bg-primary text-white px-4 py-2 !rounded-button font-medium hover:bg-blue-700 transition whitespace-nowrap">Xem demo</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quy Trình Sử Dụng -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Quy Trình Sử Dụng</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Chỉ với 2 giai đoạn đơn giản, bạn có thể triển khai hệ thống quản lý bán hàng tự động.</p>
+            </div>
+            
+            <div class="relative">
+                <!-- Timeline line -->
+                <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-blue-100 hidden md:block"></div>
+                
+                <!-- Giai đoạn 1 -->
+                <div class="flex flex-col md:flex-row items-center mb-12">
+                    <div class="w-full md:w-1/2 md:pr-12 mb-6 md:mb-0 text-right">
+                        <h3 class="text-xl font-semibold mb-3">Giai đoạn 1: Chuẩn hóa file</h3>
+                        <p class="text-gray-600 mb-4">Thiết lập cơ bản hệ thống Google Sheet và script tự động.</p>
+                        <ul class="space-y-2 md:ml-auto md:text-right">
+                            <li class="flex items-start md:justify-end">
+                                <span class="mr-2 md:order-2">Sao chép file mẫu</span>
+                                <div class="w-5 h-5 flex items-center justify-center text-primary mt-1 md:order-1">
+                                    <i class="ri-file-copy-line"></i>
+                                </div>
+                            </li>
+                            <li class="flex items-start md:justify-end">
+                                <span class="mr-2 md:order-2">Mở Apps Script và chạy lần đầu</span>
+                                <div class="w-5 h-5 flex items-center justify-center text-primary mt-1 md:order-1">
+                                    <i class="ri-code-line"></i>
+                                </div>
+                            </li>
+                            <li class="flex items-start md:justify-end">
+                                <span class="mr-2 md:order-2">Nhập thử đơn hàng đầu tiên</span>
+                                <div class="w-5 h-5 flex items-center justify-center text-primary mt-1 md:order-1">
+                                    <i class="ri-edit-line"></i>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="relative w-12 h-12 flex items-center justify-center bg-primary text-white rounded-full z-10 mb-6 md:mb-0">
+                        <span class="font-bold">1</span>
+                    </div>
+                    
+                    <div class="w-full md:w-1/2 md:pl-12">
+                        <img src="https://readdy.ai/api/search-image?query=A%20person%20setting%20up%20a%20Google%20Sheets%20document%20on%20a%20laptop.%20The%20screen%20shows%20a%20spreadsheet%20with%20business%20data%20being%20organized.%20The%20workspace%20is%20clean%20and%20professional%20with%20a%20notepad%20and%20pen%20nearby.%20The%20image%20conveys%20the%20initial%20setup%20phase%20of%20a%20business%20management%20system&width=500&height=300&seq=phase1&orientation=landscape" alt="Giai đoạn 1" class="w-full rounded-lg shadow-sm">
+                    </div>
+                </div>
+                
+                <!-- Giai đoạn 2 -->
+                <div class="flex flex-col md:flex-row-reverse items-center">
+                    <div class="w-full md:w-1/2 md:pl-12 mb-6 md:mb-0 text-left">
+                        <h3 class="text-xl font-semibold mb-3">Giai đoạn 2: Kết nối Fchat và Web App</h3>
+                        <p class="text-gray-600 mb-4">Tích hợp chatbot và ứng dụng nhập liệu bằng giọng nói.</p>
+                        <ul class="space-y-2">
+                            <li class="flex items-start">
+                                <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                    <i class="ri-link-line"></i>
+                                </div>
+                                <span class="ml-2">Kết nối Fchat với hệ thống</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                    <i class="ri-mic-line"></i>
+                                </div>
+                                <span class="ml-2">Thiết lập Web App nhập liệu bằng giọng nói</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                    <i class="ri-notification-line"></i>
+                                </div>
+                                <span class="ml-2">Cấu hình thông báo tự động</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="relative w-12 h-12 flex items-center justify-center bg-primary text-white rounded-full z-10 mb-6 md:mb-0">
+                        <span class="font-bold">2</span>
+                    </div>
+                    
+                    <div class="w-full md:w-1/2 md:pr-12">
+                        <img src="https://readdy.ai/api/search-image?query=A%20person%20using%20a%20smartphone%20with%20a%20chat%20interface%20and%20voice%20input%20functionality.%20The%20phone%20screen%20shows%20a%20business%20chatbot%20conversation%20with%20data%20visualizations.%20The%20setting%20is%20casual%20and%20approachable%2C%20suggesting%20ease%20of%20use%20for%20non-technical%20users.%20The%20image%20represents%20the%20integration%20phase%20of%20connecting%20messaging%20apps%20with%20business%20management%20systems&width=500&height=300&seq=phase2&orientation=landscape" alt="Giai đoạn 2" class="w-full rounded-lg shadow-sm">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bảng Giá -->
+    <section class="py-16 bg-gray-50" id="bang-gia">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Bảng Giá</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Lựa chọn gói dịch vụ phù hợp với nhu cầu kinh doanh của bạn.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Gói Lite -->
+                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition">
+                    <div class="text-center mb-6">
+                        <h3 class="text-xl font-semibold mb-2">Gói Lite</h3>
+                        <div class="text-3xl font-bold text-primary mb-2">Miễn phí</div>
+                        <p class="text-gray-500 text-sm">Dành cho cá nhân và hộ kinh doanh nhỏ</p>
+                    </div>
+                    
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="ml-2">Quản lý đơn hàng cơ bản</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="ml-2">Xuất hóa đơn PDF</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="ml-2">Báo cáo kinh doanh đơn giản</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-gray-300 mt-1">
+                                <i class="ri-close-line"></i>
+                            </div>
+                            <span class="ml-2 text-gray-400">Tích hợp Fchat</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-gray-300 mt-1">
+                                <i class="ri-close-line"></i>
+                            </div>
+                            <span class="ml-2 text-gray-400">Nhập liệu bằng giọng nói</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-gray-300 mt-1">
+                                <i class="ri-close-line"></i>
+                            </div>
+                            <span class="ml-2 text-gray-400">Hỗ trợ kỹ thuật</span>
+                        </li>
+                    </ul>
+                    
+                    <a href="#dung-thu" class="block w-full bg-gray-100 text-gray-700 text-center px-4 py-2 !rounded-button font-medium hover:bg-gray-200 transition whitespace-nowrap">Dùng thử ngay</a>
+                </div>
+                
+                <!-- Gói Standard -->
+                <div class="bg-white p-6 rounded-lg shadow-md transform scale-105 border-2 border-primary relative">
+                    <div class="absolute top-0 right-0 bg-primary text-white px-3 py-1 text-sm font-medium !rounded-tr-lg !rounded-bl-lg">Phổ biến</div>
+                    
+                    <div class="text-center mb-6">
+                        <h3 class="text-xl font-semibold mb-2">Gói Standard</h3>
+                        <div class="text-3xl font-bold text-primary mb-2">599.000đ</div>
+                        <p class="text-gray-500 text-sm">Thanh toán một lần</p>
+                    </div>
+                    
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="ml-2">Quản lý đơn hàng đầy đủ</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="ml-2">Xuất hóa đơn PDF tùy chỉnh</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="ml-2">Báo cáo kinh doanh chi tiết</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="ml-2">Tích hợp Fchat cơ bản</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="ml-2">Nhập liệu bằng giọng nói</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-gray-300 mt-1">
+                                <i class="ri-close-line"></i>
+                            </div>
+                            <span class="ml-2 text-gray-400">Hỗ trợ kỹ thuật 24/7</span>
+                        </li>
+                    </ul>
+                    
+                    <a href="#dung-thu" class="block w-full bg-primary text-white text-center px-4 py-2 !rounded-button font-medium hover:bg-blue-700 transition whitespace-nowrap">Đăng ký ngay</a>
+                </div>
+                
+                <!-- Gói Pro -->
+                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition">
+                    <div class="text-center mb-6">
+                        <h3 class="text-xl font-semibold mb-2">Gói Pro</h3>
+                        <div class="text-3xl font-bold text-primary mb-2">999.000đ</div>
+                        <p class="text-gray-500 text-sm">Thanh toán một lần</p>
+                    </div>
+                    
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="ml-2">Tất cả tính năng của gói Standard</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="ml-2">Tích hợp Fchat nâng cao</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="ml-2">Báo cáo phân tích kinh doanh</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="ml-2">Cảnh báo tồn kho và công nợ</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="ml-2">Tùy chỉnh báo cáo và hóa đơn</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="ml-2">Hỗ trợ kỹ thuật 24/7</span>
+                        </li>
+                    </ul>
+                    
+                    <a href="#dung-thu" class="block w-full bg-secondary text-white text-center px-4 py-2 !rounded-button font-medium hover:bg-orange-600 transition whitespace-nowrap">Đăng ký ngay</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo và Hướng Dẫn -->
+    <section class="py-16 bg-white" id="tai-lieu">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Demo và Hướng Dẫn</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Xem cách YOHU PRO 2.0 hoạt động và cách thiết lập hệ thống trong vài phút.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <div>
+                    <div class="aspect-w-16 aspect-h-9 bg-gray-100 rounded-lg mb-4 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=A%20professional%20video%20tutorial%20screenshot%20showing%20a%20Google%20Sheets%20interface%20with%20business%20management%20data.%20The%20image%20displays%20a%20persons%20hand%20pointing%20at%20different%20elements%20of%20the%20spreadsheet%20while%20explaining%20the%20functionality.%20The%20interface%20shows%20sales%20data%2C%20inventory%20management%2C%20and%20reporting%20features.%20The%20composition%20suggests%20this%20is%20from%20an%20instructional%20video%20about%20using%20spreadsheets%20for%20business%20management&width=800&height=450&seq=video1&orientation=landscape" alt="Video Demo" class="w-full h-full object-cover object-top">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-16 h-16 flex items-center justify-center bg-primary bg-opacity-90 text-white rounded-full cursor-pointer">
+                                <i class="ri-play-fill text-3xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Video Hướng Dẫn Tổng Quan</h3>
+                    <p class="text-gray-600">Giới thiệu tổng quan về YOHU PRO 2.0 và các tính năng chính của hệ thống.</p>
+                </div>
+                
+                <div>
+                    <div class="aspect-w-16 aspect-h-9 bg-gray-100 rounded-lg mb-4 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=A%20smartphone%20screen%20displaying%20a%20voice%20input%20interface%20for%20a%20business%20management%20app.%20The%20screen%20shows%20a%20microphone%20button%20and%20speech-to-text%20conversion%20happening%20in%20real-time.%20The%20interface%20is%20simple%20and%20user-friendly%2C%20with%20clear%20buttons%20and%20minimal%20text%2C%20designed%20for%20older%20users%20or%20those%20not%20familiar%20with%20technology.%20The%20image%20represents%20how%20voice%20commands%20can%20be%20used%20to%20input%20sales%20data&width=800&height=450&seq=video2&orientation=landscape" alt="Voice Input Demo" class="w-full h-full object-cover object-top">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-16 h-16 flex items-center justify-center bg-primary bg-opacity-90 text-white rounded-full cursor-pointer">
+                                <i class="ri-play-fill text-3xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Demo Nhập Liệu Bằng Giọng Nói</h3>
+                    <p class="text-gray-600">Xem cách sử dụng tính năng nhập đơn hàng bằng giọng nói trên điện thoại.</p>
+                </div>
+            </div>
+            
+            <div class="bg-gray-50 p-6 rounded-lg mb-12">
+                <h3 class="text-xl font-semibold mb-4">Các Sheet Mẫu</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-white p-4 rounded shadow-sm">
+                        <div class="w-10 h-10 flex items-center justify-center bg-green-100 text-green-600 rounded mb-3">
+                            <i class="ri-file-list-3-line text-xl"></i>
+                        </div>
+                        <h4 class="font-medium mb-1">Don_Hang_Chi_Tiet</h4>
+                        <p class="text-sm text-gray-600">Quản lý thông tin đơn hàng chi tiết</p>
+                    </div>
+                    
+                    <div class="bg-white p-4 rounded shadow-sm">
+                        <div class="w-10 h-10 flex items-center justify-center bg-blue-100 text-blue-600 rounded mb-3">
+                            <i class="ri-shopping-bag-line text-xl"></i>
+                        </div>
+                        <h4 class="font-medium mb-1">San_Pham</h4>
+                        <p class="text-sm text-gray-600">Danh mục sản phẩm và giá bán</p>
+                    </div>
+                    
+                    <div class="bg-white p-4 rounded shadow-sm">
+                        <div class="w-10 h-10 flex items-center justify-center bg-purple-100 text-purple-600 rounded mb-3">
+                            <i class="ri-store-line text-xl"></i>
+                        </div>
+                        <h4 class="font-medium mb-1">Nhap_Hang</h4>
+                        <p class="text-sm text-gray-600">Quản lý nhập kho và tồn kho</p>
+                    </div>
+                    
+                    <div class="bg-white p-4 rounded shadow-sm">
+                        <div class="w-10 h-10 flex items-center justify-center bg-red-100 text-red-600 rounded mb-3">
+                            <i class="ri-money-dollar-circle-line text-xl"></i>
+                        </div>
+                        <h4 class="font-medium mb-1">Chi_Phi</h4>
+                        <p class="text-sm text-gray-600">Theo dõi chi phí phát sinh</p>
+                    </div>
+                    
+                    <div class="bg-white p-4 rounded shadow-sm">
+                        <div class="w-10 h-10 flex items-center justify-center bg-yellow-100 text-yellow-600 rounded mb-3">
+                            <i class="ri-file-pdf-line text-xl"></i>
+                        </div>
+                        <h4 class="font-medium mb-1">Hoa_Don_PDF</h4>
+                        <p class="text-sm text-gray-600">Mẫu xuất hóa đơn PDF</p>
+                    </div>
+                    
+                    <div class="bg-white p-4 rounded shadow-sm">
+                        <div class="w-10 h-10 flex items-center justify-center bg-indigo-100 text-indigo-600 rounded mb-3">
+                            <i class="ri-bar-chart-line text-xl"></i>
+                        </div>
+                        <h4 class="font-medium mb-1">KQKD_Bao_Cao</h4>
+                        <p class="text-sm text-gray-600">Báo cáo kết quả kinh doanh</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-gray-50 p-6 rounded-lg">
+                <h3 class="text-xl font-semibold mb-4">Hướng Dẫn Từng Bước</h3>
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <div class="w-8 h-8 flex items-center justify-center bg-primary text-white rounded-full flex-shrink-0 mt-1">
+                            <span class="font-medium">1</span>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-medium mb-1">Sao chép file mẫu</h4>
+                            <p class="text-gray-600">Sao chép file Google Sheet mẫu vào tài khoản Google của bạn.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="w-8 h-8 flex items-center justify-center bg-primary text-white rounded-full flex-shrink-0 mt-1">
+                            <span class="font-medium">2</span>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-medium mb-1">Mở Apps Script và chạy lần đầu</h4>
+                            <p class="text-gray-600">Vào menu Extensions > Apps Script, chạy hàm onOpen() để khởi tạo hệ thống.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="w-8 h-8 flex items-center justify-center bg-primary text-white rounded-full flex-shrink-0 mt-1">
+                            <span class="font-medium">3</span>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-medium mb-1">Nhập thông tin sản phẩm</h4>
+                            <p class="text-gray-600">Cập nhật thông tin sản phẩm của bạn vào sheet San_Pham.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="w-8 h-8 flex items-center justify-center bg-primary text-white rounded-full flex-shrink-0 mt-1">
+                            <span class="font-medium">4</span>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-medium mb-1">Kết nối Fchat (tùy chọn)</h4>
+                            <p class="text-gray-600">Thiết lập kết nối với Fchat để nhận báo cáo tự động qua Zalo.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="w-8 h-8 flex items-center justify-center bg-primary text-white rounded-full flex-shrink-0 mt-1">
+                            <span class="font-medium">5</span>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-medium mb-1">Thiết lập Web App nhập liệu bằng giọng nói (tùy chọn)</h4>
+                            <p class="text-gray-600">Triển khai Web App để nhập đơn hàng bằng giọng nói trên điện thoại.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Khách Hàng Nói Gì Về Chúng Tôi</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Những trải nghiệm thực tế từ người dùng YOHU PRO 2.0.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex">
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic mb-6">"Tôi hơn 50 tuổi, lần đầu dùng phần mềm mà không cần học. Chỉ cần nhập số liệu vào bảng tính là hệ thống tự động xử lý tất cả. Thật sự rất tiện lợi cho người không rành công nghệ như tôi."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center text-gray-500">
+                            <i class="ri-user-line text-xl"></i>
+                        </div>
+                        <div class="ml-3">
+                            <h4 class="font-medium">Cô Mai</h4>
+                            <p class="text-sm text-gray-500">Chủ cửa hàng tạp hóa</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex">
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic mb-6">"Chỉ cần mở Zalo là biết lời lỗ hàng ngày. Không cần phải mở máy tính hay kiểm tra sổ sách. Hệ thống tự động gửi báo cáo vào cuối ngày và tôi có thể hỏi chatbot bất cứ thông tin kinh doanh nào."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center text-gray-500">
+                            <i class="ri-user-line text-xl"></i>
+                        </div>
+                        <div class="ml-3">
+                            <h4 class="font-medium">Anh Nam</h4>
+                            <p class="text-sm text-gray-500">Đại lý phân phối</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex">
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-half-fill"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic mb-6">"Tính năng nhập đơn bằng giọng nói thật sự tiện lợi. Tôi chỉ cần nói tên sản phẩm và số lượng, hệ thống tự động ghi nhận và tạo đơn hàng. Tiết kiệm rất nhiều thời gian so với cách nhập liệu thủ công trước đây."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center text-gray-500">
+                            <i class="ri-user-line text-xl"></i>
+                        </div>
+                        <div class="ml-3">
+                            <h4 class="font-medium">Chị Hương</h4>
+                            <p class="text-sm text-gray-500">Chủ shop online</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dùng Thử Ngay -->
+    <section class="py-16 bg-primary bg-opacity-10" id="dung-thu">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">Bắt Đầu Sử Dụng YOHU PRO 2.0</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto mb-8">Bạn là hộ kinh doanh? Không biết công nghệ vẫn dùng được!</p>
+            
+            <div class="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold mb-4">Đăng Ký Dùng Thử Miễn Phí</h3>
+                <p class="text-gray-600 mb-6">Không cần thẻ tín dụng, không cần tài khoản Google doanh nghiệp.</p>
+                
+                <form class="space-y-4">
+                    <div>
+                        <label for="fullname" class="block text-sm font-medium text-gray-700 mb-1 text-left">Họ và tên</label>
+                        <input type="text" id="fullname" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Nhập họ và tên của bạn">
+                    </div>
+                    
+                    <div>
+                        <label for="phone" class="block text-sm font-medium text-gray-700 mb-1 text-left">Số điện thoại</label>
+                        <input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Nhập số điện thoại của bạn">
+                    </div>
+                    
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1 text-left">Email</label>
+                        <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Nhập địa chỉ email của bạn">
+                    </div>
+                    
+                    <div>
+                        <label for="business" class="block text-sm font-medium text-gray-700 mb-1 text-left">Loại hình kinh doanh</label>
+                        <div class="relative">
+                            <select id="business" class="w-full px-4 py-2 border border-gray-300 rounded appearance-none focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent pr-8">
+                                <option value="" disabled selected>Chọn loại hình kinh doanh</option>
+                                <option value="retail">Bán lẻ</option>
+                                <option value="wholesale">Bán buôn/Đại lý</option>
+                                <option value="online">Shop online</option>
+                                <option value="service">Dịch vụ</option>
+                                <option value="other">Khác</option>
+                            </select>
+                            <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                                <i class="ri-arrow-down-s-line text-gray-400"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-primary text-white px-4 py-3 !rounded-button font-medium hover:bg-blue-700 transition whitespace-nowrap">ĐĂNG KÝ DÙNG THỬ NGAY</button>
+                </form>
+                
+                <p class="text-sm text-gray-500 mt-4">Bằng cách đăng ký, bạn đồng ý với <a href="#" class="text-primary hover:underline">Điều khoản sử dụng</a> và <a href="#" class="text-primary hover:underline">Chính sách bảo mật</a> của chúng tôi.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white pt-12 pb-6" id="lien-he">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <a href="#" class="flex items-center mb-4">
+                        <span class="text-2xl font-['Pacifico'] text-white">YOHU</span>
+                        <span class="ml-1 text-lg font-semibold text-white">PRO 2.0</span>
+                    </a>
+                    <p class="text-gray-400 mb-4">Giải pháp quản lý bán hàng tự động dành cho doanh nghiệp nhỏ, người lớn tuổi, đại lý không rành công nghệ.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <div class="w-8 h-8 flex items-center justify-center">
+                                <i class="ri-facebook-fill"></i>
+                            </div>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <div class="w-8 h-8 flex items-center justify-center">
+                                <i class="ri-youtube-fill"></i>
+                            </div>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <div class="w-8 h-8 flex items-center justify-center">
+                                <i class="ri-linkedin-fill"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Sản Phẩm</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">YOHU PRO 2.0 Lite</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">YOHU PRO 2.0 Standard</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">YOHU PRO 2.0 Pro</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Tùy chỉnh theo yêu cầu</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Hỗ Trợ</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Tài liệu hướng dẫn</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Video hướng dẫn</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Câu hỏi thường gặp</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Liên hệ hỗ trợ</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Liên Hệ</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-gray-400 mt-1">
+                                <i class="ri-map-pin-line"></i>
+                            </div>
+                            <span class="ml-2 text-gray-400">Nhân Dục – Hiến Nam – Hưng Yên</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-gray-400 mt-1">
+                                <i class="ri-phone-line"></i>
+                            </div>
+                            <span class="ml-2 text-gray-400">Hotline: 0973 480 488</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-gray-400 mt-1">
+                                <i class="ri-chat-1-line"></i>
+                            </div>
+                            <span class="ml-2 text-gray-400">Zalo OA: 0339606969</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-gray-400 mt-1">
+                                <i class="ri-mail-line"></i>
+                            </div>
+                            <span class="ml-2 text-gray-400">Email: info@yohu.vn</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-6">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 Công ty TNHH YOHU Việt Nam. Tất cả các quyền được bảo lưu.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition text-sm">Điều khoản sử dụng</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition text-sm">Chính sách bảo mật</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Elements -->
+    <a href="#dung-thu" class="floating-cta bg-primary text-white px-4 py-3 !rounded-button font-medium hover:bg-blue-700 transition shadow-lg whitespace-nowrap hidden md:block">
+        DÙNG THỬ NGAY
+    </a>
+    
+    <div class="chat-bubble w-12 h-12 bg-secondary text-white rounded-full flex items-center justify-center shadow-lg cursor-pointer">
+        <i class="ri-customer-service-2-line text-xl"></i>
+    </div>
+    
+    <div id="back-to-top" class="back-to-top w-10 h-10 bg-gray-800 text-white rounded-full flex items-center justify-center shadow-lg cursor-pointer">
+        <i class="ri-arrow-up-line"></i>
+    </div>
+
+    <script id="mobile-menu-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const closeMenuButton = document.getElementById('close-menu');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.add('open');
+            });
+            
+            closeMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.remove('open');
+            });
+            
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.remove('open');
+                });
+            });
+        });
+    </script>
+
+    <script id="scroll-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            const backToTop = document.getElementById('back-to-top');
+            
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+            });
+            
+            backToTop.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+
+    <script id="smooth-scroll-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('a[href^="#"]');
+            
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
