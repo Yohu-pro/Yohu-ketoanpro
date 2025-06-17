@@ -1231,6 +1231,21 @@ recognition.onresult = (event) => {
         micOutput.innerText = '❌ Lỗi: ' + e.error;
     };
 }
+<!-- Hiển thị khung báo cáo -->
+<div class="report-output"></div>
+
+<script>
+function showReport(text) {
+    const reportBox = document.querySelector('.report-output');
+    if (!reportBox) return;
+    reportBox.textContent = text;
+    reportBox.style.display = 'block';
+
+    setTimeout(() => {
+        reportBox.style.display = 'none';
+    }, 30000); // 30 giây
+}
+</script>
 
 </body>
 </html>
