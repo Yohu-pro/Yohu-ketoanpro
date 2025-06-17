@@ -1195,20 +1195,26 @@ recognition.onresult = (event) => {
     speechSynthesis.speak(utterance);  // Phát âm thanh kết quả
 
     // Gửi nội dung giọng nói đến Web App (Google Apps Script)
-    fetch("https://script.google.com/macros/s/AKfycbxKbU1YZsm7zO-_SfrN4uI8fkWyI6COUwwua_kAlXvAPvopuXPWSWDf_M2MGfQ1P1VC/exec", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ command: transcript }) // Gửi lệnh giọng nói
-    })
-    .then(() => {
-        micOutput.innerText += '\n✅ Đã gửi dữ liệu tới hệ thống.';
-    })
-    .catch((error) => {
-        micOutput.innerText += '\n❌ Gửi thất bại: ' + error.message;
-    });
-};
+   fetch("https://script.google.com/macros/s/AKfycbxKbU1YZsm7zO-_SfrN4uI8fkWyI6COUwwua_kAlXvAPvopuXPWSWDf_M2MGfQ1P1VC/exec", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ command: transcript }) // Gửi câu lệnh
+})
+.then(res => res.json())
+.then(data => {
+    if (data.result === "success") {
+        showReport(data.response); // Hiển thị khung xanh
+        speakText(data.response);  // Đọc ra loa
+    } else {
+        micOutput.innerText = '❌ Lỗi xử lý: ' + data.message;
+    }
+})
+.catch((error) => {
+    micOutput.innerText += '\n❌ Gửi thất bại: ' + error.message;
+});
+
 
             // Phát kết quả báo cáo bằng giọng nói
             const utterance = new SpeechSynthesisUtterance(reportText);
