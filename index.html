@@ -1246,6 +1246,13 @@ function showReport(text) {
     }, 30000); // 30 giây
 }
 </script>
+<script>
+function speakText(text) {
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'vi-VN';
+  speechSynthesis.speak(utterance);
+}
+</script>
 
 </body>
 </html>
