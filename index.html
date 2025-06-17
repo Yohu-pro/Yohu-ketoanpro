@@ -1185,6 +1185,30 @@
 </script>
 <!-- Đặt mã JavaScript trước thẻ </body> -->
 <script>
+recognition.onresult = (event) => {
+    const transcript = event.results[0][0].transcript; // Lấy nội dung bạn đã nói
+    micOutput.innerText = '📝 Bạn nói: "' + transcript + '"'; // Hiển thị kết quả trên màn hình
+
+    // Phát lại câu lệnh giọng nói
+    const utterance = new SpeechSynthesisUtterance(transcript);
+    utterance.lang = 'vi-VN';  // Đặt ngôn ngữ là tiếng Việt
+    speechSynthesis.speak(utterance);  // Phát âm thanh kết quả
+
+    // Gửi nội dung giọng nói đến Web App (Google Apps Script)
+    fetch("https://script.google.com/macros/s/AKfycbyhcBnZ69hue6fHUoUWxlb_Q9V96HjKRHi6PvjHdG0Q7fGPVo2eTgPDxqiTh-Ub5u3W/exec", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ command: transcript }) // Gửi lệnh giọng nói
+    })
+    .then(() => {
+        micOutput.innerText += '\n✅ Đã gửi dữ liệu tới hệ thống.';
+    })
+    .catch((error) => {
+        micOutput.innerText += '\n❌ Gửi thất bại: ' + error.message;
+    });
+};
 
             // Phát kết quả báo cáo bằng giọng nói
             const utterance = new SpeechSynthesisUtterance(reportText);
