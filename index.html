@@ -1162,7 +1162,7 @@
             micOutput.innerText = '📝 Bạn nói: "' + transcript + '"'; // Hiển thị kết quả trên màn hình
 
             // Gửi nội dung giọng nói đến Web App
-            fetch("https://script.google.com/macros/s/AKfycbyShYQ-mmJZdF25sSKToqi6SZRcM3qXjpNCj4Mvg9I3r9RaSCCI1hKuiFKzSdAHy5Xz/exec", {
+            fetch("https://script.google.com/macros/s/AKfycbxKbU1YZsm7zO-_SfrN4uI8fkWyI6COUwwua_kAlXvAPvopuXPWSWDf_M2MGfQ1P1VC/exec", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -1195,7 +1195,7 @@ recognition.onresult = (event) => {
     speechSynthesis.speak(utterance);  // Phát âm thanh kết quả
 
     // Gửi nội dung giọng nói đến Web App (Google Apps Script)
-    fetch("https://script.google.com/macros/s/AKfycbyShYQ-mmJZdF25sSKToqi6SZRcM3qXjpNCj4Mvg9I3r9RaSCCI1hKuiFKzSdAHy5Xz/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbxKbU1YZsm7zO-_SfrN4uI8fkWyI6COUwwua_kAlXvAPvopuXPWSWDf_M2MGfQ1P1VC/exec", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
