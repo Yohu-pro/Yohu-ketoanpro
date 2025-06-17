@@ -1131,19 +1131,24 @@
 <script>
    
       let recognition;
-    const micBtn = document.getElementById('mic-button');
-    const micOutput = document.getElementById('mic-output');
+const micBtn = document.getElementById('mic-button');
+const micOutput = document.getElementById('mic-output');
 
-    // Kiểm tra trình duyệt có hỗ trợ Speech Recognition không
-    if ('webkitSpeechRecognition' in window) {
-        recognition = new webkitSpeechRecognition(); // Dùng cho Chrome
-    } else if ('SpeechRecognition' in window) {
-        recognition = new SpeechRecognition(); // Dùng cho Firefox
-    } else {
-        if (micOutput) {
-            micOutput.innerText = '⚠️ Trình duyệt của bạn không hỗ trợ ghi âm giọng nói.';
-        }
+// Kiểm tra trình duyệt có hỗ trợ Speech Recognition không
+if ('webkitSpeechRecognition' in window) {
+    recognition = new webkitSpeechRecognition(); // Chrome
+} else if ('SpeechRecognition' in window) {
+    recognition = new SpeechRecognition(); // Firefox
+} else {
+    if (micOutput) {
+        micOutput.innerText = '⚠️ Trình duyệt của bạn không hỗ trợ ghi âm giọng nói.';
     }
+    // Disable mic button if Speech Recognition is not supported
+    if (micBtn) {
+        micBtn.disabled = true;
+    }
+}
+
 
     // Nếu trình duyệt hỗ trợ và nút mic được nhấn
     if (recognition && micBtn) {
