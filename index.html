@@ -1129,7 +1129,7 @@
 
 <!-- Mã JavaScript để xử lý Mic -->
 <script>
-   
+   <script src="https://code.responsivevoice.org/responsivevoice.js?key=FS1WhbPu"></script>
       document.addEventListener('DOMContentLoaded', function() {
     let recognition;
     const micBtn = document.getElementById('mic-button');
@@ -1197,9 +1197,14 @@
     }
 
     function speakText(text) {
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = 'vi-VN';
-        speechSynthesis.speak(utterance);
+        if (typeof responsiveVoice !== 'undefined') {
+            responsiveVoice.speak(text, "Vietnamese Female", { rate: 1, pitch: 1 });
+        } else {
+            console.error('ResponsiveVoice không được tải. Quay lại Web Speech API.');
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'vi-VN';
+            speechSynthesis.speak(utterance);
+        }
     }
 });
 </script>
