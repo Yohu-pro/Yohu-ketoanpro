@@ -1,0 +1,9 @@
+function testSpeech() {
+    if ('SpeechSynthesisUtterance' in window) {
+        const utterance = new SpeechSynthesisUtterance('Kiểm tra giọng nói');
+        utterance.lang = 'vi-VN';
+        window.speechSynthesis.speak(utterance);
+    } else {
+        alert('Trình duyệt không hỗ trợ phát giọng nói.');
+    }
+}
