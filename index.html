@@ -1165,9 +1165,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         try {
             const response = await fetch(
-                `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/BaoCaoGiongNoi!A2:F?key=${API_KEY}`
+                `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/BaoCaoGiongNoi!A2:F?key=${API_KEY}`,
+                { headers: { 'Content-Type': 'application/json' } }
             );
-            if (!response.ok) throw new Error('Lỗi lấy dữ liệu. Kiểm tra API key hoặc quyền truy cập sheet.');
+            if (!response.ok) throw new Error('Lỗi lấy dữ liệu. Kiểm tra quyền truy cập sheet hoặc API key.');
             const data = await response.json();
             const values = data.values || [];
 
