@@ -1209,11 +1209,15 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function speakText(text) {
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = 'vi-VN';
-        utterance.rate = 1;
-        utterance.pitch = 1;
-        speechSynthesis.speak(utterance);
+        if ('SpeechSynthesisUtterance' in window) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'vi-VN';
+            utterance.rate = 1;
+            utterance.pitch = 1;
+            window.speechSynthesis.speak(utterance);
+        } else {
+            micOutput.innerText += '\n❌ Lỗi: Trình duyệt không hỗ trợ phát giọng nói. Cập nhật trình duyệt hoặc dùng Chrome/Safari.';
+        }
     }
 });
 </script>
