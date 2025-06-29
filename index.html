@@ -1160,9 +1160,13 @@
         fetch("https://script.google.com/macros/s/AKfycbw-63BFBLijHN1w1A1t_WKzcB7abLRq2GocD37XjsVa6CarJNS93cj_EB_Fr6U-Lu8G/exec", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ command: transcript })
+            body: JSON.stringify({ command: transcript }),
+            redirect: 'follow'
         })
-        .then(res => res.json())
+        .then(res => {
+            if (!res.ok) throw new Error(`Lỗi kết nối: ${res.status}`);
+            return res.json();
+        })
         .then(data => {
             if (data.result === "success") {
                 showReport(data.response);
@@ -1182,7 +1186,7 @@
     };
 
     recognition.onerror = (e) => {
-        micOutput.innerText = '❌ Lỗi: ' + e.error;
+        micOutput.innerText = '❌ Lỗi mic: ' + e.error;
     };
 
     function showReport(text) {
