@@ -1135,6 +1135,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const micBtn = document.getElementById('mic-button');
     const micOutput = document.getElementById('mic-output');
     const reportBox = document.querySelector('.report-output');
+    const REPORT_JSON_URL = 'https://docs.google.com/spreadsheets/d/1lz_M9TneUlq8TOpubjxJzH4SNS4d1R6mprn3Nzzxx74/gviz/tq?tqx=out:json&sheet=BaoCaoGiongNoi';
+    const PRODUCT_JSON_URL = 'https://docs.google.com/spreadsheets/d/1lz_M9TneUlq8TOpubjxJzH4SNS4d1R6mprn3Nzzxx74/gviz/tq?tqx=out:json&sheet=San_pham';
 
     try {
         recognition = window.SpeechRecognition || window.webkitSpeechRecognition ? new (window.SpeechRecognition || window.webkitSpeechRecognition)() : null;
@@ -1153,36 +1155,61 @@ document.addEventListener('DOMContentLoaded', function() {
         micOutput.innerText = '🎙️ Đang nghe...';
     });
 
-    recognition.onresult = (event) => {
+    recognition.onresult = async (event) => {
         const transcript = event.results[0][0].transcript;
         micOutput.innerText = '📝 Bạn nói: "' + transcript + '"';
 
-        fetch("https://script.google.com/macros/s/AKfycbzp0b6u1zUqFcpbV441YBW8hEdCE6nV-Qt2R2lp9swoQZKMzVL9KS1zFQBoZu-mGwGp/exec", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ command: transcript }),
-            redirect: 'follow'
-        })
-        .then(res => {
-            if (!res.ok) throw new Error(`Lỗi kết nối: ${res.status}`);
-            return res.json();
-        })
-        .then(data => {
-            if (data.result === "success") {
-                showReport(data.response);
-                speakText(data.response);
-                micOutput.innerText += '\n✅ Đã gửi dữ liệu tới hệ thống.';
-            } else {
-                micOutput.innerText += '\n❌ Lỗi xử lý: ' + data.message;
-                showReport('Không tìm thấy báo cáo phù hợp.');
-                speakText('Không tìm thấy báo cáo phù hợp.');
+        try {
+            // Lấy dữ liệu từ BaoCaoGiongNoi
+            const reportResponse = await fetch(REPORT_JSON_URL);
+            if (!reportResponse.ok) throw new Error('Lỗi lấy dữ liệu BaoCaoGiongNoi. Kiểm tra sheet công khai.');
+            const reportText = await reportResponse.text();
+            const reportData = JSON.parse(reportText.replace(/^google\.visualization\.Query\.setResponse\(/, '').replace(/\);$/, ''));
+            const reportValues = reportData.table.rows.map(row => row.c.map(cell => cell ? cell.v : ''));
+
+            let responseText = "";
+            for (let row of reportValues.slice(1)) { // Bỏ dòng header
+                const cmdFull = row[1] ? row[1].toString().trim().toLowerCase() : "";
+                const cmdShort = row[2] ? row[2].toString().trim().toLowerCase() : "";
+                const reportContent = row[5] ? row[5].toString() : "";
+                if (transcript.toLowerCase() === cmdFull || transcript.toLowerCase() === cmdShort) {
+                    responseText = reportContent;
+                    break;
+                }
             }
-        })
-        .catch(error => {
-            micOutput.innerText += '\n❌ Gửi thất bại: ' + error.message;
-            showReport('Lỗi kết nối hệ thống.');
-            speakText('Lỗi kết nối hệ thống.');
-        });
+
+            if (!responseText) {
+                throw new Error("Không tìm thấy lệnh phù hợp.");
+            }
+
+            // Lấy dữ liệu từ San_pham
+            const productResponse = await fetch(PRODUCT_JSON_URL);
+            if (!productResponse.ok) throw new Error('Lỗi lấy dữ liệu San_pham. Kiểm tra sheet công khai.');
+            const productText = await productResponse.text();
+            const productData = JSON.parse(productText.replace(/^google\.visualization\.Query\.setResponse\(/, '').replace(/\);$/, ''));
+            const productValues = productData.table.rows.map(row => row.c.map(cell => cell ? cell.v : ''));
+
+            let totalRevenue = 0;
+            let totalProfit = 0;
+            for (let row of productValues.slice(5)) { // Dữ liệu từ dòng 6
+                if (row[8]) totalRevenue += parseFloat(row[8] || 0);
+                if (row[11]) totalProfit += parseFloat(row[11] || 0);
+            }
+
+            if (transcript.toLowerCase().includes("doanh thu")) {
+                responseText = responseText.replace("...", totalRevenue.toLocaleString('vi-VN') + " đồng");
+            } else if (transcript.toLowerCase().includes("lợi nhuận")) {
+                responseText = responseText.replace("...", totalProfit.toLocaleString('vi-VN') + " đồng");
+            }
+
+            showReport(responseText);
+            speakText(responseText);
+            micOutput.innerText += '\n✅ Đã lấy dữ liệu thành công.';
+        } catch (error) {
+            micOutput.innerText += '\n❌ Lỗi xử lý: ' + error.message;
+            showReport('Không tìm thấy báo cáo phù hợp.');
+            speakText('Không tìm thấy báo cáo phù hợp.');
+        }
     };
 
     recognition.onerror = (e) => {
