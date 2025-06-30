@@ -1193,30 +1193,7 @@
     recognition.start();
     micOutput.innerText = '🎙️ Đang nghe...';
 });
-        micBtn.addEventListener('click', async () => {
-    try {
-        const response = await fetch(
-            `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/BaoCaoGiongNoi!C2:C100?key=${SHEET_API_KEY}`,
-            { headers: { 'Content-Type': 'application/json' } }
-        );
-        if (!response.ok) throw new Error(`Lỗi lấy câu lệnh: ${response.status}`);
-        const data = await response.json();
-        const commands = data.values ? data.values.flat().filter(cmd => cmd && cmd.trim()) : [];
-        if (commands.length > 0) {
-            commandsList.innerHTML = commands.map(cmd => `<p class="mb-1">• ${cmd}</p>`).join('');
-            commandsOutput.classList.remove('hidden');
-        } else {
-            commandsList.innerHTML = '<p>Không có câu lệnh trong cột C.</p>';
-            commandsOutput.classList.remove('hidden');
-        }
-
-        recognition.start();
-        micOutput.innerText = '🎙️ Đang nghe...';
-    } catch (error) {
-        micOutput.innerText = '❌ Lỗi mic hoặc lấy câu lệnh: ' + error.message;
-        commandsOutput.classList.add('hidden');
-    }
-});
+       
 recognition.onend = () => {
     commandsOutput.classList.add('hidden');
     micOutput.innerText = 'Nhấn nút mic để ra lệnh bằng giọng nói';
