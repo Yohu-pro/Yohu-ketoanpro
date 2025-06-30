@@ -1132,7 +1132,7 @@
     <div id="mic-output"></div>
     <div class="report-output" style="display: none; background-color: #e6ffe6; padding: 10px;"></div>
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', async function() {
         let recognition;
         const micBtn = document.getElementById('mic-button');
         const micOutput = document.getElementById('mic-output');
@@ -1147,7 +1147,7 @@
 
         try {
             recognition = window.SpeechRecognition || window.webkitSpeechRecognition ? new (window.SpeechRecognition || window.webkitSpeechRecognition)() : null;
-            if (!recognition) throw new Error('Dùng Chrome/Safari.');
+            if (!recognition) throw new Error('Dùng Chrome/Safari mới nhất.');
         } catch (error) {
             micOutput.innerText = '⚠️ ' + error.message;
             micBtn.disabled = true;
@@ -1176,7 +1176,7 @@
                     `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/BaoCaoGiongNoi!A2:F?key=${SHEET_API_KEY}`,
                     { headers: { 'Content-Type': 'application/json' } }
                 );
-                if (!response.ok) throw new Error('Lỗi sheet.');
+                if (!response.ok) throw new Error('Lỗi sheet: ' + response.status);
                 const data = await response.json();
                 const values = data.values || [];
 
@@ -1193,12 +1193,12 @@
 
                 if (!responseText) throw new Error("Lệnh không khớp.");
                 showReport(responseText);
-                speakText(responseText);
+                await speakText(responseText);
                 micOutput.innerText += '\n✅ Thành công.';
             } catch (error) {
                 micOutput.innerText += '\n❌ Lỗi: ' + error.message;
                 showReport('Không tìm thấy báo cáo.');
-                speakText('Không tìm thấy báo cáo.');
+                await speakText('Không tìm thấy báo cáo.');
             }
         };
 
@@ -1226,8 +1226,12 @@
                     },
                     body: JSON.stringify({ text: text })
                 });
-                if (!response.ok) throw new Error('Lỗi FPT.AI TTS.');
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`Lỗi FPT.AI TTS: ${response.status} - ${errorText}`);
+                }
                 const data = await response.json();
+                if (!data.async) throw new Error('Không nhận được URL âm thanh.');
                 const audio = new Audio(data.async);
                 audio.play();
             } catch (error) {
