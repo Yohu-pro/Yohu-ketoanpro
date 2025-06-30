@@ -35,41 +35,22 @@
     </script>
     <style>
         .report-output {
-            position: fixed;
-            top: 20%;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #e0f7fa;
-            padding: 20px;
-            border-radius: 8px;
-            max-width: 80%;
-            text-align: center;
-            font-size: 1.2rem;
-            color: #004d40;
-            display: none;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-        }
-        .voice-commands-panel {
-            position: fixed;
-            top: 20%;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #e6ffe6;
-            padding: 20px;
-            border-radius: 8px;
-            max-width: 80%;
-            text-align: left;
-            font-size: 1.1rem;
-            color: #004d40;
-            display: none;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-        }
-        .voice-commands-panel ul {
-            list-style-type: disc;
-            padding-left: 20px;
-        }
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #e0f7fa; /* Màu nền xanh nhẹ */
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 80%;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #004d40;
+    display: none; /* Ẩn đi ban đầu */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
         :where([class^="ri-"])::before { content: "\f3c2"; }
         .floating-cta {
             position: fixed;
@@ -207,13 +188,11 @@
     </section>
 
     <!-- Tính Năng Chính -->
-    <section class="py-16
-
- bg-white" id="tinh-nang">
+    <section class="py-16 bg-white" id="tinh-nang">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold text-gray-900 mb-4">Tính Năng Chính</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">YOHU cung cấp các công cụ đơn giản nhưng mạnh mẽ, giúp bạn quản lý kinh doanh hiệu quả mà không cần kiến thức công nghệ phức tạp.</p>
+                <p class="text-gray-600 max-w-2xl mx-auto">YOHU PRO 2.0 cung cấp các công cụ đơn giản nhưng mạnh mẽ, giúp bạn quản lý kinh doanh hiệu quả mà không cần kiến thức công nghệ phức tạp.</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -284,30 +263,32 @@
                     <p class="text-gray-600 text-center">Web App hỗ trợ nhập đơn hàng bằng giọng nói, giúp người lớn tuổi hoặc không rành công nghệ dễ dàng sử dụng.</p>
                     <ul class="mt-4 space-y-2">
                         <li class="flex items-start">
-                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
-                                <i class="ri-mic-line"></i>
-                            </div>
-                            <span class="ml-2 text-sm text-gray-600">Câu lệnh: "Nhập hàng nhập kho hôm nay"</span>
-                        </li>
                         <li class="flex items-start">
-                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
-                                <i class="ri-mic-line"></i>
-                            </div>
-                            <span class="ml-2 text-sm text-gray-600">Câu lệnh: "Chi phí hôm nay"</span>
-                        </li>
-                        <li class="flex items-start">
-                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
-                                <i class="ri-mic-line"></i>
-                            </div>
-                            <span class="ml-2 text-sm text-gray-600">Câu lệnh: "Báo cáo kết quả kinh doanh tháng này"</span>
-                        </li>
-                        <li class="flex items-start">
-                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
-                                <i class="ri-mic-line"></i>
-                            </div>
-                            <span class="ml-2 text-sm text-gray-600">Câu lệnh: "So sánh với cùng kỳ năm ngoái"</span>
-                        </li>
-                        <li class="flex items-start">
+  <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+    <i class="ri-mic-line"></i>
+  </div>
+  <span class="ml-2 text-sm text-gray-600">Câu lệnh: "Nhập hàng nhập kho hôm nay"</span>
+</li>
+<li class="flex items-start">
+  <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+    <i class="ri-mic-line"></i>
+  </div>
+  <span class="ml-2 text-sm text-gray-600">Câu lệnh: "Chi phí hôm nay"</span>
+</li>
+<li class="flex items-start">
+  <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+    <i class="ri-mic-line"></i>
+  </div>
+  <span class="ml-2 text-sm text-gray-600">Câu lệnh: "Báo cáo kết quả kinh doanh tháng này"</span>
+</li>
+<li class="flex items-start">
+  <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+    <i class="ri-mic-line"></i>
+  </div>
+  <span class="ml-2 text-sm text-gray-600">Câu lệnh: "So sánh với cùng kỳ năm ngoái"</span>
+</li>
+    
+                           
                             <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
                                 <i class="ri-check-line"></i>
                             </div>
@@ -684,9 +665,10 @@
                     </div>
                     <h3 class="text-xl font-semibold mb-2">Video Hướng Dẫn Tổng Quan</h3>
                     <p class="mt-2 text-sm text-gray-500">
-                        <a href="https://www.youtube.com/watch?v=abc123" target="_blank" class="text-primary hover:underline">Xem hướng dẫn chi tiết trên YouTube</a> |
-                        <a href="https://drive.google.com/file/d/xyz456/view" target="_blank" class="text-primary hover:underline">Tải tài liệu PDF</a>
-                    </p>
+  <a href="https://www.youtube.com/watch?v=abc123" target="_blank" class="text-primary hover:underline">Xem hướng dẫn chi tiết trên YouTube</a> |
+  <a href="https://drive.google.com/file/d/xyz456/view" target="_blank" class="text-primary hover:underline">Tải tài liệu PDF</a>
+</p>
+
                     <p class="text-gray-600">Giới thiệu tổng quan về YOHU PRO 2.0 và các tính năng chính của hệ thống.</p>
                 </div>
                 
@@ -760,14 +742,14 @@
             <div class="bg-gray-50 p-6 rounded-lg">
                 <h3 class="text-xl font-semibold mb-4">Hướng Dẫn Từng Bước</h3>
                 <div class="flex items-start">
-                    <div class="w-8 h-8 flex items-center justify-center bg-primary text-white rounded-full flex-shrink-0 mt-1">
-                        <span class="font-medium">6</span>
-                    </div>
-                    <div class="ml-4">
-                        <h4 class="font-medium mb-1">Cấu hình Fchat (tùy chọn nâng cao)</h4>
-                        <p class="text-gray-600">Truy cập <a href="https://fchat.vn" target="_blank" class="text-primary hover:underline">fchat.vn</a>, tạo chatbot và liên kết với Google Sheet hoặc API để nhận báo cáo, trả lời truy vấn như: “doanh thu hôm nay”, “lợi nhuận tuần trước”…</p>
-                    </div>
-                </div>
+  <div class="w-8 h-8 flex items-center justify-center bg-primary text-white rounded-full flex-shrink-0 mt-1">
+    <span class="font-medium">6</span>
+  </div>
+  <div class="ml-4">
+    <h4 class="font-medium mb-1">Cấu hình Fchat (tùy chọn nâng cao)</h4>
+    <p class="text-gray-600">Truy cập <a href="https://fchat.vn" target="_blank" class="text-primary hover:underline">fchat.vn</a>, tạo chatbot và liên kết với Google Sheet hoặc API để nhận báo cáo, trả lời truy vấn như: “doanh thu hôm nay”, “lợi nhuận tuần trước”…</p>
+  </div>
+</div>
 
                 <div class="space-y-4">
                     <div class="flex items-start">
@@ -1058,37 +1040,6 @@
         <i class="ri-arrow-up-line"></i>
     </div>
 
-    <!-- Voice Commands Panel -->
-    <div id="voice-commands-panel" class="voice-commands-panel">
-        <h3 class="text-lg font-semibold mb-3">Danh sách câu lệnh giọng nói</h3>
-        <ul id="voice-commands-list"></ul>
-    </div>
-
-    <!-- Report Output -->
-    <div id="report-output" class="report-output"></div>
-
-    <div class="my-6 text-center">
-        <!-- Nút Gọi Điện với biểu tượng Điện thoại -->
-        <div class="fixed bottom-10 right-24 z-50">
-            <a href="tel:+84973480488" id="call-button" class="bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-green-700 transition">
-                <i class="ri-phone-fill text-2xl"></i>
-            </a>
-        </div>
-
-        <!-- Nút Mic với biểu tượng Micro -->
-        <div class="fixed bottom-10 right-10 z-50">
-            <button id="mic-button" class="bg-primary text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 transition">
-                <i class="ri-mic-line text-2xl"></i>
-            </button>
-        </div>
-
-        <!-- Vùng hiển thị kết quả khi người dùng nói -->
-        <div class="text-center mt-3">
-            <p id="mic-output" class="text-gray-700 text-sm"></p>
-        </div>
-    </div>
-
-    <script src="https://code.responsivevoice.org/responsivevoice.js?key=FS1WhbPu"></script>
     <script id="mobile-menu-script">
         document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -1155,41 +1106,62 @@
             });
         });
     </script>
+<div class="my-6 text-center">
+  <!-- Nút Mic để nói -->
+  <!-- Nút Gọi Điện với biểu tượng Điện thoại -->
+<div class="fixed bottom-10 right-24 z-50">
+    <a href="tel:+84973480488" id="call-button" class="bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-green-700 transition">
+        <i class="ri-phone-fill text-2xl"></i> <!-- Biểu tượng Điện thoại -->
+    </a>
+</div>
 
-    <script id="voice-control-script">
-        document.addEventListener('DOMContentLoaded', function() {
-            let recognition;
-            const micBtn = document.getElementById('mic-button');
-            const micOutput = document.getElementById('mic-output');
-            const reportBox = document.getElementById('report-output');
-            const voiceCommandsPanel = document.getElementById('voice-commands-panel');
-            const voiceCommandsList = document.getElementById('voice-commands-list');
-            const SHEET_API_KEY = 'AIzaSyAlKO4MwQvIG2GaZzCIR1zmGAPIN5MC9XI';
-            const SPREADSHEET_ID = '1lz_M9TneUlq8TOpubjxJzH4SNS4d1R6mprn3Nzzxx74';
+<!-- Nút Mic với biểu tượng Micro -->
+<div class="fixed bottom-10 right-10 z-50">
+    <button id="mic-button" class="bg-primary text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 transition">
+        <i class="ri-mic-line text-2xl"></i> <!-- Biểu tượng Mic -->
+    </button>
+</div>
 
-            function normalizeText(text) {
-                return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-            }
+<!-- Vùng hiển thị kết quả khi người dùng nói -->
+<div class="text-center mt-3">
+    <p id="mic-output" class="text-gray-700 text-sm"></p>
+</div>
 
-            // Kiểm tra ResponsiveVoice
-            if (!window.responsiveVoice) {
-                micOutput.innerText = '❌ Lỗi: Không tải được ResponsiveVoice. Kiểm tra mạng hoặc key.';
-                return;
-            }
+<body>
+    <button id="mic-button">Ra lệnh giọng nói</button>
+    <div id="mic-output"></div>
+    <div class="report-output" style="display: none; background-color: #e6ffe6; padding: 10px;"></div>
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=FS1WhbPu"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let recognition;
+        const micBtn = document.getElementById('mic-button');
+        const micOutput = document.getElementById('mic-output');
+        const reportBox = document.querySelector('.report-output');
+        const SHEET_API_KEY = 'AIzaSyAlKO4MwQvIG2GaZzCIR1zmGAPIN5MC9XI';
+        const SPREADSHEET_ID = '1lz_M9TneUlq8TOpubjxJzH4SNS4d1R6mprn3Nzzxx74';
 
-            try {
-                recognition = window.SpeechRecognition || window.webkitSpeechRecognition ? new (window.SpeechRecognition || window.webkitSpeechRecognition)() : null;
-                if (!recognition) throw new Error('Dùng Chrome/Safari mới nhất.');
-            } catch (error) {
-                micOutput.innerText = '⚠️ ' + error.message;
-                micBtn.disabled = true;
-                return;
-            }
+        function normalizeText(text) {
+            return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        }
 
-            recognition.lang = 'vi-VN';
-            recognition.continuous = false;
+        // Kiểm tra ResponsiveVoice
+        if (!window.responsiveVoice) {
+            micOutput.innerText = '❌ Lỗi: Không tải được ResponsiveVoice. Kiểm tra mạng hoặc key.';
+            return;
+        }
 
-            // Fetch and display voice
+        try {
+            recognition = window.SpeechRecognition || window.webkitSpeechRecognition ? new (window.SpeechRecognition || window.webkitSpeechRecognition)() : null;
+            if (!recognition) throw new Error('Dùng Chrome/Safari mới nhất.');
+        } catch (error) {
+            micOutput.innerText = '⚠️ ' + error.message;
+            micBtn.disabled = true;
+            return;
+        }
+
+        recognition.lang = 'vi-VN';
+        recognition.continuous = false;
 
         micBtn.addEventListener('click', () => {
             try {
