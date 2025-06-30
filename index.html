@@ -1131,7 +1131,6 @@
     <button id="mic-button">Ra lệnh giọng nói</button>
     <div id="mic-output"></div>
     <div class="report-output" style="display: none; background-color: #e6ffe6; padding: 10px;"></div>
-    <script src="https://code.responsivevoice.org/responsivevoice.js?key=FS1WhbPu"></script>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         let recognition;
@@ -1139,21 +1138,16 @@
         const micOutput = document.getElementById('mic-output');
         const reportBox = document.querySelector('.report-output');
         const SHEET_API_KEY = 'AIzaSyAlKO4MwQvIG2GaZzCIR1zmGAPIN5MC9XI';
+        const FPTAI_API_KEY = 'cnNHB2CSu0LWOyO6KCENwaJe2o0kjgvZ';
         const SPREADSHEET_ID = '1lz_M9TneUlq8TOpubjxJzH4SNS4d1R6mprn3Nzzxx74';
 
         function normalizeText(text) {
             return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
         }
 
-        // Kiểm tra ResponsiveVoice
-        if (!window.responsiveVoice) {
-            micOutput.innerText = '❌ Lỗi: Không tải được ResponsiveVoice. Kiểm tra mạng hoặc key.';
-            return;
-        }
-
         try {
             recognition = window.SpeechRecognition || window.webkitSpeechRecognition ? new (window.SpeechRecognition || window.webkitSpeechRecognition)() : null;
-            if (!recognition) throw new Error('Dùng Chrome/Safari mới nhất.');
+            if (!recognition) throw new Error('Dùng Chrome/Safari.');
         } catch (error) {
             micOutput.innerText = '⚠️ ' + error.message;
             micBtn.disabled = true;
@@ -1220,16 +1214,22 @@
             }
         }
 
-        function speakText(text) {
+        async function speakText(text) {
             try {
-                if (responsiveVoice.isPlaying()) responsiveVoice.cancel();
-                responsiveVoice.speak(text, "Vietnamese Female", {
-                    rate: 1.0,
-                    volume: 1,
-                    onerror: () => {
-                        micOutput.innerText += '\n❌ Lỗi phát âm: Kiểm tra key hoặc trình duyệt.';
-                    }
+                const response = await fetch('https://api.fpt.ai/hmi/tts/v5', {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'api-key': FPTAI_API_KEY,
+                        'voice': 'banmai',
+                        'speed': '0'
+                    },
+                    body: JSON.stringify({ text: text })
                 });
+                if (!response.ok) throw new Error('Lỗi FPT.AI TTS.');
+                const data = await response.json();
+                const audio = new Audio(data.async);
+                audio.play();
             } catch (error) {
                 micOutput.innerText += '\n❌ Lỗi phát âm: ' + error.message;
             }
