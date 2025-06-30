@@ -1130,21 +1130,28 @@
 <body>
     <button id="mic-button">Ra lệnh giọng nói</button>
     <div id="mic-output"></div>
-    <div id="commands-output" style="display: none; background-color: #e6ffe6; padding: 10px; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000;"></div>
+    <div id="commands-output" style="display: none; background-color: #e6ffe6; padding: 10px; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000; max-width: 80%; text-align: center;"></div>
     <div class="report-output" style="display: none; background-color: #e6ffe6; padding: 10px;"></div>
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=FS1WhbPu"></script>
     <script>
-    document.addEventListener('DOMContentLoaded', async function() {
+    document.addEventListener('DOMContentLoaded', function() {
         let recognition;
         const micBtn = document.getElementById('mic-button');
         const micOutput = document.getElementById('mic-output');
         const commandsOutput = document.getElementById('commands-output');
         const reportBox = document.querySelector('.report-output');
         const SHEET_API_KEY = 'AIzaSyAlKO4MwQvIG2GaZzCIR1zmGAPIN5MC9XI';
-        const FPTAI_API_KEY = 'cnNHB2CSu0LWOyO6KCENwaJe2o0kjgvZ';
         const SPREADSHEET_ID = '1lz_M9TneUlq8TOpubjxJzH4SNS4d1R6mprn3Nzzxx74';
 
         function normalizeText(text) {
             return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        }
+
+        // Kiểm tra ResponsiveVoice
+        if (!window.responsiveVoice) {
+            micOutput.innerText = '❌ Lỗi: Không tải được ResponsiveVoice. Kiểm tra mạng hoặc key.';
+            micBtn.disabled = true;
+            return;
         }
 
         try {
@@ -1166,11 +1173,14 @@
                     `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/BaoCaoGiongNoi!C2:C?key=${SHEET_API_KEY}`,
                     { headers: { 'Content-Type': 'application/json' } }
                 );
-                if (!response.ok) throw new Error('Lỗi lấy câu lệnh.');
+                if (!response.ok) throw new Error('Lỗi lấy câu lệnh: ' + response.status);
                 const data = await response.json();
                 const commands = data.values ? data.values.flat().filter(cmd => cmd).join(', ');
                 if (commands) {
-                    commandsOutput.textContent = `Câu lệnh: ${commands}`;
+                    commandsOutput.textContent = `Câu lệnh khả dụng: ${commands}`;
+                    commandsOutput.style.display = 'block';
+                } else {
+                    commandsOutput.textContent = 'Không có câu lệnh.';
                     commandsOutput.style.display = 'block';
                 }
 
@@ -1178,6 +1188,7 @@
                 micOutput.innerText = '🎙️ Đang nghe...';
             } catch (error) {
                 micOutput.innerText = '❌ Lỗi mic: ' + error.message;
+                commandsOutput.style.display = 'none';
             }
         });
 
@@ -1208,13 +1219,13 @@
 
                 if (!responseText) throw new Error("Lệnh không khớp.");
                 showReport(responseText);
-                await speakText(responseText);
+                speakText(responseText);
                 micOutput.innerText += '\n✅ Thành công.';
                 commandsOutput.style.display = 'none'; // Tắt danh sách câu lệnh
             } catch (error) {
                 micOutput.innerText += '\n❌ Lỗi: ' + error.message;
                 showReport('Không tìm thấy báo cáo.');
-                await speakText('Không tìm thấy báo cáo.');
+                speakText('Không tìm thấy báo cáo.');
                 commandsOutput.style.display = 'none';
             }
         };
@@ -1232,26 +1243,16 @@
             }
         }
 
-        async function speakText(text) {
+        function speakText(text) {
             try {
-                const response = await fetch('https://api.fpt.ai/hmi/tts/v5', {
-                    method: 'POST',
-                    headers: { 
-                        'Content-Type': 'application/json',
-                        'api-key': FPTAI_API_KEY,
-                        'voice': 'lananh',
-                        'speed': '0.5'
-                    },
-                    body: JSON.stringify({ text: text })
+                if (responsiveVoice.isPlaying()) responsiveVoice.cancel();
+                responsiveVoice.speak(text, "Vietnamese Female", {
+                    rate: 1.0,
+                    volume: 1,
+                    onerror: () => {
+                        micOutput.innerText += '\n❌ Lỗi phát âm: Kiểm tra key hoặc trình duyệt.';
+                    }
                 });
-                if (!response.ok) {
-                    const errorText = await response.text();
-                    throw new Error(`Lỗi FPT.AI TTS: ${response.status} - ${errorText}`);
-                }
-                const data = await response.json();
-                if (!data.async) throw new Error('Không nhận được URL âm thanh.');
-                const audio = new Audio(data.async);
-                audio.play();
             } catch (error) {
                 micOutput.innerText += '\n❌ Lỗi phát âm: ' + error.message;
             }
