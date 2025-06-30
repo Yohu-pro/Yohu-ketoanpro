@@ -1127,116 +1127,125 @@
     <p id="mic-output" class="text-gray-700 text-sm"></p>
 </div>
 
-<body>
-    <button id="mic-button">Ra lệnh giọng nói</button>
-    <div id="mic-output"></div>
-    <div class="report-output" style="display: none; background-color: #e6ffe6; padding: 10px;"></div>
-    <script src="https://code.responsivevoice.org/responsivevoice.js?key=FS1WhbPu"></script>
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        let recognition;
-        const micBtn = document.getElementById('mic-button');
-        const micOutput = document.getElementById('mic-output');
-        const reportBox = document.querySelector('.report-output');
-        const SHEET_API_KEY = 'AIzaSyAlKO4MwQvIG2GaZzCIR1zmGAPIN5MC9XI';
-        const SPREADSHEET_ID = '1lz_M9TneUlq8TOpubjxJzH4SNS4d1R6mprn3Nzzxx74';
+document.addEventListener('DOMContentLoaded', function() {
+    let recognition;
+    const micBtn = document.getElementById('mic-button');
+    const micOutput = document.getElementById('mic-output');
+    const reportBox = document.getElementById('report-output');
+    const voiceCommandsPanel = document.getElementById('voice-commands-panel');
+    const voiceCommandsList = document.getElementById('voice-commands-list');
+    const SHEET_API_KEY = 'AIzaSyAlKO4MwQvIG2GaZzCIR1zmGAPIN5MC9XI';
+    const SPREADSHEET_ID = '1lz_M9TneUlq8TOpubjxJzH4SNS4d1R6mprn3Nzzxx74';
 
-        function normalizeText(text) {
-            return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-        }
+    function normalizeText(text) {
+        return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    }
 
-        // Kiểm tra ResponsiveVoice
-        if (!window.responsiveVoice) {
-            micOutput.innerText = '❌ Lỗi: Không tải được ResponsiveVoice. Kiểm tra mạng hoặc key.';
-            return;
-        }
+    // Kiểm tra ResponsiveVoice
+    if (!window.responsiveVoice) {
+        micOutput.innerText = '❌ Lỗi: Không tải được ResponsiveVoice. Kiểm tra mạng hoặc key.';
+        return;
+    }
 
+    try {
+        recognition = window.SpeechRecognition || window.webkitSpeechRecognition ? new (window.SpeechRecognition || window.webkitSpeechRecognition)() : null;
+        if (!recognition) throw new Error('Dùng Chrome/Safari mới nhất.');
+    } catch (error) {
+        micOutput.innerText = '⚠️ ' + error.message;
+        micBtn.disabled = true;
+        return;
+    }
+
+    recognition.lang = 'vi-VN';
+    recognition.continuous = false;
+
+    // Lấy danh sách lệnh từ cột C
+    async function fetchVoiceCommands() {
         try {
-            recognition = window.SpeechRecognition || window.webkitSpeechRecognition ? new (window.SpeechRecognition || window.webkitSpeechRecognition)() : null;
-            if (!recognition) throw new Error('Dùng Chrome/Safari mới nhất.');
+            const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/Sheet1!C:F?key=${SHEET_API_KEY}`);
+            const data = await response.json();
+            if (data.values) {
+                return data.values.map(row => ({
+                    command: row[0] || '', // Cột C
+                    response: row[3] || '' // Cột F
+                })).filter(row => row.command);
+            }
+            return [];
         } catch (error) {
-            micOutput.innerText = '⚠️ ' + error.message;
-            micBtn.disabled = true;
-            return;
+            console.error('Lỗi khi lấy dữ liệu:', error);
+            micOutput.innerText = '⚠️ Lỗi khi lấy danh sách lệnh';
+            return [];
         }
+    }
 
-        recognition.lang = 'vi-VN';
-        recognition.continuous = false;
-
-        micBtn.addEventListener('click', () => {
-            try {
-                recognition.start();
-                micOutput.innerText = '🎙️ Đang nghe...';
-            } catch (error) {
-                micOutput.innerText = '❌ Lỗi mic: ' + error.message;
-            }
+    // Hiển thị danh sách lệnh
+    async function showVoiceCommands() {
+        const commands = await fetchVoiceCommands();
+        voiceCommandsList.innerHTML = '';
+        commands.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = item.command;
+            voiceCommandsList.appendChild(li);
         });
+        voiceCommandsPanel.style.display = 'block';
+        reportBox.style.display = 'none'; // Ẩn bảng báo cáo
+        micOutput.innerText = '📜 Danh sách lệnh giọng nói';
+    }
 
-        recognition.onresult = async (event) => {
-            const transcript = event.results[0][0].transcript;
-            micOutput.innerText = '📝 Bạn nói: "' + transcript + '"';
-            const normalizedTranscript = normalizeText(transcript);
-
-            try {
-                const response = await fetch(
-                    `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/BaoCaoGiongNoi!A2:F?key=${SHEET_API_KEY}`,
-                    { headers: { 'Content-Type': 'application/json' } }
-                );
-                if (!response.ok) throw new Error('Lỗi sheet.');
-                const data = await response.json();
-                const values = data.values || [];
-
-                let responseText = "";
-                for (let row of values) {
-                    const cmdFull = row[1] ? normalizeText(row[1].toString().trim()) : "";
-                    const cmdShort = row[2] ? normalizeText(row[2].toString().trim()) : "";
-                    const reportContent = row[5] ? row[5].toString() : "";
-                    if (normalizedTranscript === cmdFull || normalizedTranscript === cmdShort) {
-                        responseText = reportContent;
-                        break;
-                    }
-                }
-
-                if (!responseText) throw new Error("Lệnh không khớp.");
-                showReport(responseText);
-                speakText(responseText);
-                micOutput.innerText += '\n✅ Thành công.';
-            } catch (error) {
-                micOutput.innerText += '\n❌ Lỗi: ' + error.message;
-                showReport('Không tìm thấy báo cáo.');
-                speakText('Không tìm thấy báo cáo.');
-            }
-        };
-
-        recognition.onerror = (e) => {
-            micOutput.innerText = '❌ Lỗi mic: ' + e.error;
-        };
-
-        function showReport(text) {
-            if (reportBox) {
-                reportBox.textContent = text;
-                reportBox.style.display = 'block';
-                setTimeout(() => reportBox.style.display = 'none', 30000);
-            }
+    // Xử lý lệnh giọng nói
+    async function processVoiceCommand(transcript) {
+        const normalizedTranscript = normalizeText(transcript);
+        const commands = await fetchVoiceCommands();
+        const matchedCommand = commands.find(item => normalizeText(item.command).includes(normalizedTranscript));
+        
+        voiceCommandsPanel.style.display = 'none'; // Ẩn bảng lệnh sau khi nhận diện
+        if (matchedCommand) {
+            reportBox.textContent = matchedCommand.response;
+            reportBox.style.display = 'block';
+            responsiveVoice.speak(matchedCommand.response, "Vietnamese Female");
+            micOutput.innerText = `📢 Bạn nói: "${transcript}"`;
+        } else {
+            reportBox.textContent = 'Không nhận diện được lệnh. Vui lòng thử lại.';
+            reportBox.style.display = 'block';
+            responsiveVoice.speak('Không nhận diện được lệnh. Vui lòng thử lại.', "Vietnamese Female");
+            micOutput.innerText = `📢 Bạn nói: "${transcript}" - Không khớp`;
         }
+    }
 
-        function speakText(text) {
-            try {
-                if (responsiveVoice.isPlaying()) responsiveVoice.cancel();
-                responsiveVoice.speak(text, "Vietnamese Female", {
-                    rate: 1.0,
-                    volume: 1,
-                    onerror: () => {
-                        micOutput.innerText += '\n❌ Lỗi phát âm: Kiểm tra key hoặc trình duyệt.';
-                    }
-                });
-            } catch (error) {
-                micOutput.innerText += '\n❌ Lỗi phát âm: ' + error.message;
-            }
+    // Xử lý sự kiện nhấn nút mic
+    micBtn.addEventListener('click', function() {
+        if (voiceCommandsPanel.style.display !== 'block') {
+            // Hiển thị bảng lệnh
+            showVoiceCommands();
+            micBtn.classList.add('bg-blue-700');
+        } else {
+            // Bắt đầu nhận diện giọng nói
+            voiceCommandsPanel.style.display = 'none';
+            recognition.start();
+            micOutput.innerText = '🎙️ Đang lắng nghe...';
+            micBtn.classList.add('bg-blue-700');
         }
     });
-    </script>
-</body>
+
+    recognition.onresult = function(event) {
+        const transcript = event.results[0][0].transcript;
+        processVoiceCommand(transcript);
+        micBtn.classList.remove('bg-blue-700');
+    };
+
+    recognition.onerror = function(event) {
+        voiceCommandsPanel.style.display = 'none';
+        micOutput.innerText = '⚠️ Lỗi nhận diện: ' + event.error;
+        reportBox.style.display = 'block';
+        reportBox.textContent = 'Lỗi nhận diện giọng nói. Vui lòng thử lại.';
+        micBtn.classList.remove('bg-blue-700');
+    };
+
+    recognition.onend = function() {
+        micOutput.innerText = micOutput.innerText.includes('Bạn nói') ? micOutput.innerText : '🎙️ Đã dừng nhận diện';
+        micBtn.classList.remove('bg-blue-700');
+    };
+});
 </script>
 </body>
 </html>
