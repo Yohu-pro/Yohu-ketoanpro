@@ -9,25 +9,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
     <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=FS1WhbPu"></script>
     <script>
-        tailwind.config={
-            theme:{
-                extend:{
-                    colors:{
-                        primary:'#2563eb',
-                        secondary:'#f97316'
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563eb',
+                        secondary: '#f97316'
                     },
-                    borderRadius:{
-                        'none':'0px',
-                        'sm':'4px',
-                        DEFAULT:'8px',
-                        'md':'12px',
-                        'lg':'16px',
-                        'xl':'20px',
-                        '2xl':'24px',
-                        '3xl':'32px',
-                        'full':'9999px',
-                        'button':'8px'
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
                     }
                 }
             }
@@ -35,40 +37,29 @@
     </script>
     <style>
         .report-output {
-    position: fixed;
-    top: 20%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #e0f7fa; /* Màu nền xanh nhẹ */
-    padding: 20px;
-    border-radius: 8px;
-    max-width: 80%;
-    text-align: center;
-    font-size: 1.2rem;
-    color: #004d40;
-    display: none; /* Ẩn đi ban đầu */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-}
-
-        :where([class^="ri-"])::before { content: "\f3c2"; }
-        .floating-cta {
+            position: fixed;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #e0f7fa;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 80%;
+            text-align: center;
+            font-size: 1.2rem;
+            color: #004d40;
+            display: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+        .floating-cta, .chat-bubble, .back-to-top {
             position: fixed;
             bottom: 2rem;
             right: 2rem;
             z-index: 50;
         }
-        .chat-bubble {
-            position: fixed;
-            bottom: 6rem;
-            right: 2rem;
-            z-index: 50;
-        }
         .back-to-top {
-            position: fixed;
             bottom: 10rem;
-            right: 2rem;
-            z-index: 50;
             opacity: 0;
             transition: opacity 0.3s;
         }
@@ -96,6 +87,35 @@
             -webkit-appearance: none;
             margin: 0;
         }
+        /* Thêm style cho bảng câu lệnh giọng nói */
+        .voice-commands-table {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #e0f7fa;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 80%;
+            max-height: 80%;
+            overflow-y: auto;
+            z-index: 1001;
+            display: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .voice-commands-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .voice-commands-table th, .voice-commands-table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+        }
+        .voice-commands-table th {
+            background-color: #b2ebf2;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body class="font-sans bg-gray-50">
@@ -106,8 +126,6 @@
                 <span class="text-2xl font-['Pacifico'] text-primary">YOHU</span>
                 <span class="ml-1 text-lg font-semibold">PRO 2.0</span>
             </a>
-            
-            <!-- Desktop Menu -->
             <nav class="hidden md:flex space-x-6">
                 <a href="#gioi-thieu" class="text-gray-700 hover:text-primary transition">Giới thiệu</a>
                 <a href="#san-pham" class="text-gray-700 hover:text-primary transition">Sản phẩm TM & DV</a>
@@ -116,7 +134,6 @@
                 <a href="#tai-lieu" class="text-gray-700 hover:text-primary transition">Tài liệu hướng dẫn</a>
                 <a href="#lien-he" class="text-gray-700 hover:text-primary transition">Hỗ trợ & Liên hệ</a>
             </nav>
-            
             <div class="flex items-center space-x-4">
                 <a href="#dung-thu" class="hidden md:block bg-primary text-white px-4 py-2 !rounded-button font-medium hover:bg-blue-700 transition whitespace-nowrap">DÙNG THỬ NGAY</a>
                 <button id="mobile-menu-button" class="md:hidden w-10 h-10 flex items-center justify-center text-gray-700">
@@ -125,7 +142,6 @@
             </div>
         </div>
     </header>
-    
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="mobile-menu md:hidden">
         <div class="p-4 flex justify-between items-center border-b">
@@ -144,12 +160,10 @@
             <a href="#dung-thu" class="mt-4 bg-primary text-white px-4 py-3 !rounded-button font-medium text-center whitespace-nowrap">DÙNG THỬ NGAY</a>
         </nav>
     </div>
-
     <!-- Hero Section -->
     <section class="relative w-full bg-white overflow-hidden" id="gioi-thieu">
-        <div class="absolute inset-0 z-0" style="background-image: url('https://readdy.ai/api/search-image?query=A%20professional%20office%20environment%20with%20a%20clean%2C%20modern%20workspace.%20The%20image%20shows%20a%20bright%2C%20airy%20office%20with%20minimal%20design%2C%20soft%20natural%20lighting%2C%20and%20subtle%20blue%20accents.%20The%20left%20side%20has%20a%20gradient%20from%20white%20to%20very%20light%20blue%2C%20creating%20a%20perfect%20background%20for%20text%20overlay.%20The%20right%20side%20shows%20organized%20office%20elements%20like%20a%20laptop%2C%20documents%2C%20and%20a%20small%20plant%2C%20representing%20business%20management%20and%20productivity&width=1600&height=800&seq=hero1&orientation=landscape'); background-size: cover; background-position: center; opacity: 0.9;"></div>
+        <div class="absolute inset-0 z-0" style="background-image: url('https://readdy.ai/api/search-image?query=A%20professional%20office%20environment%20with%20a%20clean%2C%20modern%20workspace.%20The%20image%20shows%20a%20bright%2C%20airy%20office%20with%20minimal%20design%2C%20soft%20natural%20lighting%2C%20and%20subtle%20blue%20accents.%20The%20left%20side%20has%20a%20gradient%20from%20white%20to%20very%20light%20blue%2C%20creating%20a%20perfect%20background%20for%20text%20overlay.%20The%20right%20side%20shows%20organized%20office%20elements%20like%20a%20laptop%2C%20documents%20and%20a%20small%20plant%2C%20representing%20business%20management%20and%20productivity&width=1600&height=800&seq=hero1&orientation=landscape'); background-size: cover; background-position: center; opacity: 0.9;"></div>
         <div class="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/20 z-10"></div>
-        
         <div class="container mx-auto px-4 py-16 md:py-24 relative z-20">
             <div class="flex flex-col md:flex-row items-center">
                 <div class="w-full md:w-1/2 mb-8 md:mb-0">
@@ -180,23 +194,18 @@
                     </div>
                     <a href="#dung-thu" class="inline-block bg-primary text-white px-6 py-3 !rounded-button font-medium hover:bg-blue-700 transition text-lg whitespace-nowrap">DÙNG THỬ NGAY</a>
                 </div>
-                <div class="w-full md:w-1/2 md:pl-8">
-                    <!-- This div is intentionally left empty as the background image covers this area -->
-                </div>
+                <div class="DÙNGw-full md:w-1/2 md:pl-8"></div>
             </div>
         </div>
     </section>
-
     <!-- Tính Năng Chính -->
     <section class="py-16 bg-white" id="tinh-nang">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold text-gray-900 mb-4">Tính Năng Chính</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">YOHU PRO 2.0 cung cấp các công cụ đơn giản nhưng mạnh mẽ, giúp bạn quản lý kinh doanh hiệu quả mà không cần kiến thức công nghệ phức tạp.</p>
+                <p class="text-gray-600 max-w-2xl mx-auto">YOHYU PRO 2.0 cung cấp các công cụ đơn giản nhưng mạnh mẽ, giúp bạn quản lý kinh doanh hiệu quả mà không cần kiến thức công nghệ phức tạp.</p>
             </div>
-            
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Tính năng 1 -->
                 <div class="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition">
                     <div class="w-16 h-16 flex items-center justify-center bg-blue-100 text-primary rounded-full mb-4 mx-auto">
                         <i class="ri-file-excel-2-line text-3xl"></i>
@@ -210,7 +219,7 @@
                             </div>
                             <span class="ml-2 text-sm text-gray-600">Quản lý đơn hàng chi tiết</span>
                         </li>
-                        <li class="flex items-start">
+                        <li class=" expflex items-start">
                             <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
                                 <i class="ri-check-line"></i>
                             </div>
@@ -224,8 +233,6 @@
                         </li>
                     </ul>
                 </div>
-                
-                <!-- Tính năng 2 -->
                 <div class="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition">
                     <div class="w-16 h-16 flex items-center justify-center bg-blue-100 text-primary rounded-full mb-4 mx-auto">
                         <i class="ri-chat-3-line text-3xl"></i>
@@ -253,8 +260,6 @@
                         </li>
                     </ul>
                 </div>
-                
-                <!-- Tính năng 3 -->
                 <div class="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition">
                     <div class="w-16 h-16 flex items-center justify-center bg-blue-100 text-primary rounded-full mb-4 mx-auto">
                         <i class="ri-mic-line text-3xl"></i>
@@ -263,32 +268,30 @@
                     <p class="text-gray-600 text-center">Web App hỗ trợ nhập đơn hàng bằng giọng nói, giúp người lớn tuổi hoặc không rành công nghệ dễ dàng sử dụng.</p>
                     <ul class="mt-4 space-y-2">
                         <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                <i class="ri-mic-line"></i>
+                            </div>
+                            <span class="ml-2 text-sm text-gray-600">Câu lệnh: "Nhập hàng nhập kho hôm nay"</span>
+                        </li>
                         <li class="flex items-start">
-  <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
-    <i class="ri-mic-line"></i>
-  </div>
-  <span class="ml-2 text-sm text-gray-600">Câu lệnh: "Nhập hàng nhập kho hôm nay"</span>
-</li>
-<li class="flex items-start">
-  <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
-    <i class="ri-mic-line"></i>
-  </div>
-  <span class="ml-2 text-sm text-gray-600">Câu lệnh: "Chi phí hôm nay"</span>
-</li>
-<li class="flex items-start">
-  <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
-    <i class="ri-mic-line"></i>
-  </div>
-  <span class="ml-2 text-sm text-gray-600">Câu lệnh: "Báo cáo kết quả kinh doanh tháng này"</span>
-</li>
-<li class="flex items-start">
-  <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
-    <i class="ri-mic-line"></i>
-  </div>
-  <span class="ml-2 text-sm text-gray-600">Câu lệnh: "So sánh với cùng kỳ năm ngoái"</span>
-</li>
-    
-                           
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                <i class="ri-mic-line"></i>
+                            </div>
+                            <span class="ml-2 text-sm text-gray-600">Câu lệnh: "Chi phí hôm nay"</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                <i class="ri-mic-line"></i>
+                            </div>
+                            <span class="ml-2 text-sm text-gray-600">Câu lệnh: "Báo cáo kết quả kinh doanh tháng này"</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                <i class="ri-mic-line"></i>
+                            </div>
+                            <span class="ml-2 text-sm text-gray-600">Câu lệnh: "So sánh với cùng kỳ năm ngoái"</span>
+                        </li>
+                        <li class="flex items-start">
                             <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
                                 <i class="ri-check-line"></i>
                             </div>
@@ -311,7 +314,6 @@
             </div>
         </div>
     </section>
-
     <!-- Sản phẩm TM & DV -->
     <section class="py-16 bg-gray-50" id="san-pham">
         <div class="container mx-auto px-4">
@@ -319,7 +321,6 @@
                 <h2 class="text-3xl font-bold text-gray-900 mb-4">Sản phẩm TM & DV</h2>
                 <p class="text-gray-600 max-w-2xl mx-auto">YOHU PRO 2.0 được thiết kế đặc biệt cho các doanh nghiệp nhỏ, đại lý và người lớn tuổi không rành công nghệ.</p>
             </div>
-            
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="bg-white p-6 rounded-lg shadow-sm">
                     <div class="mb-6">
@@ -355,7 +356,6 @@
                     </ul>
                     <a href="#dung-thu" class="inline-block bg-primary text-white px-4 py-2 !rounded-button font-medium hover:bg-blue-700 transition whitespace-nowrap">Xem mẫu file</a>
                 </div>
-                
                 <div class="bg-white p-6 rounded-lg shadow-sm">
                     <div class="mb-6">
                         <img src="https://readdy.ai/api/search-image?query=A%20modern%20smartphone%20displaying%20a%20chat%20interface%20with%20a%20business%20chatbot.%20The%20screen%20shows%20conversation%20bubbles%20with%20questions%20about%20sales%20data%20and%20inventory%20status%2C%20with%20the%20chatbot%20providing%20clear%2C%20concise%20answers.%20The%20interface%20includes%20voice%20input%20functionality%2C%20represented%20by%20a%20microphone%20icon.%20The%20image%20should%20convey%20simplicity%20and%20accessibility%20for%20older%20users&width=600&height=400&seq=product2&orientation=landscape" alt="Fchat Integration" class="w-full h-64 object-cover object-top rounded-lg">
@@ -393,7 +393,6 @@
             </div>
         </div>
     </section>
-
     <!-- Quy Trình Sử Dụng -->
     <section class="py-16 bg-white">
         <div class="container mx-auto px-4">
@@ -401,12 +400,8 @@
                 <h2 class="text-3xl font-bold text-gray-900 mb-4">Quy Trình Sử Dụng</h2>
                 <p class="text-gray-600 max-w-2xl mx-auto">Chỉ với 2 giai đoạn đơn giản, bạn có thể triển khai hệ thống quản lý bán hàng tự động.</p>
             </div>
-            
             <div class="relative">
-                <!-- Timeline line -->
                 <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-blue-100 hidden md:block"></div>
-                
-                <!-- Giai đoạn 1 -->
                 <div class="flex flex-col md:flex-row items-center mb-12">
                     <div class="w-full md:w-1/2 md:pr-12 mb-6 md:mb-0 text-right">
                         <h3 class="text-xl font-semibold mb-3">Giai đoạn 1: Chuẩn hóa file</h3>
@@ -432,17 +427,13 @@
                             </li>
                         </ul>
                     </div>
-                    
                     <div class="relative w-12 h-12 flex items-center justify-center bg-primary text-white rounded-full z-10 mb-6 md:mb-0">
                         <span class="font-bold">1</span>
                     </div>
-                    
                     <div class="w-full md:w-1/2 md:pl-12">
                         <img src="https://readdy.ai/api/search-image?query=A%20person%20setting%20up%20a%20Google%20Sheets%20document%20on%20a%20laptop.%20The%20screen%20shows%20a%20spreadsheet%20with%20business%20data%20being%20organized.%20The%20workspace%20is%20clean%20and%20professional%20with%20a%20notepad%20and%20pen%20nearby.%20The%20image%20conveys%20the%20initial%20setup%20phase%20of%20a%20business%20management%20system&width=500&height=300&seq=phase1&orientation=landscape" alt="Giai đoạn 1" class="w-full rounded-lg shadow-sm">
                     </div>
                 </div>
-                
-                <!-- Giai đoạn 2 -->
                 <div class="flex flex-col md:flex-row-reverse items-center">
                     <div class="w-full md:w-1/2 md:pl-12 mb-6 md:mb-0 text-left">
                         <h3 class="text-xl font-semibold mb-3">Giai đoạn 2: Kết nối Fchat và Web App</h3>
@@ -468,11 +459,9 @@
                             </li>
                         </ul>
                     </div>
-                    
                     <div class="relative w-12 h-12 flex items-center justify-center bg-primary text-white rounded-full z-10 mb-6 md:mb-0">
                         <span class="font-bold">2</span>
                     </div>
-                    
                     <div class="w-full md:w-1/2 md:pr-12">
                         <img src="https://readdy.ai/api/search-image?query=A%20person%20using%20a%20smartphone%20with%20a%20chat%20interface%20and%20voice%20input%20functionality.%20The%20phone%20screen%20shows%20a%20business%20chatbot%20conversation%20with%20data%20visualizations.%20The%20setting%20is%20casual%20and%20approachable%2C%20suggesting%20ease%20of%20use%20for%20non-technical%20users.%20The%20image%20represents%20the%20integration%20phase%20of%20connecting%20messaging%20apps%20with%20business%20management%20systems&width=500&height=300&seq=phase2&orientation=landscape" alt="Giai đoạn 2" class="w-full rounded-lg shadow-sm">
                     </div>
@@ -480,7 +469,6 @@
             </div>
         </div>
     </section>
-
     <!-- Bảng Giá -->
     <section class="py-16 bg-gray-50" id="bang-gia">
         <div class="container mx-auto px-4">
@@ -488,16 +476,13 @@
                 <h2 class="text-3xl font-bold text-gray-900 mb-4">Bảng Giá</h2>
                 <p class="text-gray-600 max-w-2xl mx-auto">Lựa chọn gói dịch vụ phù hợp với nhu cầu kinh doanh của bạn.</p>
             </div>
-            
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Gói Lite -->
                 <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition">
                     <div class="text-center mb-6">
                         <h3 class="text-xl font-semibold mb-2">Gói Lite</h3>
                         <div class="text-3xl font-bold text-primary mb-2">Miễn phí</div>
                         <p class="text-gray-500 text-sm">Dành cho cá nhân và hộ kinh doanh nhỏ</p>
                     </div>
-                    
                     <ul class="space-y-3 mb-6">
                         <li class="flex items-start">
                             <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
@@ -536,20 +521,15 @@
                             <span class="ml-2 text-gray-400">Hỗ trợ kỹ thuật</span>
                         </li>
                     </ul>
-                    
                     <a href="#dung-thu" class="block w-full bg-gray-100 text-gray-700 text-center px-4 py-2 !rounded-button font-medium hover:bg-gray-200 transition whitespace-nowrap">Dùng thử ngay</a>
                 </div>
-                
-                <!-- Gói Standard -->
                 <div class="bg-white p-6 rounded-lg shadow-md transform scale-105 border-2 border-primary relative">
                     <div class="absolute top-0 right-0 bg-primary text-white px-3 py-1 text-sm font-medium !rounded-tr-lg !rounded-bl-lg">Phổ biến</div>
-                    
                     <div class="text-center mb-6">
                         <h3 class="text-xl font-semibold mb-2">Gói Standard</h3>
                         <div class="text-3xl font-bold text-primary mb-2">599.000đ</div>
                         <p class="text-gray-500 text-sm">Thanh toán một lần</p>
                     </div>
-                    
                     <ul class="space-y-3 mb-6">
                         <li class="flex items-start">
                             <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
@@ -588,18 +568,14 @@
                             <span class="ml-2 text-gray-400">Hỗ trợ kỹ thuật 24/7</span>
                         </li>
                     </ul>
-                    
                     <a href="#dung-thu" class="block w-full bg-primary text-white text-center px-4 py-2 !rounded-button font-medium hover:bg-blue-700 transition whitespace-nowrap">Đăng ký ngay</a>
                 </div>
-                
-                <!-- Gói Pro -->
                 <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition">
                     <div class="text-center mb-6">
                         <h3 class="text-xl font-semibold mb-2">Gói Pro</h3>
                         <div class="text-3xl font-bold text-primary mb-2">999.000đ</div>
                         <p class="text-gray-500 text-sm">Thanh toán một lần</p>
                     </div>
-                    
                     <ul class="space-y-3 mb-6">
                         <li class="flex items-start">
                             <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
@@ -638,13 +614,11 @@
                             <span class="ml-2">Hỗ trợ kỹ thuật 24/7</span>
                         </li>
                     </ul>
-                    
                     <a href="#dung-thu" class="block w-full bg-secondary text-white text-center px-4 py-2 !rounded-button font-medium hover:bg-orange-600 transition whitespace-nowrap">Đăng ký ngay</a>
                 </div>
             </div>
         </div>
     </section>
-
     <!-- Demo và Hướng Dẫn -->
     <section class="py-16 bg-white" id="tai-lieu">
         <div class="container mx-auto px-4">
@@ -652,7 +626,6 @@
                 <h2 class="text-3xl font-bold text-gray-900 mb-4">Demo và Hướng Dẫn</h2>
                 <p class="text-gray-600 max-w-2xl mx-auto">Xem cách YOHU PRO 2.0 hoạt động và cách thiết lập hệ thống trong vài phút.</p>
             </div>
-            
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
                 <div>
                     <div class="aspect-w-16 aspect-h-9 bg-gray-100 rounded-lg mb-4 overflow-hidden">
@@ -665,13 +638,11 @@
                     </div>
                     <h3 class="text-xl font-semibold mb-2">Video Hướng Dẫn Tổng Quan</h3>
                     <p class="mt-2 text-sm text-gray-500">
-  <a href="https://www.youtube.com/watch?v=abc123" target="_blank" class="text-primary hover:underline">Xem hướng dẫn chi tiết trên YouTube</a> |
-  <a href="https://drive.google.com/file/d/xyz456/view" target="_blank" class="text-primary hover:underline">Tải tài liệu PDF</a>
-</p>
-
+                        <a href="https://www.youtube.com/watch?v=abc123" target="_blank" class="text-primary hover:underline">Xem hướng dẫn chi tiết trên YouTube</a> |
+                        <a href="https://drive.google.com/file/d/xyz456/view" target="_blank" class="text-primary hover:underline">Tải tài liệu PDF</a>
+                    </p>
                     <p class="text-gray-600">Giới thiệu tổng quan về YOHU PRO 2.0 và các tính năng chính của hệ thống.</p>
                 </div>
-                
                 <div>
                     <div class="aspect-w-16 aspect-h-9 bg-gray-100 rounded-lg mb-4 overflow-hidden">
                         <img src="https://readdy.ai/api/search-image?query=A%20smartphone%20screen%20displaying%20a%20voice%20input%20interface%20for%20a%20business%20management%20app.%20The%20screen%20shows%20a%20microphone%20button%20and%20speech-to-text%20conversion%20happening%20in%20real-time.%20The%20interface%20is%20simple%20and%20user-friendly%2C%20with%20clear%20buttons%20and%20minimal%20text%2C%20designed%20for%20older%20users%20or%20those%20not%20familiar%20with%20technology.%20The%20image%20represents%20how%20voice%20commands%20can%20be%20used%20to%20input%20sales%20data&width=800&height=450&seq=video2&orientation=landscape" alt="Voice Input Demo" class="w-full h-full object-cover object-top">
@@ -685,7 +656,6 @@
                     <p class="text-gray-600">Xem cách sử dụng tính năng nhập đơn hàng bằng giọng nói trên điện thoại.</p>
                 </div>
             </div>
-            
             <div class="bg-gray-50 p-6 rounded-lg mb-12">
                 <h3 class="text-xl font-semibold mb-4">Các Sheet Mẫu</h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -696,7 +666,6 @@
                         <h4 class="font-medium mb-1">Don_Hang_Chi_Tiet</h4>
                         <p class="text-sm text-gray-600">Quản lý thông tin đơn hàng chi tiết</p>
                     </div>
-                    
                     <div class="bg-white p-4 rounded shadow-sm">
                         <div class="w-10 h-10 flex items-center justify-center bg-blue-100 text-blue-600 rounded mb-3">
                             <i class="ri-shopping-bag-line text-xl"></i>
@@ -704,7 +673,6 @@
                         <h4 class="font-medium mb-1">San_Pham</h4>
                         <p class="text-sm text-gray-600">Danh mục sản phẩm và giá bán</p>
                     </div>
-                    
                     <div class="bg-white p-4 rounded shadow-sm">
                         <div class="w-10 h-10 flex items-center justify-center bg-purple-100 text-purple-600 rounded mb-3">
                             <i class="ri-store-line text-xl"></i>
@@ -712,7 +680,6 @@
                         <h4 class="font-medium mb-1">Nhap_Hang</h4>
                         <p class="text-sm text-gray-600">Quản lý nhập kho và tồn kho</p>
                     </div>
-                    
                     <div class="bg-white p-4 rounded shadow-sm">
                         <div class="w-10 h-10 flex items-center justify-center bg-red-100 text-red-600 rounded mb-3">
                             <i class="ri-money-dollar-circle-line text-xl"></i>
@@ -720,7 +687,6 @@
                         <h4 class="font-medium mb-1">Chi_Phi</h4>
                         <p class="text-sm text-gray-600">Theo dõi chi phí phát sinh</p>
                     </div>
-                    
                     <div class="bg-white p-4 rounded shadow-sm">
                         <div class="w-10 h-10 flex items-center justify-center bg-yellow-100 text-yellow-600 rounded mb-3">
                             <i class="ri-file-pdf-line text-xl"></i>
@@ -728,7 +694,6 @@
                         <h4 class="font-medium mb-1">Hoa_Don_PDF</h4>
                         <p class="text-sm text-gray-600">Mẫu xuất hóa đơn PDF</p>
                     </div>
-                    
                     <div class="bg-white p-4 rounded shadow-sm">
                         <div class="w-10 h-10 flex items-center justify-center bg-indigo-100 text-indigo-600 rounded mb-3">
                             <i class="ri-bar-chart-line text-xl"></i>
@@ -738,19 +703,8 @@
                     </div>
                 </div>
             </div>
-            
             <div class="bg-gray-50 p-6 rounded-lg">
                 <h3 class="text-xl font-semibold mb-4">Hướng Dẫn Từng Bước</h3>
-                <div class="flex items-start">
-  <div class="w-8 h-8 flex items-center justify-center bg-primary text-white rounded-full flex-shrink-0 mt-1">
-    <span class="font-medium">6</span>
-  </div>
-  <div class="ml-4">
-    <h4 class="font-medium mb-1">Cấu hình Fchat (tùy chọn nâng cao)</h4>
-    <p class="text-gray-600">Truy cập <a href="https://fchat.vn" target="_blank" class="text-primary hover:underline">fchat.vn</a>, tạo chatbot và liên kết với Google Sheet hoặc API để nhận báo cáo, trả lời truy vấn như: “doanh thu hôm nay”, “lợi nhuận tuần trước”…</p>
-  </div>
-</div>
-
                 <div class="space-y-4">
                     <div class="flex items-start">
                         <div class="w-8 h-8 flex items-center justify-center bg-primary text-white rounded-full flex-shrink-0 mt-1">
@@ -761,7 +715,6 @@
                             <p class="text-gray-600">Sao chép file Google Sheet mẫu vào tài khoản Google của bạn.</p>
                         </div>
                     </div>
-                    
                     <div class="flex items-start">
                         <div class="w-8 h-8 flex items-center justify-center bg-primary text-white rounded-full flex-shrink-0 mt-1">
                             <span class="font-medium">2</span>
@@ -771,7 +724,6 @@
                             <p class="text-gray-600">Vào menu Extensions > Apps Script, chạy hàm onOpen() để khởi tạo hệ thống.</p>
                         </div>
                     </div>
-                    
                     <div class="flex items-start">
                         <div class="w-8 h-8 flex items-center justify-center bg-primary text-white rounded-full flex-shrink-0 mt-1">
                             <span class="font-medium">3</span>
@@ -781,7 +733,6 @@
                             <p class="text-gray-600">Cập nhật thông tin sản phẩm của bạn vào sheet San_Pham.</p>
                         </div>
                     </div>
-                    
                     <div class="flex items-start">
                         <div class="w-8 h-8 flex items-center justify-center bg-primary text-white rounded-full flex-shrink-0 mt-1">
                             <span class="font-medium">4</span>
@@ -791,7 +742,6 @@
                             <p class="text-gray-600">Thiết lập kết nối với Fchat để nhận báo cáo tự động qua Zalo.</p>
                         </div>
                     </div>
-                    
                     <div class="flex items-start">
                         <div class="w-8 h-8 flex items-center justify-center bg-primary text-white rounded-full flex-shrink-0 mt-1">
                             <span class="font-medium">5</span>
@@ -801,11 +751,19 @@
                             <p class="text-gray-600">Triển khai Web App để nhập đơn hàng bằng giọng nói trên điện thoại.</p>
                         </div>
                     </div>
+                    <div class="flex items-start">
+                        <div class="w-8 h-8 flex items-center justify-center bg-primary text-white rounded-full flex-shrink-0 mt-1">
+                            <span class="font-medium">6</span>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-medium mb-1">Cấu hình Fchat (tùy chọn nâng cao)</h4>
+                            <p class="text-gray-600">Truy cập <a href="https://fchat.vn" target="_blank" class="text-primary hover:underline">fchat.vn</a>, tạo chatbot và liên kết với Google Sheet hoặc API để nhận báo cáo, trả lời truy vấn như: “doanh thu hôm nay”, “lợi nhuận tuần trước”…</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-
     <!-- Testimonials -->
     <section class="py-16 bg-gray-50">
         <div class="container mx-auto px-4">
@@ -813,7 +771,6 @@
                 <h2 class="text-3xl font-bold text-gray-900 mb-4">Khách Hàng Nói Gì Về Chúng Tôi</h2>
                 <p class="text-gray-600 max-w-2xl mx-auto">Những trải nghiệm thực tế từ người dùng YOHU PRO 2.0.</p>
             </div>
-            
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="bg-white p-6 rounded-lg shadow-sm">
                     <div class="flex items-center mb-4">
@@ -836,7 +793,6 @@
                         </div>
                     </div>
                 </div>
-                
                 <div class="bg-white p-6 rounded-lg shadow-sm">
                     <div class="flex items-center mb-4">
                         <div class="text-yellow-400 flex">
@@ -858,7 +814,6 @@
                         </div>
                     </div>
                 </div>
-                
                 <div class="bg-white p-6 rounded-lg shadow-sm">
                     <div class="flex items-center mb-4">
                         <div class="text-yellow-400 flex">
@@ -883,33 +838,27 @@
             </div>
         </div>
     </section>
-
     <!-- Dùng Thử Ngay -->
     <section class="py-16 bg-primary bg-opacity-10" id="dung-thu">
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-3xl font-bold text-gray-900 mb-4">Bắt Đầu Sử Dụng YOHU PRO 2.0</h2>
             <p class="text-gray-600 max-w-2xl mx-auto mb-8">Bạn là hộ kinh doanh? Không biết công nghệ vẫn dùng được!</p>
-            
             <div class="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-md">
                 <h3 class="text-xl font-semibold mb-4">Đăng Ký Dùng Thử Miễn Phí</h3>
                 <p class="text-gray-600 mb-6">Không cần thẻ tín dụng, không cần tài khoản Google doanh nghiệp.</p>
-                
                 <form class="space-y-4">
                     <div>
                         <label for="fullname" class="block text-sm font-medium text-gray-700 mb-1 text-left">Họ và tên</label>
                         <input type="text" id="fullname" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Nhập họ và tên của bạn">
                     </div>
-                    
                     <div>
                         <label for="phone" class="block text-sm font-medium text-gray-700 mb-1 text-left">Số điện thoại</label>
                         <input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Nhập số điện thoại của bạn">
                     </div>
-                    
                     <div>
                         <label for="email" class="block text-sm font-medium text-gray-700 mb-1 text-left">Email</label>
                         <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Nhập địa chỉ email của bạn">
                     </div>
-                    
                     <div>
                         <label for="business" class="block text-sm font-medium text-gray-700 mb-1 text-left">Loại hình kinh doanh</label>
                         <div class="relative">
@@ -926,15 +875,12 @@
                             </div>
                         </div>
                     </div>
-                    
                     <button type="submit" class="w-full bg-primary text-white px-4 py-3 !rounded-button font-medium hover:bg-blue-700 transition whitespace-nowrap">ĐĂNG KÝ DÙNG THỬ NGAY</button>
                 </form>
-                
                 <p class="text-sm text-gray-500 mt-4">Bằng cách đăng ký, bạn đồng ý với <a href="#" class="text-primary hover:underline">Điều khoản sử dụng</a> và <a href="#" class="text-primary hover:underline">Chính sách bảo mật</a> của chúng tôi.</p>
             </div>
         </div>
     </section>
-
     <!-- Footer -->
     <footer class="bg-gray-800 text-white pt-12 pb-6" id="lien-he">
         <div class="container mx-auto px-4">
@@ -963,7 +909,6 @@
                         </a>
                     </div>
                 </div>
-                
                 <div>
                     <h3 class="text-lg font-semibold mb-4">Sản Phẩm</h3>
                     <ul class="space-y-2">
@@ -973,7 +918,6 @@
                         <li><a href="#" class="text-gray-400 hover:text-white transition">Tùy chỉnh theo yêu cầu</a></li>
                     </ul>
                 </div>
-                
                 <div>
                     <h3 class="text-lg font-semibold mb-4">Hỗ Trợ</h3>
                     <ul class="space-y-2">
@@ -983,7 +927,6 @@
                         <li><a href="#" class="text-gray-400 hover:text-white transition">Liên hệ hỗ trợ</a></li>
                     </ul>
                 </div>
-                
                 <div>
                     <h3 class="text-lg font-semibold mb-4">Liên Hệ</h3>
                     <ul class="space-y-2">
@@ -995,184 +938,112 @@
                         </li>
                         <li class="flex items-start">
                             <div class="w-5 h-5 flex items-center justify-center text-gray-400 mt-1">
-                                <i class="ri-phone-line"></i>
-                            </div>
-                            <span class="ml-2 text-gray-400">Hotline: 0973 480 488</span>
-                        </li>
-                        <li class="flex items-start">
-                            <div class="w-5 h-5 flex items-center justify-center text-gray-400 mt-1">
-                                <i class="ri-chat-1-line"></i>
-                            </div>
-                            <span class="ml-2 text-gray-400">Zalo OA: 0339606969</span>
-                        </li>
-                        <li class="flex items-start">
-                            <div class="w-5 h-5 flex items-center justify-center text-gray-400 mt-1">
                                 <i class="ri-mail-line"></i>
                             </div>
-                            <span class="ml-2 text-gray-400">Email: info@yohu.vn</span>
+                            <span class="ml-2 text-gray-400">support@yohu.vn</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-gray-400 mt-1">
+                                <i class="ri-phone-line"></i>
+                            </div>
+                            <span class="ml-2 text-gray-400">+84 123 456 789</span>
                         </li>
                     </ul>
                 </div>
             </div>
-            
-            <div class="border-t border-gray-700 pt-6">
-                <div class="flex flex-col md:flex-row justify-between items-center">
-                    <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 Công ty TNHH YOHU Việt Nam. Tất cả các quyền được bảo lưu.</p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white transition text-sm">Điều khoản sử dụng</a>
-                        <a href="#" class="text-gray-400 hover:text-white transition text-sm">Chính sách bảo mật</a>
-                    </div>
-                </div>
+            <div class="border-t border-gray-700 pt-6 text-center text-gray-400">
+                <p>© 2025 YOHU PRO 2.0. All rights reserved.</p>
             </div>
         </div>
     </footer>
-
-    <!-- Floating Elements -->
-    <a href="#dung-thu" class="floating-cta bg-primary text-white px-4 py-3 !rounded-button font-medium hover:bg-blue-700 transition shadow-lg whitespace-nowrap hidden md:block">
-        DÙNG THỬ NGAY
-    </a>
-    
-    <div class="chat-bubble w-12 h-12 bg-secondary text-white rounded-full flex items-center justify-center shadow-lg cursor-pointer">
-        <i class="ri-customer-service-2-line text-xl"></i>
+    <!-- Voice Input -->
+    <div class="text-center mt-3">
+        <p id="mic-output" class="text-gray-700 text-sm">Nhấn nút mic để ra lệnh bằng giọng nói</p>
     </div>
-    
-    <div id="back-to-top" class="back-to-top w-10 h-10 bg-gray-800 text-white rounded-full flex items-center justify-center shadow-lg cursor-pointer">
-        <i class="ri-arrow-up-line"></i>
-    </div>
-
-    <script id="mobile-menu-script">
-        document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const closeMenuButton = document.getElementById('close-menu');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const mobileMenuLinks = mobileMenu.querySelectorAll('a');
-            
-            mobileMenuButton.addEventListener('click', function() {
-                mobileMenu.classList.add('open');
-            });
-            
-            closeMenuButton.addEventListener('click', function() {
-                mobileMenu.classList.remove('open');
-            });
-            
-            mobileMenuLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    mobileMenu.classList.remove('open');
-                });
-            });
-        });
-    </script>
-
-    <script id="scroll-script">
-        document.addEventListener('DOMContentLoaded', function() {
-            const backToTop = document.getElementById('back-to-top');
-            
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 300) {
-                    backToTop.classList.add('visible');
-                } else {
-                    backToTop.classList.remove('visible');
-                }
-            });
-            
-            backToTop.addEventListener('click', function() {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
-
-    <script id="smooth-scroll-script">
-        document.addEventListener('DOMContentLoaded', function() {
-            const links = document.querySelectorAll('a[href^="#"]');
-            
-            links.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-        });
-    </script>
-<div class="my-6 text-center">
-  <!-- Nút Mic để nói -->
-  <!-- Nút Gọi Điện với biểu tượng Điện thoại -->
-<div class="fixed bottom-10 right-24 z-50">
-    <a href="tel:+84973480488" id="call-button" class="bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-green-700 transition">
-        <i class="ri-phone-fill text-2xl"></i> <!-- Biểu tượng Điện thoại -->
-    </a>
-</div>
-
-<!-- Nút Mic với biểu tượng Micro -->
-<div class="fixed bottom-10 right-10 z-50">
-    <button id="mic-button" class="bg-primary text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 transition">
-        <i class="ri-mic-line text-2xl"></i> <!-- Biểu tượng Mic -->
+    <div id="commands-output" class="hidden fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#e0f7fa] p-5 rounded-lg max-w-[80%] text-center text-gray-700 text-sm shadow-lg z-[1000] overflow-y-auto max-h-[50vh]"></div>
+    <div class="report-output"></div>
+    <button id="mic-button" class="fixed bottom-10 right-10 bg-primary text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 transition z-[1000]">
+        <i class="ri-mic-line text-xl"></i>
     </button>
-</div>
-
-<!-- Vùng hiển thị kết quả khi người dùng nói -->
-<div class="text-center mt-3">
-    <p id="mic-output" class="text-gray-700 text-sm"></p>
-</div>
-
-<body>
-    <button id="mic-button">Ra lệnh giọng nói</button>
-    <div id="mic-output"></div>
-    <div class="report-output" style="display: none; background-color: #e6ffe6; padding: 10px;"></div>
-    <script src="https://code.responsivevoice.org/responsivevoice.js?key=FS1WhbPu"></script>
+    <!-- Thêm bảng câu lệnh giọng nói -->
+    <div id="voice-commands-table" class="voice-commands-table">
+        <h3 class="text-lg font-semibold mb-3">Câu lệnh giọng nói</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Câu lệnh</th>
+                </tr>
+            </thead>
+            <tbody id="commands-list"></tbody>
+        </table>
+    </div>
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        let recognition;
+        const SPREADSHEET_ID = '1L_N1mKuhZEq8f3aQj0bS-8xpx8p3Z5qG7Z0M0gF4pA';
+        const SHEET_API_KEY = 'AIzaSyAlKO4MwQvIG2GaZzCIR1zmGAPIN5MC9XI';
         const micBtn = document.getElementById('mic-button');
         const micOutput = document.getElementById('mic-output');
+        const commandsOutput = document.getElementById('commands-output');
         const reportBox = document.querySelector('.report-output');
-        const SHEET_API_KEY = 'AIzaSyAlKO4MwQvIG2GaZzCIR1zmGAPIN5MC9XI';
-        const SPREADSHEET_ID = '1lz_M9TneUlq8TOpubjxJzH4SNS4d1R6mprn3Nzzxx74';
+        const voiceCommandsTable = document.getElementById('voice-commands-table');
+        const commandsList = document.getElementById('commands-list');
+        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        recognition.lang = 'vi-VN';
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
 
         function normalizeText(text) {
-            return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d").replace(/[^a-z0-9\s]/g, "").trim();
         }
 
-        // Kiểm tra ResponsiveVoice
-        if (!window.responsiveVoice) {
-            micOutput.innerText = '❌ Lỗi: Không tải được ResponsiveVoice. Kiểm tra mạng hoặc key.';
-            return;
+        function showReport(text) {
+            reportBox.style.display = 'block';
+            reportBox.innerText = text;
+            setTimeout(() => {
+                reportBox.style.display = 'none';
+            }, 10000);
         }
 
-        try {
-            recognition = window.SpeechRecognition || window.webkitSpeechRecognition ? new (window.SpeechRecognition || window.webkitSpeechRecognition)() : null;
-            if (!recognition) throw new Error('Dùng Chrome/Safari mới nhất.');
-        } catch (error) {
-            micOutput.innerText = '⚠️ ' + error.message;
-            micBtn.disabled = true;
-            return;
+        function speakText(text) {
+            responsiveVoice.speak(text, 'Vietnamese Female', { rate: 1 });
         }
 
-        recognition.lang = 'vi-VN';
-        recognition.continuous = false;
-
-        micBtn.addEventListener('click', () => {
+        async function loadVoiceCommands() {
             try {
+                const response = await fetch(
+                    `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/BaoCaoGiongNoi!C2:C100?key=${SHEET_API_KEY}`,
+                    { headers: { 'Content-Type': 'application/json' } }
+                );
+                if (!response.ok) throw new Error(`Lỗi lấy câu lệnh: ${response.status}`);
+                const data = await response.json();
+                const commands = data.values ? data.values.flat().filter(cmd => cmd && cmd.trim()) : [];
+                commandsList.innerHTML = '';
+                commands.forEach(cmd => {
+                    const tr = document.createElement('tr');
+                    const td = document.createElement('td');
+                    td.textContent = cmd;
+                    tr.appendChild(td);
+                    commandsList.appendChild(tr);
+                });
+            } catch (error) {
+                console.error('Lỗi khi tải câu lệnh:', error);
+                commandsList.innerHTML = '<tr><td>Không thể tải câu lệnh.</td></tr>';
+            }
+        }
+
+        micBtn.addEventListener('click', async () => {
+            try {
+                await loadVoiceCommands();
+                voiceCommandsTable.style.display = 'block';
                 recognition.start();
                 micOutput.innerText = '🎙️ Đang nghe...';
             } catch (error) {
-                micOutput.innerText = '❌ Lỗi mic: ' + error.message;
+                micOutput.innerText = '❌ Lỗi mic hoặc lấy câu lệnh: ' + error.message;
+                voiceCommandsTable.style.display = 'none';
             }
         });
 
         recognition.onresult = async (event) => {
+            voiceCommandsTable.style.display = 'none';
             const transcript = event.results[0][0].transcript;
             micOutput.innerText = '📝 Bạn nói: "' + transcript + '"';
             const normalizedTranscript = normalizeText(transcript);
@@ -1201,42 +1072,24 @@
                 showReport(responseText);
                 speakText(responseText);
                 micOutput.innerText += '\n✅ Thành công.';
+                commandsOutput.classList.add('hidden');
             } catch (error) {
                 micOutput.innerText += '\n❌ Lỗi: ' + error.message;
                 showReport('Không tìm thấy báo cáo.');
                 speakText('Không tìm thấy báo cáo.');
+                commandsOutput.classList.add('hidden');
             }
         };
 
         recognition.onerror = (e) => {
             micOutput.innerText = '❌ Lỗi mic: ' + e.error;
+            voiceCommandsTable.style.display = 'none';
+            commandsOutput.classList.add('hidden');
         };
 
-        function showReport(text) {
-            if (reportBox) {
-                reportBox.textContent = text;
-                reportBox.style.display = 'block';
-                setTimeout(() => reportBox.style.display = 'none', 30000);
-            }
-        }
-
-        function speakText(text) {
-            try {
-                if (responsiveVoice.isPlaying()) responsiveVoice.cancel();
-                responsiveVoice.speak(text, "Vietnamese Female", {
-                    rate: 1.0,
-                    volume: 1,
-                    onerror: () => {
-                        micOutput.innerText += '\n❌ Lỗi phát âm: Kiểm tra key hoặc trình duyệt.';
-                    }
-                });
-            } catch (error) {
-                micOutput.innerText += '\n❌ Lỗi phát âm: ' + error.message;
-            }
-        }
-    });
+        recognition.onend = () => {
+            voiceCommandsTable.style.display = 'none';
+        };
     </script>
-</body>
-</script>
 </body>
 </html>
