@@ -56,17 +56,36 @@
             left: 50%;
             transform: translate(-50%, -50%);
             background-color: #e6ffe6;
-            padding: 20px;
-            border-radius: 8px;
-            max-width: 80%;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 90%;
             text-align: left;
-            font-size: 1.1rem;
+            font-size: 1.3rem;
             color: #004d40;
             display: none;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             z-index: 1000;
-            max-height: 80vh;
+            max-height: 85vh;
             overflow-y: auto;
+        }
+        .voice-commands-panel li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .voice-commands-panel .command-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background-color: #dc2626;
+            color: white;
+            border-radius: 50%;
+            font-size: 1rem;
+            font-weight: bold;
+            margin-right: 12px;
+            flex-shrink: 0;
         }
         :where([class^="ri-"])::before { content: "\f3c2"; }
         .floating-cta {
@@ -106,6 +125,16 @@
             }
             .mobile-menu.open {
                 transform: translateX(0);
+            }
+            .voice-commands-panel {
+                padding: 20px;
+                font-size: 1.1rem;
+                max-width: 95%;
+            }
+            .voice-commands-panel .command-number {
+                width: 24px;
+                height: 24px;
+                font-size: 0.9rem;
             }
         }
         input[type="number"]::-webkit-inner-spin-button,
