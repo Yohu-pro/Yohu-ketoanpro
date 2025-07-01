@@ -8,11 +8,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 1000, once: true });
         tailwind.config={
             theme:{
                 extend:{
@@ -37,19 +36,24 @@
         }
     </script>
     <style>
+        video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
         .report-output {
             position: fixed;
             top: 20%;
             left: 50%;
             transform: translateX(-50%);
-            background-color: #e0f7fa;
+            background-color: #e0f7fa; /* Màu nền xanh nhẹ */
             padding: 20px;
             border-radius: 8px;
             max-width: 80%;
             text-align: center;
             font-size: 1.2rem;
             color: #004d40;
-            display: none;
+            display: none; /* Ẩn đi ban đầu */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             z-index: 1000;
         }
@@ -93,19 +97,19 @@
         :where([class^="ri-"])::before { content: "\f3c2"; }
         .floating-cta {
             position: fixed;
-            bottom: 2.25rem;
+            bottom: 2rem;
             right: 2rem;
             z-index: 50;
         }
         .chat-bubble {
             position: fixed;
-            bottom: 6.25rem;
+            bottom: 6rem;
             right: 2rem;
             z-index: 50;
         }
         .back-to-top {
             position: fixed;
-            bottom: 10.25rem;
+            bottom: 10rem;
             right: 2rem;
             z-index: 50;
             opacity: 0;
@@ -139,18 +143,6 @@
                 height: 24px;
                 font-size: 0.9rem;
             }
-            .floating-cta {
-                bottom: 4.5rem;
-                right: 1rem;
-            }
-            .chat-bubble {
-                bottom: 8.5rem;
-                right: 1rem;
-            }
-            .back-to-top {
-                bottom: 12.5rem;
-                right: 1rem;
-            }
         }
         input[type="number"]::-webkit-inner-spin-button,
         input[type="number"]::-webkit-outer-spin-button {
@@ -160,13 +152,6 @@
     </style>
 </head>
 <body class="font-sans bg-gray-50">
-    <!-- Status Bar -->
-    <div class="bg-blue-900 text-white py-2 px-4 flex justify-end items-center">
-        <a href="tel:+84973480488" class="flex items-center space-x-2">
-            <i class="ri-phone-fill text-lg"></i>
-            <span class="text-sm font-medium">Hotline: +84.973 480 488</span>
-        </a>
-    </div>
     <!-- Header -->
     <header class="bg-white shadow-sm sticky top-0 z-50">
         <div class="container mx-auto px-4 py-3 flex items-center justify-between">
@@ -174,6 +159,8 @@
                 <span class="text-2xl font-['Pacifico'] text-primary">YOHU</span>
                 <span class="ml-1 text-lg font-semibold">PRO 2.0</span>
             </a>
+            
+            <!-- Desktop Menu -->
             <nav class="hidden md:flex space-x-6">
                 <a href="#gioi-thieu" class="text-gray-700 hover:text-primary transition">Giới thiệu</a>
                 <a href="#san-pham" class="text-gray-700 hover:text-primary transition">Sản phẩm TM & DV</a>
@@ -182,6 +169,7 @@
                 <a href="#tai-lieu" class="text-gray-700 hover:text-primary transition">Tài liệu hướng dẫn</a>
                 <a href="#lien-he" class="text-gray-700 hover:text-primary transition">Hỗ trợ & Liên hệ</a>
             </nav>
+            
             <div class="flex items-center space-x-4">
                 <a href="#dung-thu" class="hidden md:block bg-primary text-white px-4 py-2 !rounded-button font-medium hover:bg-blue-700 transition whitespace-nowrap">DÙNG THỬ NGAY</a>
                 <button id="mobile-menu-button" class="md:hidden w-10 h-10 flex items-center justify-center text-gray-700">
@@ -190,6 +178,7 @@
             </div>
         </div>
     </header>
+    
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="mobile-menu md:hidden">
         <div class="p-4 flex justify-between items-center border-b">
@@ -209,100 +198,60 @@
         </nav>
     </div>
 
-</head>
-<body class="font-sans bg-gray-50">
-    <!-- Status Bar -->
-    <div class="bg-blue-900 text-white py-2 px-4 flex justify-end items-center">
-        <a href="tel:+84973480488" class="flex items-center space-x-2">
-            <i class="ri-phone-fill text-lg"></i>
-            <span class="text-sm font-medium">Hotline: +84.973 480 488</span>
-        </a>
-    </div>
-    <!-- Header -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
-            <a href="#" class="flex items-center">
-                <span class="text-2xl font-['Pacifico'] text-primary">YOHU</span>
-                <span class="ml-1 text-lg font-semibold">PRO 2.0</span>
-            </a>
-            <nav class="hidden md:flex space-x-6">
-                <a href="#gioi-thieu" class="text-gray-700 hover:text-primary transition">Giới thiệu</a>
-                <a href="#san-pham" class="text-gray-700 hover:text-primary transition">Sản phẩm TM & DV</a>
-                <a href="#tinh-nang" class="text-gray-700 hover:text-primary transition">Tính năng</a>
-                <a href="#bang-gia" class="text-gray-700 hover:text-primary transition">Bảng giá</a>
-                <a href="#tai-lieu" class="text-gray-700 hover:text-primary transition">Tài liệu hướng dẫn</a>
-                <a href="#lien-he" class="text-gray-700 hover:text-primary transition">Hỗ trợ & Liên hệ</a>
-            </nav>
-            <div class="flex items-center space-x-4">
-                <a href="#dung-thu" class="hidden md:block bg-primary text-white px-4 py-2 !rounded-button font-medium hover:bg-blue-700 transition whitespace-nowrap">DÙNG THỬ NGAY</a>
-                <button id="mobile-menu-button" class="md:hidden w-10 h-10 flex items-center justify-center text-gray-700">
-                    <i class="ri-menu-line text-2xl"></i>
-                </button>
+   <!-- Hero Section -->
+<section class="relative w-full bg-white overflow-hidden" id="gioi-thieu">
+    <!-- Banner động với video -->
+    <div class="relative h-[500px] overflow-hidden" data-aos="fade-in">
+        <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover">
+            <source src="https://public.readdy.ai/ai/video_res/9de87693-20e7-4ed8-b6c5-d4986a6c3b62.mp4" type="video/mp4">
+        </video>
+        <div class="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/20 z-10"></div>
+        
+        <!-- Thanh trạng thái Hotline -->
+        <div class="absolute top-0 left-0 w-full bg-green-800 text-white py-2 z-20">
+            <div class="container mx-auto px-4 flex items-center justify-center">
+                <i class="ri-phone-fill mr-2"></i>
+                <span class="font-medium">Hotline: +84.973 480 488</span>
             </div>
         </div>
-    </header>
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="mobile-menu md:hidden">
-        <div class="p-4 flex justify-between items-center border-b">
-            <span class="text-xl font-['Pacifico'] text-primary">YOHU PRO 2.0</span>
-            <button id="close-menu" class="w-10 h-10 flex items-center justify-center">
-                <i class="ri-close-line text-2xl"></i>
-            </button>
-        </div>
-        <nav class="flex flex-col p-4">
-            <a href="#gioi-thieu" class="py-3 border-b border-gray-100 text-gray-700">Giới thiệu</a>
-            <a href="#san-pham" class="py-3 border-b border-gray-100 text-gray-700">Sản phẩm TM & DV</a>
-            <a href="#tinh-nang" class="py-3 border-b border-gray-100 text-gray-700">Tính năng</a>
-            <a href="#bang-gia" class="py-3 border-b border-gray-100 text-gray-700">Bảng giá</a>
-            <a href="#tai-lieu" class="py-3 border-b border-gray-100 text-gray-700">Tài liệu hướng dẫn</a>
-            <a href="#lien-he" class="py-3 border-b border-gray-100 text-gray-700">Hỗ trợ & Liên hệ</a>
-            <a href="#dung-thu" class="mt-4 bg-primary text-white px-4 py-3 !rounded-button font-medium text-center whitespace-nowrap">DÙNG THỬ NGAY</a>
-        </nav>
-    </div>
-    <!-- Hero Section -->
-    <section class="relative" id="gioi-thieu">
-        <div class="relative h-[500px] overflow-hidden">
-            <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover">
-                <source src="https://public.readdy.ai/ai/video_res/9de87693-20e7-4ed8-b6c5-d4986a6c3b62.mp4" type="video/mp4">
-            </video>
-            <div class="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent z-10"></div>
-            <div class="container mx-auto px-4 py-16 md:py-24 relative z-20">
-                <div class="flex flex-col md:flex-row items-center">
-                    <div class="w-full md:w-1/2 mb-8 md:mb-0" data-aos="fade-right">
-                        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">Giải pháp quản lý bán hàng tự động cho doanh nghiệp</h1>
-                        <p class="text-xl text-gray-700 mb-6">Bạn là hộ kinh doanh? Không biết công nghệ vẫn dùng được!</p>
-                        <div class="mb-8">
-                            <p class="text-gray-600 mb-4">Không cần cài đặt, chỉ sử dụng Google Trang tính, nhập hệ thống menu, xuất đơn PDF, kiểm soát công nợ, kho và báo cáo.</p>
-                            <ul class="space-y-2">
-                                <li class="flex items-start">
-                                    <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
-                                        <i class="ri-check-line"></i>
-                                    </div>
-                                    <span class="ml-2">Miễn phí phiên bản Lite</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
-                                        <i class="ri-check-line"></i>
-                                    </div>
-                                    <span class="ml-2">Cài đặt trong 15 phút</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
-                                        <i class="ri-check-line"></i>
-                                    </div>
-                                    <span class="ml-2">Không cần tài khoản Google doanh nghiệp</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <a href="#dung-thu" class="inline-block bg-primary text-white px-6 py-3 !rounded-button font-medium hover:bg-blue-700 transition text-lg whitespace-nowrap">DÙNG THỬ NGAY</a>
+
+        <div class="container mx-auto px-4 py-16 md:py-24 relative z-20">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="w-full md:w-1/2 mb-8 md:mb-0" data-aos="fade-right">
+                    <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">GIẢI PHÁP BÁN HÀNG TỰ ĐỘNG CHO DOANH NGHIỆP</h1>
+                    <p class="text-xl text-gray-700 mb-6">Bạn là hộ kinh doanh? Không biết công nghệ vẫn dùng được!</p>
+                    <div class="mb-8">
+                        <p class="text-gray-600 mb-4">Không cần cài đặt, chỉ sử dụng Google Trang tính, nhập hệ thống menu, xuất đơn PDF, kiểm soát công nợ, kho và báo cáo.</p>
+                        <ul class="space-y-2">
+                            <li class="flex items-start">
+                                <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <span class="ml-2">Miễn phí phiên bản Lite</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <span class="ml-2">Cài đặt trong 15 phút</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <span class="ml-2">Không cần tài khoản Google doanh nghiệp</span>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="w-full md:w-1/2 md:pl-8">
-                        <!-- This div is intentionally left empty as the background video covers this area -->
-                    </div>
+                    <a href="#dung-thu" class="inline-block bg-primary text-white px-6 py-3 !rounded-button font-medium hover:bg-blue-700 transition text-lg whitespace-nowrap">DÙNG THỬ NGAY</a>
+                </div>
+                <div class="w-full md:w-1/2 md:pl-8" data-aos="fade-left">
+                    <img src="https://readdy.ai/api/search-image?query=A%20modern%20business%20dashboard%20on%20a%20laptop%20screen%20showing%20sales%20charts%20and%20inventory%20data.%20The%20background%20is%20a%20clean%2C%20professional%20office%20with%20subtle%20blue%20accents%2C%20representing%20business%20management%20and%20automation&width=600&height=400&seq=hero2&orientation=landscape" alt="YOHU PRO Dashboard" class="w-full h-auto rounded-lg shadow-lg">
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Tính Năng Chính -->
     <section class="py-16 bg-white" id="tinh-nang">
