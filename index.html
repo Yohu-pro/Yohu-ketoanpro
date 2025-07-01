@@ -8,199 +8,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
-    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
-    <script>
-        tailwind.config={
-            theme:{
-                extend:{
-                    colors:{
-                        primary:'#2563eb',
-                        secondary:'#f97316'
-                    },
-                    borderRadius:{
-                        'none':'0px',
-                        'sm':'4px',
-                        DEFAULT:'8px',
-                        'md':'12px',
-                        'lg':'16px',
-                        'xl':'20px',
-                        '2xl':'24px',
-                        '3xl':'32px',
-                        'full':'9999px',
-                        'button':'8px'
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        .report-output {
-            position: fixed;
-            top: 20%;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #e0f7fa; /* Màu nền xanh nhẹ */
-            padding: 20px;
-            border-radius: 8px;
-            max-width: 80%;
-            text-align: center;
-            font-size: 1.2rem;
-            color: #004d40;
-            display: none; /* Ẩn đi ban đầu */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-        }
-        .voice-commands-panel {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #e6ffe6;
-            padding: 30px;
-            border-radius: 12px;
-            max-width: 90%;
-            text-align: left;
-            font-size: 1.3rem;
-            color: #004d40;
-            display: none;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            z-index: 1000;
-            max-height: 85vh;
-            overflow-y: auto;
-        }
-        .voice-commands-panel li {
-            display: flex;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-        .voice-commands-panel .command-number {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 30px;
-            height: 30px;
-            background-color: #dc2626;
-            color: white;
-            border-radius: 50%;
-            font-size: 1rem;
-            font-weight: bold;
-            margin-right: 12px;
-            flex-shrink: 0;
-        }
-        :where([class^="ri-"])::before { content: "\f3c2"; }
-        .floating-cta {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            z-index: 50;
-        }
-        .chat-bubble {
-            position: fixed;
-            bottom: 6rem;
-            right: 2rem;
-            z-index: 50;
-        }
-        .back-to-top {
-            position: fixed;
-            bottom: 10rem;
-            right: 2rem;
-            z-index: 50;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        .back-to-top.visible {
-            opacity: 1;
-        }
-        @media (max-width: 768px) {
-            .mobile-menu {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: white;
-                z-index: 100;
-                transform: translateX(-100%);
-                transition: transform 0.3s ease-in-out;
-            }
-            .mobile-menu.open {
-                transform: translateX(0);
-            }
-            .voice-commands-panel {
-                padding: 20px;
-                font-size: 1.1rem;
-                max-width: 95%;
-            }
-            .voice-commands-panel .command-number {
-                width: 24px;
-                height: 24px;
-                font-size: 0.9rem;
-            }
-        }
-        input[type="number"]::-webkit-inner-spin-button,
-        input[type="number"]::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-    </style>
-</head>
-<body class="font-sans bg-gray-50">
-    <!-- Header -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
-            <a href="#" class="flex items-center">
-                <span class="text-2xl font-['Pacifico'] text-primary">YOHU</span>
-                <span class="ml-1 text-lg font-semibold">PRO 2.0</span>
-            </a>
-            
-            <!-- Desktop Menu -->
-            <nav class="hidden md:flex space-x-6">
-                <a href="#gioi-thieu" class="text-gray-700 hover:text-primary transition">Giới thiệu</a>
-                <a href="#san-pham" class="text-gray-700 hover:text-primary transition">Sản phẩm TM & DV</a>
-                <a href="#tinh-nang" class="text-gray-700 hover:text-primary transition">Tính năng</a>
-                <a href="#bang-gia" class="text-gray-700 hover:text-primary transition">Bảng giá</a>
-                <a href="#tai-lieu" class="text-gray-700 hover:text-primary transition">Tài liệu hướng dẫn</a>
-                <a href="#lien-he" class="text-gray-700 hover:text-primary transition">Hỗ trợ & Liên hệ</a>
-            </nav>
-            
-            <div class="flex items-center space-x-4">
-                <a href="#dung-thu" class="hidden md:block bg-primary text-white px-4 py-2 !rounded-button font-medium hover:bg-blue-700 transition whitespace-nowrap">DÙNG THỬ NGAY</a>
-                <button id="mobile-menu-button" class="md:hidden w-10 h-10 flex items-center justify-center text-gray-700">
-                    <i class="ri-menu-line text-2xl"></i>
-                </button>
-            </div>
-        </div>
-    </header>
-    
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="mobile-menu md:hidden">
-        <div class="p-4 flex justify-between items-center border-b">
-            <span class="text-xl font-['Pacifico'] text-primary">YOHU PRO 2.0</span>
-            <button id="close-menu" class="w-10 h-10 flex items-center justify-center">
-                <i class="ri-close-line text-2xl"></i>
-            </button>
-        </div>
-        <nav class="flex flex-col p-4">
-            <a href="#gioi-thieu" class="py-3 border-b border-gray-100 text-gray-700">Giới thiệu</a>
-            <a href="#san-pham" class="py-3 border-b border-gray-100 text-gray-700">Sản phẩm TM & DV</a>
-            <a href="#tinh-nang" class="py-3 border-b border-gray-100 text-gray-700">Tính năng</a>
-            <a href="#bang-gia" class="py-3 border-b border-gray-100 text-gray-700">Bảng giá</a>
-            <a href="#tai-lieu" class="py-3 border-b border-gray-100 text-gray-700">Tài liệu hướng dẫn</a>
-            <a href="#lien-he" class="py-3 border-b border-gray-100 text-gray-700">Hỗ trợ & Liên hệ</a>
-            <a href="#dung-thu" class="mt-4 bg-primary text-white px-4 py-3 !rounded-button font-medium text-center whitespace-nowrap">DÙNG THỬ NGAY</a>
-        </nav>
-    </div>
-
-   <!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YOHU PRO 2.0 - Giải pháp quản lý bán hàng tự động</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com/3.4.16"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -332,6 +139,18 @@
                 height: 24px;
                 font-size: 0.9rem;
             }
+            .floating-cta {
+                bottom: 4.5rem;
+                right: 1rem;
+            }
+            .chat-bubble {
+                bottom: 8.5rem;
+                right: 1rem;
+            }
+            .back-to-top {
+                bottom: 12.5rem;
+                right: 1rem;
+            }
         }
         input[type="number"]::-webkit-inner-spin-button,
         input[type="number"]::-webkit-outer-spin-button {
@@ -341,6 +160,13 @@
     </style>
 </head>
 <body class="font-sans bg-gray-50">
+    <!-- Status Bar -->
+    <div class="bg-primary text-white py-2 px-4 flex justify-end items-center">
+        <a href="tel:+84973480488" class="flex items-center space-x-2">
+            <i class="ri-phone-fill text-lg"></i>
+            <span class="text-sm font-medium">Hotline: +84.973 480 488</span>
+        </a>
+    </div>
     <!-- Header -->
     <header class="bg-white shadow-sm sticky top-0 z-50">
         <div class="container mx-auto px-4 py-3 flex items-center justify-between">
@@ -382,6 +208,7 @@
             <a href="#dung-thu" class="mt-4 bg-primary text-white px-4 py-3 !rounded-button font-medium text-center whitespace-nowrap">DÙNG THỬ NGAY</a>
         </nav>
     </div>
+
     <!-- Hero Section -->
     <section class="relative" id="gioi-thieu">
         <div class="relative h-[500px] overflow-hidden">
