@@ -56,36 +56,17 @@
             left: 50%;
             transform: translate(-50%, -50%);
             background-color: #e6ffe6;
-            padding: 30px;
-            border-radius: 12px;
-            max-width: 90%;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 80%;
             text-align: left;
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             color: #004d40;
             display: none;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             z-index: 1000;
-            max-height: 85vh;
+            max-height: 80vh;
             overflow-y: auto;
-        }
-        .voice-commands-panel li {
-            display: flex;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-        .voice-commands-panel .command-number {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 30px;
-            height: 30px;
-            background-color: #dc2626;
-            color: white;
-            border-radius: 50%;
-            font-size: 1rem;
-            font-weight: bold;
-            margin-right: 12px;
-            flex-shrink: 0;
         }
         :where([class^="ri-"])::before { content: "\f3c2"; }
         .floating-cta {
@@ -125,16 +106,6 @@
             }
             .mobile-menu.open {
                 transform: translateX(0);
-            }
-            .voice-commands-panel {
-                padding: 20px;
-                font-size: 1.1rem;
-                max-width: 95%;
-            }
-            .voice-commands-panel .command-number {
-                width: 24px;
-                height: 24px;
-                font-size: 0.9rem;
             }
         }
         input[type="number"]::-webkit-inner-spin-button,
@@ -1104,7 +1075,7 @@
 
     <!-- Voice Commands Panel -->
     <div id="voice-commands-panel" class="voice-commands-panel">
-        <h3 class="text-lg font-semibold mb-4">Danh sách câu lệnh giọng nói</h3>
+        <h3 class="text-lg font-semibold mb-3">Danh sách câu lệnh giọng nói</h3>
         <ul id="voice-commands-list">
             <li><span class="command-number">1</span>Kết quả Kinh doanh ngày</li>
             <li><span class="command-number">2</span>Kết quả Kinh doanh tháng</li>
@@ -1131,50 +1102,83 @@
     <!-- Report Output -->
     <div class="report-output"></div>
 
-   <script id="mobile-menu-script">
-    document.addEventListener('DOMContentLoaded', function() {
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const closeMenuButton = document.getElementById('close-menu');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
-        const micBtn = document.getElementById('mic-button');
-        const micOutput = document.getElementById('mic-output');
-        const voiceCommandsPanel = document.getElementById('voice-commands-panel');
-        const reportBox = document.querySelector('.report-output');
-        
-        mobileMenuButton.addEventListener('click', function() {
-            mobileMenu.classList.add('open');
-        });
-        
-        closeMenuButton.addEventListener('click', function() {
-            mobileMenu.classList.remove('open');
-        });
-        
-        mobileMenuLinks.forEach(link => {
-            link.addEventListener('click', function() {
+    <script id="mobile-menu-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const closeMenuButton = document.getElementById('close-menu');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.add('open');
+            });
+            
+            closeMenuButton.addEventListener('click', function() {
                 mobileMenu.classList.remove('open');
             });
+            
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.remove('open');
+                });
+            });
         });
+    </script>
 
-        const backToTop = document.getElementById('back-to-top');
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 300) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
+    <script id="scroll-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            const backToTop = document.getElementById('back-to-top');
+            
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+            });
+            
+            backToTop.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
         });
+    </script>
 
-        backToTop.addEventListener('click', function() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+    <script id="smooth-scroll-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('a[href^="#"]');
+            
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
         });
-    });
-</script>
-<script src="https://code.responsivevoice.org/responsivevoice.js?key=FS1WhbPu"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-const SHEET_API_KEY = 'AIzaSyAlKO4MwQvIG2GaZzCIR1zmGAPIN5MC9XI';
-const SPREADSHEET_ID = '1lz_M9TneUlq8TOpubjxJzH4SNS4d1R6mprn3Nzzxx74';
+    </script>
+
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=FS1WhbPu"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let recognition;
+            const micBtn = document.getElementById('mic-button');
+            const micOutput = document.getElementById('mic-output');
+            const reportBox = document.querySelector('.report-output');
+            const voiceCommandsPanel = document.getElementById('voice-commands-panel');
+            const SHEET_API_KEY = 'AIzaSyAlKO4MwQvIG2GaZzCIR1zmGAPIN5MC9XI';
+            const SPREADSHEET_ID = '1lz_M9TneUlq8TOpubjxJzH4SNS4d1R6mprn3Nzzxx74';
 
 function normalizeText(text) {
     return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
