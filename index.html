@@ -93,19 +93,19 @@
         :where([class^="ri-"])::before { content: "\f3c2"; }
         .floating-cta {
             position: fixed;
-            bottom: 2rem;
+            bottom: 2.25rem;
             right: 2rem;
             z-index: 50;
         }
         .chat-bubble {
             position: fixed;
-            bottom: 6rem;
+            bottom: 6.25rem;
             right: 2rem;
             z-index: 50;
         }
         .back-to-top {
             position: fixed;
-            bottom: 10rem;
+            bottom: 10.25rem;
             right: 2rem;
             z-index: 50;
             opacity: 0;
@@ -161,7 +161,7 @@
 </head>
 <body class="font-sans bg-gray-50">
     <!-- Status Bar -->
-    <div class="bg-primary text-white py-2 px-4 flex justify-end items-center">
+    <div class="bg-blue-900 text-white py-2 px-4 flex justify-end items-center">
         <a href="tel:+84973480488" class="flex items-center space-x-2">
             <i class="ri-phone-fill text-lg"></i>
             <span class="text-sm font-medium">Hotline: +84.973 480 488</span>
@@ -208,32 +208,51 @@
             <a href="#dung-thu" class="mt-4 bg-primary text-white px-4 py-3 !rounded-button font-medium text-center whitespace-nowrap">DÙNG THỬ NGAY</a>
         </nav>
     </div>
-
     <!-- Hero Section -->
     <section class="relative" id="gioi-thieu">
         <div class="relative h-[500px] overflow-hidden">
             <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover">
                 <source src="https://public.readdy.ai/ai/video_res/9de87693-20e7-4ed8-b6c5-d4986a6c3b62.mp4" type="video/mp4">
             </video>
-            <div class="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent"></div>
-            <div class="container mx-auto px-4 md:px-8 h-full flex items-center relative z-10">
-                <div class="max-w-xl" data-aos="fade-right">
-                    <h1 class="text-4xl md:text-5xl font-bold mb-4">
-                        YOHU PRO 2.0<br>
-                        Quản lý bán hàng<br>
-                        <span class="text-secondary">Tự động, dễ dùng</span>
-                    </h1>
-                    <p class="text-gray-700 mb-8 text-lg">
-                        Giải pháp quản lý bán hàng tự động cho doanh nghiệp nhỏ. Không cần cài đặt, chỉ sử dụng Google Trang tính, nhập liệu bằng giọng nói, xuất đơn PDF, kiểm soát công nợ và kho.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="#dung-thu" class="bg-primary text-white px-6 py-3 font-medium !rounded-button whitespace-nowrap">DÙNG THỬ NGAY</a>
-                        <a href="#tai-lieu" class="border border-gray-300 text-gray-700 px-6 py-3 font-medium !rounded-button whitespace-nowrap">Xem hướng dẫn</a>
+            <div class="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent z-10"></div>
+            <div class="container mx-auto px-4 py-16 md:py-24 relative z-20">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="w-full md:w-1/2 mb-8 md:mb-0" data-aos="fade-right">
+                        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">Giải pháp quản lý bán hàng tự động cho doanh nghiệp</h1>
+                        <p class="text-xl text-gray-700 mb-6">Bạn là hộ kinh doanh? Không biết công nghệ vẫn dùng được!</p>
+                        <div class="mb-8">
+                            <p class="text-gray-600 mb-4">Không cần cài đặt, chỉ sử dụng Google Trang tính, nhập hệ thống menu, xuất đơn PDF, kiểm soát công nợ, kho và báo cáo.</p>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                        <i class="ri-check-line"></i>
+                                    </div>
+                                    <span class="ml-2">Miễn phí phiên bản Lite</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                        <i class="ri-check-line"></i>
+                                    </div>
+                                    <span class="ml-2">Cài đặt trong 15 phút</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+                                        <i class="ri-check-line"></i>
+                                    </div>
+                                    <span class="ml-2">Không cần tài khoản Google doanh nghiệp</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <a href="#dung-thu" class="inline-block bg-primary text-white px-6 py-3 !rounded-button font-medium hover:bg-blue-700 transition text-lg whitespace-nowrap">DÙNG THỬ NGAY</a>
+                    </div>
+                    <div class="w-full md:w-1/2 md:pl-8">
+                        <!-- This div is intentionally left empty as the background video covers this area -->
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
     <!-- Tính Năng Chính -->
     <section class="py-16 bg-white" id="tinh-nang">
         <div class="container mx-auto px-4">
